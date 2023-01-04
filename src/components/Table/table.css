@@ -1,0 +1,6 @@
+.table {
+    display: block;
+    min-height: 50vh;
+    width: 90vw;
+    background-color: #246f93;
+}
