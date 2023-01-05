@@ -12,7 +12,12 @@ export const windowReducer = (state: InitStateType = initialState, action: Windo
             }
         case 'window/DELETE-WINDOW':
             return {
-                ...state, windows: state.windows.filter(w => w.channel !==  action.payload.channel)
+                ...state, windows: state.windows.filter(w => w.channel !== action.payload.channel)
+            }
+        case 'window/CHAT-OPENCLOSE':
+            return {
+                ...state,
+                windows: state.windows.map(w => w.channel === action.payload.channel ? {...w, chat: !w.chat} : w)
             }
         default:
             return state
@@ -30,6 +35,12 @@ export const deleteWindow = (channel: string) => {
         payload: {channel}
     } as const
 }
+export const setChatOpenClose = (channel: string) => {
+    return {
+        type: 'window/CHAT-OPENCLOSE',
+        payload: {channel}
+    } as const
+}
 
 
 export type WindowType = {
@@ -39,4 +50,5 @@ export type WindowType = {
 }
 export type WindowReducerActionsType =
     ReturnType<typeof addNewWindow> |
+    ReturnType<typeof setChatOpenClose> |
     ReturnType<typeof deleteWindow>
