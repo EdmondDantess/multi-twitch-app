@@ -1,5 +1,7 @@
 body {
-    background-color: #2c4659;
+   background-image: url("https://images4.alphacoders.com/112/1126440.jpg");
+background-repeat: no-repeat;
+background-size: cover;
 }
 
 .App {

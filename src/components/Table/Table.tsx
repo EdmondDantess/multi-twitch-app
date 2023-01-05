@@ -19,10 +19,10 @@ export const Table = () => {
 
     return (
         <div className={'table'}>
-
             <div style={{color: 'white', fontSize: '30px', fontWeight: 'bold'}}>channels: {
                 windows.map(w => {
                     return <span
+                        key={w.channel}
                         style={{color: 'red', cursor: 'pointer'}}
                         onClick={() => dispatch(deleteWindow(w.channel))}> {w.channel}</span>
                 })
@@ -30,10 +30,11 @@ export const Table = () => {
 
             <input type="text" value={nameChannel} onChange={(e) => setNameChannel(e.currentTarget.value)}/>
             <button onClick={addNewWindowHandler}>ADD</button>
+
             <div className={'windows'}>
                 {
-                    windows.map(w => {
-                        return <Window channel={w.channel} key={w.channel}/>
+                    windows.map((w, index) => {
+                        return <Window channel={w.channel} key={index}/>
                     })
                 }
             </div>
