@@ -1,7 +1,7 @@
 body {
    background-image: url("https://images4.alphacoders.com/112/1126440.jpg");
 background-repeat: no-repeat;
-background-size: cover;
+background-size: auto;
 }
 
 .App {

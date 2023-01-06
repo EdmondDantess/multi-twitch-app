@@ -4,6 +4,7 @@ import {Window} from '../Window/Window';
 import {useDispatch, useSelector} from 'react-redux';
 import {addNewWindow, deleteWindow, WindowType} from '../Window/window-reducer';
 import {RootState} from '../../app/store';
+import {settings} from '../../api/utils/nsec';
 
 export const Table = () => {
     const dispatch = useDispatch()
@@ -19,6 +20,7 @@ export const Table = () => {
 
     return (
         <div className={'table'}>
+            <a href={`${settings}`}>Connect with Twitch</a>
 
             <div style={{color: 'white', fontSize: '30px', fontWeight: 'bold'}}>channels: {
                 windows.map(w => {
