@@ -18,9 +18,9 @@
     color: #d0d0d0;
     top: -5px;
     font-weight: bold;
-    right: 33px;
+    right: 5px;
     text-align: center;
-    text-shadow: 1px 1px 3px #b934e0;
+    text-shadow: 1px 1px 5px rgba(185, 52, 224, 0.68);
 }
 
 .window-chat {
@@ -46,15 +46,16 @@
     position: absolute;
     top: 0;
     right: 0;
-    background-color: rgba(114, 13, 81, 0.99);
+    background-color: rgba(114, 13, 81, 0);
     color: #ffffff;
-    border-radius: 2px;
-    border: 1px solid rgba(128, 128, 128, 0.36);
+    border-radius: 3px;
+    /*border: 1px solid rgba(128, 128, 128, 0.36);*/
+    border: none;
     opacity: 0.7;
 }
 
 .window-delete:hover {
-    background-color: rgba(139, 0, 100, 0.98);
+    /*background-color: rgba(139, 0, 100, 0.17);*/
     cursor: pointer;
     opacity:0.9;
     scale: 1.7;

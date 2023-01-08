@@ -1,11 +1,22 @@
 body {
-   background-image: url("https://images4.alphacoders.com/112/1126440.jpg");
-background-repeat: no-repeat;
-background-size: auto;
+   /*background-image: url("https://images4.alphacoders.com/112/1126440.jpg");*/
+    background: #B934E0AD;
+    background: radial-gradient(circle, rgb(12, 17, 112) 0%, rgb(50, 43, 86) 100%);
+    background-size: cover;
 }
 
 .App {
     text-align: center;
     display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
     justify-content: center;
+}
+
+.App-nav-wrapper {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    width: 10vw;
+    margin-top: 5vh;
 }

@@ -1,0 +1,42 @@
+.nav {
+    position: relative;
+    margin-top: 10px;
+}
+
+.nav-channels {
+    border: 1px solid gray;
+    border-radius: 4px;
+    width: 100%;
+    color: #fafbff;
+    font-weight: bold;
+}
+
+.nav-channels div {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    border-radius: 3px;
+    border: 1px solid white;
+    background-color: rgba(123, 37, 150, 0.54);
+    text-shadow: 1px 1px 4px blueviolet;
+    width: 100%;
+}
+
+.nav-channels span:hover {
+    opacity: 0.8;
+    color: rgba(93, 114, 134, 0.94);
+}
+
+.nav-channels-delete {
+    color: gray;
+    font-weight: bold;
+    background-color: rgb(255, 255, 255);
+    border: none;
+    opacity: 0.6;
+}
+
+.nav-channels-delete:hover {
+    opacity: 1;
+    cursor: pointer;
+}

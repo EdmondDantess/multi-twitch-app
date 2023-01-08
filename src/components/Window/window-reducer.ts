@@ -8,7 +8,7 @@ export const windowReducer = (state: InitStateType = initialState, action: Windo
     switch (action.type) {
         case 'window/ADD-NEW-WINDOW':
             return {
-                ...state, windows: [...state.windows, {channel: action.payload.channel, chat: false, height: '300px'}]
+                ...state, windows: [...state.windows, {channel: action.payload.channel, chat: false, height: '300px', muted: false}]
             }
         case 'window/DELETE-WINDOW':
             return {
@@ -46,7 +46,8 @@ export const setChatOpenClose = (channel: string) => {
 export type WindowType = {
     channel: string,
     chat: boolean,
-    height: string
+    height: string,
+    muted: boolean
 }
 export type WindowReducerActionsType =
     ReturnType<typeof addNewWindow> |
