@@ -5,21 +5,20 @@ import {useSelector} from 'react-redux';
 import {WindowType} from '../Window/window-reducer';
 import {RootState} from '../../app/store';
 
-export const Table = () => {
+export const Table = React.memo(() => {
 
     const windows = useSelector<RootState, WindowType[]>(state => state.window.windows)
 
     return (
         <div className={'table'}>
-
             <div className={'windows'}>
                 {
                     windows.map((w, index) => {
-                        return <Window channel={w.channel} key={index+Math.random()}/>
+                        return <Window channel={w.channel} key={w.channel}/>
                     })
                 }
             </div>
         </div>
     );
-};
+})
 

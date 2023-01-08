@@ -12,8 +12,8 @@
     min-height: 50vh;
     width: 100%;
     height: 100%;
-    background-color: rgba(220, 24, 106, 0.09);
-    box-shadow: 1px 1px 22px #13033a;
+    background-color: rgba(52, 100, 175, 0.2);
+    box-shadow: 1px 1px 10px #110823;
     border-radius: 10px;
     overflow: hidden;
 }
