@@ -12,7 +12,6 @@
 .search input {
     background-color: rgba(137, 61, 210, 0.51);
     border: 1px solid rgba(29, 6, 84, 0.32);
-    border-radius: 5px;
     outline: none;
     color: rgba(255, 255, 255, 0.75);
 }

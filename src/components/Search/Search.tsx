@@ -19,21 +19,22 @@ export const Search = React.memo(() => {
             setError(null)
         } else {
             setError(`${nameChannel} exists`)
-            setTimeout(()=>{
-                 setError(null)
+            setTimeout(() => {
+                setError(null)
             }, 10000)
         }
     }
 
     return (
         <div className={'search'}>
-            {error ? <div className={'search-error'}>{error}</div> : <></>}
+            {error && <div className={'search-error'}>{error}</div>}
             <input
-                style={error ?  {border: '1px solid red'}: {}}
+                style={error ? {border: '1px solid red'} : {}}
+                placeholder={'Enter channel name'}
                 type="text"
-                   value={nameChannel}
-                   onChange={(e) => setNameChannel(e.currentTarget.value)}/>
-            <button onClick={addNewWindowHandler}>Add Channel</button>
+                value={nameChannel}
+                onChange={(e) => setNameChannel(e.currentTarget.value)}/>
+            <button onClick={addNewWindowHandler} disabled={nameChannel.trim() === ''}>Add Channel</button>
         </div>
     );
 })

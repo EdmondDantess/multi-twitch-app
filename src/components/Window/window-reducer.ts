@@ -12,9 +12,10 @@ export const windowReducer = (state: InitStateType = initialState, action: Windo
                 windows: [...state.windows, {
                     channel: action.payload.channel,
                     chat: false,
-                    height: '300px',
+                    chatPosition: 'underVideo',
+                    height: 200,
                     muted: false,
-                    width: '350px'
+                    width: 350
                 }]
             }
         case 'window/DELETE-WINDOW':
@@ -25,6 +26,15 @@ export const windowReducer = (state: InitStateType = initialState, action: Windo
             return {
                 ...state,
                 windows: state.windows.map(w => w.channel === action.payload.channel ? {...w, chat: !w.chat} : w)
+            }
+        case 'window/CHANGE-WINDOWSIZE':
+            return {
+                ...state,
+                windows: state.windows.map(w => w.channel === action.payload.channel ? {
+                    ...w, width: action.payload.size.width,
+                    height: action.payload.size.height,
+                    channel: action.payload.channel
+                } : w)
             }
         default:
             return state
@@ -48,16 +58,27 @@ export const setChatOpenClose = (channel: string) => {
         payload: {channel}
     } as const
 }
+export const setWindowSize = (channel: string, size: { width: number, height: number }) => {
+    return {
+        type: 'window/CHANGE-WINDOWSIZE',
+        payload: {
+            size,
+            channel
+        }
+    } as const
+}
 
 
 export type WindowType = {
     channel: string,
     chat: boolean,
-    height: string,
-    width: string,
-    muted: boolean
+    height: number,
+    width: number,
+    muted: boolean,
+    chatPosition: 'underVideo' | 'rightVideo'
 }
 export type WindowReducerActionsType =
     ReturnType<typeof addNewWindow> |
     ReturnType<typeof setChatOpenClose> |
+    ReturnType<typeof setWindowSize> |
     ReturnType<typeof deleteWindow>

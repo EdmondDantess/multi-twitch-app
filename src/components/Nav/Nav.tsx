@@ -1,7 +1,7 @@
-import React from 'react';
 import {deleteWindow, WindowType} from '../Window/window-reducer';
 import {useDispatch, useSelector} from 'react-redux';
 import {RootState} from '../../app/store';
+import React from 'react';
 import './nav.css'
 
 export const Nav = React.memo(() => {

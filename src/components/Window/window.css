@@ -44,8 +44,8 @@
 
 .window-delete {
     position: absolute;
-    top: 0;
-    right: 0;
+    top: -12px;
+    right: -12px;
     background-color: rgba(114, 13, 81, 0);
     color: #ffffff;
     border-radius: 3px;
