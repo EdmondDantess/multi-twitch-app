@@ -15,7 +15,7 @@ export const windowReducer = (state: InitStateType = initialState, action: Windo
                     chatPosition: 'underVideo',
                     height: 200,
                     muted: false,
-                    width: 350
+                    width: 350,
                 }]
             }
         case 'window/DELETE-WINDOW':
@@ -75,7 +75,7 @@ export type WindowType = {
     height: number,
     width: number,
     muted: boolean,
-    chatPosition: 'underVideo' | 'rightVideo'
+    chatPosition: 'underVideo' | 'rightVideo',
 }
 export type WindowReducerActionsType =
     ReturnType<typeof addNewWindow> |
