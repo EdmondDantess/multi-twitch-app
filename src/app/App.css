@@ -1,6 +1,7 @@
 body {
-    background-image: url('/src/assets/images/backgroundtw.jpg');
-    background-size: cover;
+    /*background-image: url('/src/assets/images/backgroundtw.jpg');*/
+    /*background-size: cover;*/
+    background-color: #020007;
 }
 
 .App {
@@ -23,4 +24,18 @@ body {
 
 ::selection {
     background-color: #322a6b;
+}
+
+body::-webkit-scrollbar {
+    border-radius: 2px;
+    width: 10px;
+    border: 1px solid #553293;
+    background-color: rgb(39, 7, 54);
+    overflow: visible;
+}
+body::-webkit-scrollbar-thumb {
+    width: 10px;
+    background-color: rgba(87, 31, 115, 0.96);
+    border: 1px solid grey;
+    border-radius: 22px;
 }

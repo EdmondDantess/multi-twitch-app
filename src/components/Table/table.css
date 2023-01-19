@@ -5,16 +5,20 @@
 }
 
 .windows {
-    position: relative;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
+    /*position: relative;*/
+    /*display: flex;*/
+    /*flex-direction: row;*/
+    /*flex-wrap: wrap;*/
     /*justify-content: center;*/
     /*margin: auto;*/
-    min-height: 50vh;
-    width: 100%;
-    background-color: rgba(52, 100, 175, 0.2);
-    box-shadow: 1px 1px 10px #110823;
+    min-height: 90vh;
+    /*width: 100%;*/
+    background-color: rgba(10, 10, 82, 0.2);
+    box-shadow: 1px 1px 10px #360a7c;
     border-radius: 10px;
-    overflow: clip;
+
+}
+
+.layout {
+    /*border: 1px solid red;*/
 }

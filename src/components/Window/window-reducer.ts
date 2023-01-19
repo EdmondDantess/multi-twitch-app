@@ -13,9 +13,11 @@ export const windowReducer = (state: InitStateType = initialState, action: Windo
                     channel: action.payload.channel,
                     chat: false,
                     chatPosition: 'underVideo',
-                    height: 200,
+                    height: 2,
                     muted: false,
-                    width: 350,
+                    width: 4,
+                    x: state.windows.length * 4,
+                    y: (state.windows.length > 3) ? 1 : 0
                 }]
             }
         case 'window/DELETE-WINDOW':
@@ -25,7 +27,16 @@ export const windowReducer = (state: InitStateType = initialState, action: Windo
         case 'window/CHAT-OPENCLOSE':
             return {
                 ...state,
-                windows: state.windows.map(w => w.channel === action.payload.channel ? {...w, chat: !w.chat} : w)
+                windows: state.windows.map(w => w.channel === action.payload.channel
+                    ? {...w, chat: !w.chat}
+                    : w)
+            }
+        case 'window/CHAT-CHANGE-POS':
+            return {
+                ...state,
+                windows: state.windows.map(w => w.channel === action.payload.channel
+                    ? {...w, chatPosition: action.payload.pos}
+                    : w)
             }
         case 'window/CHANGE-WINDOWSIZE':
             return {
@@ -58,12 +69,22 @@ export const setChatOpenClose = (channel: string) => {
         payload: {channel}
     } as const
 }
-export const setWindowSize = (channel: string, size: { width: number, height: number }) => {
+export const setChatPos = (channel: string, pos: 'underVideo' | 'rightVideo') => {
+    return {
+        type: 'window/CHAT-CHANGE-POS',
+        payload: {
+            channel,
+            pos
+        }
+    } as const
+}
+export const setWindowSize = (channel: string, size: { width: number, height: number }, pos: { x: number, y: number }) => {
     return {
         type: 'window/CHANGE-WINDOWSIZE',
         payload: {
             size,
-            channel
+            channel,
+            pos
         }
     } as const
 }
@@ -76,9 +97,12 @@ export type WindowType = {
     width: number,
     muted: boolean,
     chatPosition: 'underVideo' | 'rightVideo',
+    x: number,
+    y: number
 }
 export type WindowReducerActionsType =
     ReturnType<typeof addNewWindow> |
     ReturnType<typeof setChatOpenClose> |
     ReturnType<typeof setWindowSize> |
+    ReturnType<typeof setChatPos> |
     ReturnType<typeof deleteWindow>
