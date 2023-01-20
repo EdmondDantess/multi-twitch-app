@@ -4,6 +4,7 @@ import {RootState} from '../../app/store';
 import React from 'react';
 import './window.css'
 import {contentChat_URL, contentVideo_URL} from './utils/iframeContent';
+import close from '../../assets/icons/close.png'
 
 type WindowPropsType = {
     channel: string
@@ -31,32 +32,61 @@ export const Window: React.FC<WindowPropsType> = React.forwardRef(({channel}) =>
             dispatch(setChatPos(channel, chatPos === 'underVideo' ? 'rightVideo' : 'underVideo'))
         }
 
-        return <div className={`window`}>
+        return <div className={`window`}
+                    style={{flexDirection: chatPos === 'underVideo' ? 'column' : 'row'}}>
             <span className={'window-channelname'}>{channel}</span>
             <div className={'window-handler'}>
-                <button className={'window-delete'} onClick={deleteWindowHandler}>X</button>
-                <button className={'window-handler-chatpos'} onClick={changeChatPosHandler}>Change chat pos</button>
+                <div className={'window-delete'} onClick={deleteWindowHandler}>
+                    <img src={close} alt="" style={{width: '100%'}}/>
+                    </div>
             </div>
+
             <iframe
                 title={'video'}
                 src={contentVideo_URL(channel)}
                 frameBorder="0"
                 allowFullScreen
-                height={chat ? '40%' : '100%'}
-                width={'100%'}></iframe>
+                height={chat && chatPos === 'underVid' ? '20%' : '100%'}
+                width={chat && chatPos === 'underVid' ? '75%' : '100%'}></iframe>
+
             {
                 chat && <iframe
                     title={'chat'}
                     id="chat_embed"
                     src={contentChat_URL(channel)}
                     frameBorder="0"
-                    height={'60%'}
-                    width={'100%'}></iframe>
+                    height={chatPos === 'underVideo' ? '80%' : '100%'}
+                    width={chatPos === 'underVideo' ? '100%' : '30%'}></iframe>
             }
-            <div className={chatPos === 'underVideo' ? 'window-chat-under' : 'window-chat-right'}
-                 onClick={chatOpenCloseHandler}
+
+            <div className={'window-chat-wrapper'}
+                 style={{
+                     width: chatPos === 'underVideo' ? '100%' : '20px',
+                     height: chatPos === 'underVideo' ? '20px' : '100%',
+                     writingMode: chatPos === 'rightVideo'
+                         ? 'vertical-rl'
+                         : 'horizontal-tb'
+                 }}
             >
-                {chat ? '🡅 Close chat' : '🡇 Open chat'}
+                <div className={'window-handler-chatpos'}
+                     style={{
+                         width: chatPos === 'underVideo' ? '10%' : '100%',
+                         height: chatPos === 'underVideo' ? '100%' : '10%',
+                     }}
+                     onClick={changeChatPosHandler}>pos
+                </div>
+                <div className={'window-chat-btn'}
+                     style={{
+                         width: chatPos === 'underVideo' ? '90%' : '20px',
+                         height: chatPos === 'underVideo' ? '100%' : '90%',
+                     }}
+                     onClick={chatOpenCloseHandler}
+                >
+                    {chatPos === 'underVideo'
+                        ? <>{chat ? '🡅 Close chat' : '🡇 Open chat'}</>
+                        : <>{chat ? '🡇 Close chat' : '🡅 Open chat'}</>
+                    }
+                </div>
             </div>
         </div>
     }

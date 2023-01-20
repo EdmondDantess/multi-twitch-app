@@ -1,7 +1,11 @@
+* {
+    box-sizing: border-box;
+}
+
 body {
     /*background-image: url('/src/assets/images/backgroundtw.jpg');*/
     /*background-size: cover;*/
-    background-color: #020007;
+    background-color: #ffffff;
 }
 
 .App {

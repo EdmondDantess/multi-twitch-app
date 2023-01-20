@@ -13,9 +13,14 @@
     /*margin: auto;*/
     min-height: 90vh;
     /*width: 100%;*/
-    background-color: rgba(10, 10, 82, 0.2);
-    box-shadow: 1px 1px 10px #360a7c;
+    background-color: rgb(236, 234, 234);
+    /*box-shadow: 1px 1px 10px #303034;*/
     border-radius: 10px;
+    border: 1px solid white;
+
+}
+.windows:hover {
+    border: 1px solid #9147ff;
 
 }
 

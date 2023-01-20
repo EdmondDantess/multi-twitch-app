@@ -24,9 +24,9 @@ export const Table = React.memo(() => {
                 return {
                     x: w.x,
                     y: w.y,
-                    w: w.width,
-                    h: w.chat ? w.height + 1 : w.height,
-                    minW: 2,
+                    w: w.chat && w.chatPosition === 'rightVideo' ?  w.width + 1 : w.width,
+                    h: w.chat && w.chatPosition === 'underVideo' ? w.height + 1 : w.height,
+                    minW: 3,
                     maxW: 12,
                     i: w.channel,
                 }

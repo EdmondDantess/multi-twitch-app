@@ -5,6 +5,6 @@ export const contentVideo_URL = (channel: string) => {
 }
 export const contentChat_URL = (channel: string) => {
     const vercelChat = `https://www.twitch.tv/embed/${channel}/chat?parent=multi-twitch-app.vercel.app&referrer=https%3A%2F%2Fmulti-twitch-app.vercel.app&darkpopout`
-    const localHChat = `https://www.twitch.tv/embed/${channel}/chat?parent=localhost&referrer=http%3A%2F%2Flocalhost%3A3000%&darkpopout`
+    const localHChat = `https://www.twitch.tv/embed/${channel}/chat?parent=localhost&referrer=http%3A%2F%2Flocalhost%3A3000%&`
     return vercelChat
 }
