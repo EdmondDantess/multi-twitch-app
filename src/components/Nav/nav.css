@@ -1,25 +1,23 @@
 .nav {
     position: relative;
     margin-top: 10px;
+    border: 1px solid;
+    background-color: #efeff1;
 }
 
 .nav-channels {
     border: 1px solid gray;
-    border-radius: 4px;
     width: 100%;
-    color: #fafbff;
+    color: black;
     font-weight: bold;
 }
 
-.nav-channels div {
+.nav-channels .nav-channel {
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
     justify-content: space-between;
-    border-radius: 3px;
-    border: 1px solid white;
-    background-color: #3d3d40;
-    text-shadow: 1px 1px 4px blueviolet;
+    border: 1px solid #000000;
     width: 100%;
 }
 
@@ -29,14 +27,13 @@
 }
 
 .nav-channels-delete {
-    color: gray;
-    font-weight: bold;
-    background-color: rgb(255, 255, 255);
     border: none;
-    opacity: 0.6;
+}
+.nav-channels-delete img {
+    width: 14px;
 }
 
 .nav-channels-delete:hover {
-    opacity: 1;
     cursor: pointer;
+    transform: scale(1.5);
 }

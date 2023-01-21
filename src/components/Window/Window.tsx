@@ -1,7 +1,7 @@
 import {deleteWindow, setChatOpenClose, setChatPos} from './window-reducer';
 import {useDispatch, useSelector} from 'react-redux';
 import {RootState} from '../../app/store';
-import React from 'react';
+import React, {useRef} from 'react';
 import './window.css'
 import {contentChat_URL, contentVideo_URL} from './utils/iframeContent';
 import close from '../../assets/icons/close.png'
@@ -13,6 +13,7 @@ type WindowPropsType = {
 export const Window: React.FC<WindowPropsType> = React.forwardRef(({channel}) => {
 
         const dispatch = useDispatch()
+        const refIframe = useRef<any>()
 
         const chat = useSelector<RootState, boolean>(state => state.window.windows.find(w => w.channel === channel)!.chat)
         const width = useSelector<RootState, number>(state => state.window.windows.find(w => w.channel === channel)!.width)
@@ -34,20 +35,23 @@ export const Window: React.FC<WindowPropsType> = React.forwardRef(({channel}) =>
 
         return <div className={`window`}
                     style={{flexDirection: chatPos === 'underVideo' ? 'column' : 'row'}}>
-            <span className={'window-channelname'}>{channel}</span>
+            <div className={'window-channelname'}>{channel}</div>
             <div className={'window-handler'}>
                 <div className={'window-delete'} onClick={deleteWindowHandler}>
                     <img src={close} alt="" style={{width: '100%'}}/>
-                    </div>
+                </div>
+
             </div>
 
             <iframe
-                title={'video'}
+                ref={refIframe}
+                title={channel}
                 src={contentVideo_URL(channel)}
                 frameBorder="0"
                 allowFullScreen
                 height={chat && chatPos === 'underVid' ? '20%' : '100%'}
-                width={chat && chatPos === 'underVid' ? '75%' : '100%'}></iframe>
+                width={chat && chatPos === 'underVid' ? '75%' : '100%'}
+            ></iframe>
 
             {
                 chat && <iframe
@@ -73,7 +77,10 @@ export const Window: React.FC<WindowPropsType> = React.forwardRef(({channel}) =>
                          width: chatPos === 'underVideo' ? '10%' : '100%',
                          height: chatPos === 'underVideo' ? '100%' : '10%',
                      }}
-                     onClick={changeChatPosHandler}>pos
+                     onClick={changeChatPosHandler}>{
+                    chatPos === 'underVideo'
+                        ? '🡆'
+                        : '🡇'}
                 </div>
                 <div className={'window-chat-btn'}
                      style={{

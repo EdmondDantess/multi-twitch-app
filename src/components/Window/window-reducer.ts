@@ -31,6 +31,13 @@ export const windowReducer = (state: InitStateType = initialState, action: Windo
                     ? {...w, chat: !w.chat}
                     : w)
             }
+        case 'window/MUTE-WINDOW':
+            return {
+                ...state,
+                windows: state.windows.map(w => w.channel === action.payload.channel
+                    ? {...w, muted: !w.muted}
+                    : w)
+            }
         case 'window/CHAT-CHANGE-POS':
             return {
                 ...state,
@@ -78,6 +85,14 @@ export const setChatPos = (channel: string, pos: 'underVideo' | 'rightVideo') =>
         }
     } as const
 }
+export const setMuteWindow = (channel: string) => {
+    return {
+        type: 'window/MUTE-WINDOW',
+        payload: {
+            channel
+        }
+    } as const
+}
 export const setWindowSize = (channel: string, size: { width: number, height: number }, pos: { x: number, y: number }) => {
     return {
         type: 'window/CHANGE-WINDOWSIZE',
@@ -105,4 +120,5 @@ export type WindowReducerActionsType =
     ReturnType<typeof setChatOpenClose> |
     ReturnType<typeof setWindowSize> |
     ReturnType<typeof setChatPos> |
+    ReturnType<typeof setMuteWindow> |
     ReturnType<typeof deleteWindow>
