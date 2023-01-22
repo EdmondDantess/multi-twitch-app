@@ -21,7 +21,7 @@ export const Nav = React.memo(() => {
                         {/*        onClick={() => dispatch(deleteWindow(w.channel))}>Mute</button>*/}
                         <div className={'nav-channels-delete'}
                                 onClick={() => dispatch(deleteWindow(w.channel))}>
-                            <img src={close} alt={'del'}/>
+                            <img src={close} alt={'delete icon'}/>
                         </div>
                     </div>
                 })
