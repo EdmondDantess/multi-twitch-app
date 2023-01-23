@@ -12,11 +12,11 @@
 
 .window:hover {
     cursor: move;
-    /*border: 2px solid  #6314d5;*/
     box-shadow: 3px 3px 12px #6314d5;
 }
 
 .window iframe {
+    border: 0;
 }
 
 .window-channelname {
@@ -32,6 +32,7 @@
     border: 1px solid white;
     overflow: clip;
 }
+
 .window-chat-wrapper {
     display: flex;
 }
@@ -70,9 +71,12 @@
 .window-handler {
     position: absolute;
     top: -8px;
-    right: 100px;
+    right: -15px;
     display: flex;
     flex-direction: row;
+    width: 15px;
+    border: 1px solid blueviolet;
+    border-radius: 5px;
 }
 
 .window-delete {

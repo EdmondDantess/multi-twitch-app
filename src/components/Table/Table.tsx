@@ -37,9 +37,7 @@ export const Table = React.memo(() => {
                 w => dispatch(setWindowSize(w.i, {width: w.w, height: w.h}, {x: w.x, y: w.y}))
             )
         }
-
         const layout = generateLayout();
-
         return (
             <div className={'table'}>
                 <div className={'windows'}>
@@ -47,6 +45,7 @@ export const Table = React.memo(() => {
                                      cols={12}
                                      layout={layout}
                                      onResizeStop={onResizeStop}
+                                     margin={[15, 15]}
                     >
                         {generateWindows()}
                     </ReactGridLayout>

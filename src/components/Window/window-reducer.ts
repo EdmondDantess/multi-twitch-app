@@ -6,7 +6,7 @@ const initialState = {
 
 export const windowReducer = (state: InitStateType = initialState, action: WindowReducerActionsType): InitStateType => {
     switch (action.type) {
-        case 'window/ADD-NEW-WINDOW':
+        case 'window/ADD_NEW_WINDOW':
             return {
                 ...state,
                 windows: [...state.windows, {
@@ -20,32 +20,32 @@ export const windowReducer = (state: InitStateType = initialState, action: Windo
                     y: (state.windows.length > 3) ? 1 : 0
                 }]
             }
-        case 'window/DELETE-WINDOW':
+        case 'window/DELETE_WINDOW':
             return {
                 ...state, windows: state.windows.filter(w => w.channel !== action.payload.channel)
             }
-        case 'window/CHAT-OPENCLOSE':
+        case 'window/CHAT_OPENCLOSE':
             return {
                 ...state,
                 windows: state.windows.map(w => w.channel === action.payload.channel
                     ? {...w, chat: !w.chat}
                     : w)
             }
-        case 'window/MUTE-WINDOW':
+        case 'window/MUTE_WINDOW':
             return {
                 ...state,
                 windows: state.windows.map(w => w.channel === action.payload.channel
                     ? {...w, muted: !w.muted}
                     : w)
             }
-        case 'window/CHAT-CHANGE-POS':
+        case 'window/CHAT_CHANGE_POS':
             return {
                 ...state,
                 windows: state.windows.map(w => w.channel === action.payload.channel
                     ? {...w, chatPosition: action.payload.pos}
                     : w)
             }
-        case 'window/CHANGE-WINDOWSIZE':
+        case 'window/CHANGE_WINDOWSIZE':
             return {
                 ...state,
                 windows: state.windows.map(w => w.channel === action.payload.channel ? {
@@ -60,25 +60,25 @@ export const windowReducer = (state: InitStateType = initialState, action: Windo
 }
 export const addNewWindow = (channel: string) => {
     return {
-        type: 'window/ADD-NEW-WINDOW',
+        type: 'window/ADD_NEW_WINDOW',
         payload: {channel}
     } as const
 }
 export const deleteWindow = (channel: string) => {
     return {
-        type: 'window/DELETE-WINDOW',
+        type: 'window/DELETE_WINDOW',
         payload: {channel}
     } as const
 }
 export const setChatOpenClose = (channel: string) => {
     return {
-        type: 'window/CHAT-OPENCLOSE',
+        type: 'window/CHAT_OPENCLOSE',
         payload: {channel}
     } as const
 }
 export const setChatPos = (channel: string, pos: 'underVideo' | 'rightVideo') => {
     return {
-        type: 'window/CHAT-CHANGE-POS',
+        type: 'window/CHAT_CHANGE_POS',
         payload: {
             channel,
             pos
@@ -87,7 +87,7 @@ export const setChatPos = (channel: string, pos: 'underVideo' | 'rightVideo') =>
 }
 export const setMuteWindow = (channel: string) => {
     return {
-        type: 'window/MUTE-WINDOW',
+        type: 'window/MUTE_WINDOW',
         payload: {
             channel
         }
@@ -95,7 +95,7 @@ export const setMuteWindow = (channel: string) => {
 }
 export const setWindowSize = (channel: string, size: { width: number, height: number }, pos: { x: number, y: number }) => {
     return {
-        type: 'window/CHANGE-WINDOWSIZE',
+        type: 'window/CHANGE_WINDOWSIZE',
         payload: {
             size,
             channel,

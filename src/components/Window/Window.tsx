@@ -40,24 +40,23 @@ export const Window: React.FC<WindowPropsType> = ({channel}) => {
             <div className={'window-delete'} onClick={deleteWindowHandler}>
                 <img src={close} alt="delete icon" style={{width: '100%'}}/>
             </div>
-
         </div>
 
         <iframe
             title={channel}
             src={contentVideo_URL(channel)}
             allowFullScreen
-            height={chat && chatPos === 'underVid' ? '20%' : '100%'}
-            width={chat && chatPos === 'underVid' ? '75%' : '100%'}
+            width={chatPos === 'underVideo'
+                ? '100%'
+                : (chat ? '67%' : `100%`)}
+            height={chat && chatPos === 'underVideo' ? '33%' : '100%'}
         ></iframe>
-
         {
             chat && <iframe
                 title={'chat'}
-                id="chat_embed"
                 src={contentChat_URL(channel)}
-                height={chatPos === 'underVideo' ? '80%' : '100%'}
-                width={chatPos === 'underVideo' ? '100%' : '30%'}></iframe>
+                height={chatPos === 'underVideo' ? '67%' : '100%'}
+                width={chatPos === 'underVideo' ? '100%' : '33%'}></iframe>
         }
 
         <div className={'window-chat-wrapper'}
