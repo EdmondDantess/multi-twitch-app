@@ -1,11 +1,11 @@
 .table {
-    margin: 2% auto;
-    min-height: 90vh;
+    margin: 1px auto;
+    min-height: 99vh;
     width: 89vw;
 }
 
 .windows {
-    min-height: 90vh;
+    min-height: 99vh;
     background-color: rgb(236, 234, 234);
     border-radius: 10px;
     border: 1px solid white;
@@ -13,5 +13,4 @@
 
 .windows:hover {
     border: 1px solid #9147ff;
-
 }

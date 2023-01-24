@@ -1,23 +1,25 @@
 import {setWindowSize, WindowType} from '../Window/window-reducer';
 import {RootState} from '../../app/store';
-import {useDispatch, useSelector} from 'react-redux';
+import {useSelector} from 'react-redux';
 import {Window} from '../Window/Window';
 import React from 'react';
 import './table.css'
 import '../../../node_modules/react-resizable/css/styles.css'
 import '../../../node_modules/react-grid-layout/css/styles.css'
 import RGL, {WidthProvider} from 'react-grid-layout';
+import {useAppDispatch} from '../../app/hooks';
 
 const ReactGridLayout = WidthProvider(RGL);
 
 export const Table = React.memo(() => {
         const windows = useSelector<RootState, WindowType[]>(state => state.window.windows)
-        const dispatch = useDispatch()
+        const dispatch = useAppDispatch()
         const generateWindows = (): JSX.Element[] => {
             return windows.map((w) => {
                 return <div key={w.channel} style={{position: 'relative'}}><Window channel={w.channel}/></div>
             })
         }
+
 
         const generateLayout = (): RGL.Layout[] => {
             return windows.map((w) => {

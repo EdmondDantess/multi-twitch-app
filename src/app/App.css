@@ -19,6 +19,7 @@ body {
 }
 
 .App-nav-wrapper {
+    position: relative;
     display: flex;
     flex-direction: column;
     flex-wrap: nowrap;
@@ -30,16 +31,16 @@ body {
     background-color: #9f9ea2;
 }
 
-body::-webkit-scrollbar {
+*::-webkit-scrollbar {
     border-radius: 2px;
     width: 10px;
     border: 1px solid #553293;
-    background-color: rgb(39, 7, 54);
+    background-color: rgba(92, 89, 94, 0.22);
     overflow: visible;
 }
-body::-webkit-scrollbar-thumb {
+*::-webkit-scrollbar-thumb {
     width: 10px;
-    background-color: rgba(87, 31, 115, 0.96);
+    background-color: #9147ff;
     border: 1px solid grey;
     border-radius: 22px;
 }
