@@ -23,7 +23,8 @@ body {
     display: flex;
     flex-direction: column;
     flex-wrap: nowrap;
-    width: 10vw;
+    min-width: 150px;
+    max-width: 10vw;
     margin-top: 5vh;
 }
 

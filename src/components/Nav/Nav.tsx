@@ -10,9 +10,12 @@ export const Nav = React.memo(() => {
     const dispatch = useAppDispatch()
     const windows = useSelector<RootState, WindowType[]>(state => state.window.windows)
 
+    const vercel = 'https%3A%2F%2Fmulti-twitch-app.vercel.app'
+    const localhost = 'http://localhost:3000'
+
     return (
         <div className={'nav'}>
-            <a href="https://id.twitch.tv/oauth2/authorize?response_type=token&client_id=8cux8z8nnvju38k96pniih4k0uijlb&redirect_uri=http://localhost:3000/&scope=user%3Aedit%20user%3Aread%3Aemail">Connect
+            <a href={`https://id.twitch.tv/oauth2/authorize?response_type=token&client_id=8cux8z8nnvju38k96pniih4k0uijlb&redirect_uri=${vercel}/&scope=user%3Aedit%20user%3Aread%3Aemail`}>Connect
                 with Twitch</a>
 
             <div className={'nav-channels'}>Channels on board:{

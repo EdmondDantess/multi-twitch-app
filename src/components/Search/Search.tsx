@@ -64,7 +64,7 @@ export const Search = React.memo(() => {
                                  className={'search-streamer-avatar'}/>
                             <div>
                                 <div>{c.display_name}</div>
-                                <div>{c.title.length > 20
+                                <div style={{fontSize:'12px'}}>{c.title.length > 20
                                     ? <span title={c.title}>{c.title.slice(0, 20).concat('...')}</span>
                                     : <span>{c.title}</span>
                                 }</div>
