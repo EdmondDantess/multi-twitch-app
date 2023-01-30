@@ -74,7 +74,7 @@
     border: 2px solid gray;
     border-radius: 20px;
     margin-top: 10px;
-    height: 30vh;
+    max-height: 50vh;
     overflow: auto;
 }
 .nav-my-follow {

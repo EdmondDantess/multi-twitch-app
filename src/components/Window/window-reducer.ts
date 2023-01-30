@@ -1,3 +1,5 @@
+import {stat} from 'fs';
+
 type InitStateType = typeof initialState
 
 const initialState = {
@@ -7,19 +9,19 @@ const initialState = {
 export const windowReducer = (state: InitStateType = initialState, action: WindowReducerActionsType): InitStateType => {
     switch (action.type) {
         case 'window/ADD_NEW_WINDOW':
-            return {
-                ...state,
-                windows: [...state.windows, {
-                    channel: action.payload.channel,
-                    chat: false,
-                    chatPosition: 'underVideo',
-                    height: 2,
-                    muted: false,
-                    width: 4,
-                    x: state.windows.length * 4,
-                    y: (state.windows.length > 3) ? 1 : 0
-                }]
-            }
+                return {
+                    ...state,
+                    windows: [...state.windows, {
+                        channel: action.payload.channel,
+                        chat: false,
+                        chatPosition: 'underVideo',
+                        height: 2,
+                        muted: false,
+                        width: 4,
+                        x: state.windows.length * 4,
+                        y: (state.windows.length > 3) ? 1 : 0
+                    }]
+                }
         case 'window/DELETE_WINDOW':
             return {
                 ...state, windows: state.windows.filter(w => w.channel !== action.payload.channel)

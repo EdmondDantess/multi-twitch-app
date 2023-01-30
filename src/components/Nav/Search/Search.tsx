@@ -74,7 +74,8 @@ export const Search = React.memo(() => {
                                     style={{
                                         fontWeight: 'bold',
                                         color: 'white',
-                                        backgroundColor: 'red'
+                                        backgroundColor: 'red',
+                                        borderRadius: '4px'
                                     }}>Live</span>}
                             </div>
                         </div>

@@ -55,7 +55,6 @@ export const Window: React.FC<WindowPropsType> = ({channel}) => {
                 height={calcPropertyPosChat('67%', '100%')}
                 width={calcPropertyPosChat('100%', '33%')}/>
         }
-
         <div className={'window-chat-wrapper'}
              style={{
                  width: calcPropertyPosChat('100%', '20px'),
@@ -80,7 +79,6 @@ export const Window: React.FC<WindowPropsType> = ({channel}) => {
                     chat ? '🡇 Close chat' : '🡅 Open chat')}
             </div>
         </div>
-
     </div>
 }
 

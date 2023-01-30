@@ -35,9 +35,14 @@ export const Nav = React.memo(() => {
 
     const generateMyFollows = () => {
         return myFollows.map((f) => {
-            return <div className={'nav-my-follow'}
-                onClick={()=>dispatch(addNewWindow(f.to_login))}>
-             <span style={{marginLeft: '6px'}}>  {f.to_name}</span>
+            const addOnBoard = () => {
+                windows.filter(w => w.channel === f.to_login).length === 0
+                    ? dispatch(addNewWindow(f.to_login))
+                    : alert(`${f.to_login} is exist`)
+            }
+            return <div className={'nav-my-follow'} key={f.to_id}
+                        onClick={addOnBoard}>
+                <span style={{marginLeft: '6px'}}>{f.to_name}</span>
             </div>
         })
     }
