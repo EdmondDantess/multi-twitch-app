@@ -7,6 +7,7 @@ import {getMyFollows, getUserData} from './nav-reducer';
 import {Search} from './Search/Search';
 
 export const Nav = React.memo(() => {
+
     const dispatch = useAppDispatch()
     const windows = useAppSelector(state => state.window.windows)
     const token = useAppSelector(state => state.login.token)

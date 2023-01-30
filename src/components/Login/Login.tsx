@@ -7,8 +7,6 @@ export const Login = () => {
     const vercel = 'https%3A%2F%2Fmulti-twitch-app.vercel.app'
     const localhost = 'http://localhost:3000'
 
-
-
     return (
         <div className={'login'}>
             <h2>Multi Twitch</h2>
