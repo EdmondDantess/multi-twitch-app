@@ -18,15 +18,14 @@ export const twitchAPI = {
             }
         })
     },
-    getMyFollows(token: string) {
-        return instance.get('helix/users/follows?from_id=157007603&first=100', {
+    getMyFollowsApi(token: string) {
+        return instance.get<MyFollows>('helix/users/follows?from_id=157007603&first=100', {
             headers: {
                 'Authorization': `Bearer ${token}`,
                 'Client-Id': '8cux8z8nnvju38k96pniih4k0uijlb',
             }
         })
     }
-
 }
 
 export type DataSearch = {
@@ -69,4 +68,22 @@ export type UserDataInfo = {
 
 export type UserInfo = {
     data: UserDataInfo[];
+}
+
+export type DataFollows = {
+    from_id: string;
+    from_login: string;
+    from_name: string;
+    to_id: string;
+    to_login: string;
+    to_name: string;
+    followed_at: string;
+}
+
+export type PaginationFollows = {}
+
+export type MyFollows = {
+    total: number;
+    data: DataFollows[];
+    pagination: PaginationFollows;
 }

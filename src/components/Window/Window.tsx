@@ -1,6 +1,4 @@
 import {deleteWindow, setChatOpenClose, setChatPos} from './window-reducer';
-import {useSelector} from 'react-redux';
-import {RootState} from '../../app/store';
 import React from 'react';
 import './window.css'
 import {contentChat_URL, contentVideo_URL} from './utils/iframeContent';
@@ -16,9 +14,6 @@ export const Window: React.FC<WindowPropsType> = ({channel}) => {
     const dispatch = useAppDispatch()
 
     const chat = useAppSelector(state => state.window.windows.find(w => w.channel === channel)!.chat)
-    // const width = useAppSelector(state => state.window.windows.find(w => w.channel === channel)!.width)
-    // const height = useAppSelector(state => state.window.windows.find(w => w.channel === channel)!.height)
-    // const mute = useAppSelector(state => state.window.windows.find(w => w.channel === channel)!.muted)
     const chatPos = useAppSelector(state => state.window.windows.find(w => w.channel === channel)!.chatPosition)
 
     function chatOpenCloseHandler() {

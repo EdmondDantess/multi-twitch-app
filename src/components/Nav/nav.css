@@ -69,3 +69,20 @@
     border: 2px solid darkviolet;
     border-radius: 20px;
 }
+
+.nav-myfollows {
+    border: 2px solid gray;
+    border-radius: 20px;
+    margin-top: 10px;
+    height: 30vh;
+    overflow: auto;
+}
+.nav-my-follow {
+    text-align: left;
+    border-bottom: 1px solid gray;
+    cursor: pointer;
+    font-weight: bold;
+}
+.nav-my-follow:hover {
+    background-color: #7c7676;
+}
