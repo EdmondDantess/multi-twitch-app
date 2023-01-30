@@ -42,9 +42,9 @@ export const getUserData = (token: string): AppThunk => async (dispatch) => {
         alert(e)
     }
 }
-export const getMyFollows = (token: string): AppThunk => async (dispatch) => {
+export const getMyFollows = (token: string, id: string): AppThunk => async (dispatch) => {
     try {
-        const res = await twitchAPI.getMyFollowsApi(token)
+        const res = await twitchAPI.getMyFollowsApi(token, id)
         dispatch(setMyFollows(res.data.data))
     } catch (e: any) {
         alert(e)

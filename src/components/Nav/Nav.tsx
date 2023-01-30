@@ -16,7 +16,7 @@ export const Nav = React.memo(() => {
 
     useEffect(() => {
         dispatch(getUserData(token))
-        dispatch(getMyFollows(token))
+        dispatch(getMyFollows(token, userData.id))
     }, [])
 
     const generateListChannelsOnBoard = () => {

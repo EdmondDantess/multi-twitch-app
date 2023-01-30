@@ -18,8 +18,8 @@ export const twitchAPI = {
             }
         })
     },
-    getMyFollowsApi(token: string) {
-        return instance.get<MyFollows>('helix/users/follows?from_id=157007603&first=100', {
+    getMyFollowsApi(token: string, userID: string) {
+        return instance.get<MyFollows>(`helix/users/follows?from_id=${userID}&first=100`, {
             headers: {
                 'Authorization': `Bearer ${token}`,
                 'Client-Id': '8cux8z8nnvju38k96pniih4k0uijlb',
