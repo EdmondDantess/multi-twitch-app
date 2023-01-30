@@ -1,16 +1,16 @@
-import {addNewWindow} from '../Window/window-reducer';
+import {addNewWindow} from '../../Window/window-reducer';
 import React, {useEffect, useState} from 'react';
 import './search.css'
 import {getSearchChannels, setSearchChannels} from './search-reducer';
-import useDebounce from '../../hooks/useDebounce/useDebounce';
-import {useAppDispatch, useAppSelector} from '../../app/hooks';
-import close from '../../assets/icons/close.png'
+import useDebounce from '../../../hooks/useDebounce/useDebounce';
+import {useAppDispatch, useAppSelector} from '../../../app/hooks';
+import close from '../../../assets/icons/close.png'
 
 export const Search = React.memo(() => {
 
     const dispatch = useAppDispatch()
     const windows = useAppSelector(state => state.window.windows)
-    const token = useAppSelector(state => state.app.token)
+    const token = useAppSelector(state => state.login.token)
     const searchingChannels = useAppSelector(state => state.search.searchingChannels)
     const [searchValue, setSearchValue] = useState<string>('')
     const [error, setError] = useState<string | null>(null)
@@ -29,19 +29,16 @@ export const Search = React.memo(() => {
         windows.find(c => c.channel === channel)
             ? setError('Channel is exist')
             : dispatch(addNewWindow(channel))
-        setSearchValue('')
-        dispatch(setSearchChannels([]))
+        clearSearchInput()
     }
 
     function clearSearchInput() {
-        setTimeout(() => {
-            dispatch(setSearchChannels([]))
-            setSearchValue('')
-        }, 100)
+        dispatch(setSearchChannels([]))
+        setSearchValue('')
     }
 
     return (
-        <div className={'search'} onBlur={clearSearchInput}>
+        <div className={'search'}>
             {error && <div className={'search-error'}>{error}</div>}
             <div className={'search-input-wrapper'}>
                 <input
@@ -54,7 +51,7 @@ export const Search = React.memo(() => {
                     <div onClick={clearSearchInput} className={'search-clear-btn'}><img src={close} alt="clear"/></div>}
             </div>
             {searchingChannels.length > 0 &&
-                <div className={'search-result-channels'}>
+                <div className={'search-result-channels'} onBlur={clearSearchInput}>
                     {searchingChannels.map(c => {
                         return <div key={c.broadcaster_login} className={'search-result-channel'}
                                     onClick={() => addWindowOnBoard(c.broadcaster_login)}
@@ -64,12 +61,22 @@ export const Search = React.memo(() => {
                                  className={'search-streamer-avatar'}/>
                             <div>
                                 <div>{c.display_name}</div>
-                                <div style={{fontSize:'12px'}}>{c.title.length > 20
-                                    ? <span title={c.title}>{c.title.slice(0, 20).concat('...')}</span>
-                                    : <span>{c.title}</span>
-                                }</div>
+                                <div style={{fontSize: '12px'}}>
+                                    {
+                                        c.title.length > 20
+                                            ? <span title={c.title}>{c.title.slice(0, 20).concat('...')}</span>
+                                            : <span>{c.title}</span>
+                                    }
+                                </div>
                             </div>
-                            <div>{c.is_live && <span style={{fontWeight: 'bold', color: 'red'}}>Live</span>}</div>
+                            <div>
+                                {c.is_live && <span
+                                    style={{
+                                        fontWeight: 'bold',
+                                        color: 'white',
+                                        backgroundColor: 'red'
+                                    }}>Live</span>}
+                            </div>
                         </div>
                     })}
                 </div>

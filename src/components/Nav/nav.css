@@ -1,24 +1,30 @@
 .nav {
     position: relative;
-    margin-top: 10px;
-    border: 1px solid;
-    background-color: #efeff1;
+    border: 2px solid #d7d6d6;
+    border-top-right-radius: 12px;
+    border-bottom-right-radius: 12px;
+    box-shadow: 3px 3px 6px black;
 }
 
 .nav-channels {
-    border: 1px solid gray;
+    margin-top: 5px;
     width: 100%;
+    max-height: 30vh;
     color: black;
     font-weight: bold;
+    overflow-y: auto;
+    border: 2px solid gray;
+    border-radius: 12px;
 }
 
 .nav-channels .nav-channel {
+    height: 25px;
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
-    justify-content: space-between;
-    border: 1px solid #000000;
+    border: 2px solid #7c7676;
     width: 100%;
+    border-radius: 12px;
 }
 
 .nav-channels span:hover {
@@ -26,14 +32,40 @@
     color: rgba(93, 114, 134, 0.94);
 }
 
-.nav-channels-delete {
-    border: none;
+.nav-channel {
+    position: relative;
 }
+
 .nav-channels-delete img {
+    position: absolute;
+    top: 4px;
+    right: 2px;
     width: 14px;
 }
 
-.nav-channels-delete:hover {
+.nav-channels-delete img:hover {
     cursor: pointer;
-    transform: scale(1.5);
+    scale: 1.2;
+}
+
+.nav-channels-delete img:active {
+    cursor: pointer;
+    scale: 1;
+}
+
+.nav-userinfo__nickname a {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    overflow: clip;
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+}
+
+.nav-userinfo__nickname img {
+    width: 50px;
+    border: 2px solid darkviolet;
+    border-radius: 20px;
 }

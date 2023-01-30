@@ -1,5 +1,5 @@
-import {DataSearch, twitchAPI} from '../../api/twitchAPI';
-import {AppThunk} from '../../app/store';
+import {DataSearch, twitchAPI} from '../../../api/twitchAPI';
+import {AppThunk} from '../../../app/store';
 
 type InitStateType = typeof initialState
 
@@ -26,7 +26,7 @@ export const setSearchChannels = (data: DataSearch[]) => {
 
 export const getSearchChannels = (token: string, channel: string): AppThunk => async (dispatch) => {
     try {
-        const res = await twitchAPI.search(token, channel)
+        const res = await twitchAPI.searchChannel(token, channel)
         dispatch(setSearchChannels(res.data.data))
     } catch (e: any) {
         alert(e)

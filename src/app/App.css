@@ -18,22 +18,13 @@ body {
     min-height: 100vh;
 }
 
-.App-nav-wrapper {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    flex-wrap: nowrap;
-    min-width: 150px;
-    max-width: 10vw;
-    margin-top: 5vh;
-}
 
-::selection {
+*::selection {
     background-color: #9f9ea2;
 }
 
 *::-webkit-scrollbar {
-    border-radius: 2px;
+    border-radius: 13px;
     width: 10px;
     border: 1px solid #553293;
     background-color: rgba(92, 89, 94, 0.22);

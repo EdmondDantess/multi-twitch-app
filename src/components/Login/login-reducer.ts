@@ -5,9 +5,9 @@ const initialState = {
     'Client-Id': '8cux8z8nnvju38k96pniih4k0uijlb',
 }
 
-export const appReducer = (state: InitStateType = initialState, action: AppReducerActionsType): InitStateType => {
+export const loginReducer = (state: InitStateType = initialState, action: LoginReducerActionsType): InitStateType => {
     switch (action.type) {
-        case 'app/LOGIN':
+        case 'login/LOGIN':
             return {
                 ...state, token: action.payload.token
             }
@@ -17,12 +17,12 @@ export const appReducer = (state: InitStateType = initialState, action: AppReduc
 }
 export const setToken = (token: string) => {
     return {
-        type: 'app/LOGIN',
+        type: 'login/LOGIN',
         payload: {token}
     } as const
 }
 
-export type AppReducerActionsType =
+export type LoginReducerActionsType =
     ReturnType<typeof setToken>
 
 

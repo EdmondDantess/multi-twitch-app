@@ -1,37 +1,48 @@
 import {deleteWindow, WindowType} from '../Window/window-reducer';
-import {useSelector} from 'react-redux';
-import {RootState} from '../../app/store';
-import React from 'react';
+import React, {useEffect} from 'react';
 import './nav.css'
 import close from '../../assets/icons/close.png'
-import {useAppDispatch} from '../../app/hooks';
+import {useAppDispatch, useAppSelector} from '../../app/hooks';
+import {getUserData} from './nav-reducer';
+import {Search} from './Search/Search';
 
 export const Nav = React.memo(() => {
     const dispatch = useAppDispatch()
-    const windows = useSelector<RootState, WindowType[]>(state => state.window.windows)
+    const windows = useAppSelector(state => state.window.windows)
+    const token = useAppSelector(state => state.login.token)
+    const userData = useAppSelector(state => state.nav.userData)
 
-    const vercel = 'https%3A%2F%2Fmulti-twitch-app.vercel.app'
-    const localhost = 'http://localhost:3000'
+    useEffect(() => {
+        dispatch(getUserData(token))
+    }, [])
 
     return (
         <div className={'nav'}>
-            <a href={`https://id.twitch.tv/oauth2/authorize?response_type=token&client_id=8cux8z8nnvju38k96pniih4k0uijlb&redirect_uri=${vercel}/&scope=user%3Aedit%20user%3Aread%3Aemail`}>Connect
-                with Twitch</a>
-
-            <div className={'nav-channels'}>Channels on board:{
-                windows.map(w => {
-                    return <div
-                        className={'nav-channel'}
-                        key={w.channel}>{w.channel}
-                        {/*<button className={'nav-channels-muteunmute'}*/}
-                        {/*        onClick={() => dispatch(deleteWindow(w.channel))}>Mute</button>*/}
-                        <div className={'nav-channels-delete'}
-                             onClick={() => dispatch(deleteWindow(w.channel))}>
-                            <img src={close} alt={'delete icon'}/>
+            <div className={'nav-userinfo'}>
+                <div className={'nav-userinfo__nickname'}>
+                    <a href="https://www.twitch.tv/settings/profile" target={'_blank'} rel={'noreferrer'}>
+                        <img src={userData.profile_image_url} alt="avatar"/>
+                        <span>{userData.login}</span>
+                        <span>{userData.id}</span>
+                    </a>
+                </div>
+            </div>
+            <Search/>
+            <div className={'nav-channels'}>
+                <div>Channels on board:</div>
+                {
+                    windows.map((w: WindowType) => {
+                        return <div
+                            className={'nav-channel'}
+                            key={w.channel}>
+                            {w.channel}
+                            <div className={'nav-channels-delete'}
+                                 onClick={() => dispatch(deleteWindow(w.channel))}>
+                                <img src={close} alt={'delete icon'}/>
+                            </div>
                         </div>
-                    </div>
-                })
-            }
+                    })
+                }
             </div>
         </div>
     );
