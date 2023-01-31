@@ -5,7 +5,9 @@ type InitStateType = typeof initialState
 
 const initialState = {
     userData: {} as UserDataInfo,
-    myFollows: [] as DataFollows[]
+    _myFollows: [] as DataFollows[],
+    myFollows: [] as UserDataInfo[],
+
 }
 
 export const navReducer = (state: InitStateType = initialState, action: NavReducerActionsType): InitStateType => {
@@ -16,7 +18,9 @@ export const navReducer = (state: InitStateType = initialState, action: NavReduc
             }
         case 'nav/SET_FOLLOWS':
             return {
-                ...state, myFollows: action.payload.data
+                ...state,
+                _myFollows: action.payload.dataForcalculate,
+                myFollows: action.payload.data
             }
         default:
             return state
@@ -28,10 +32,13 @@ export const setUserData = (data: UserDataInfo) => {
         payload: {data}
     } as const
 }
-export const setMyFollows = (data: DataFollows[]) => {
+export const setMyFollows = (dataForcalculate: DataFollows[], data: UserDataInfo[]) => {
     return {
         type: 'nav/SET_FOLLOWS',
-        payload: {data}
+        payload: {
+            dataForcalculate,
+            data
+        }
     } as const
 }
 export const getUserData = (token: string): AppThunk => async (dispatch) => {
@@ -42,10 +49,14 @@ export const getUserData = (token: string): AppThunk => async (dispatch) => {
         alert(e)
     }
 }
-export const getMyFollows = (token: string, id: string): AppThunk => async (dispatch) => {
+export const getMyFollows = (token: string, id: string): AppThunk => async (dispatch, getState) => {
     try {
-        const res = await twitchAPI.getMyFollowsApi(token, id)
-        dispatch(setMyFollows(res.data.data))
+        const resforCalc = await twitchAPI.getMyFollowsApi(token, id)
+        dispatch(setMyFollows(resforCalc.data.data, []))
+        let ids: string = ''
+        await getState().nav._myFollows.forEach(d => ids += `&id=${d.to_id}`)
+        const res = await twitchAPI.getUserInfo(token, (ids))
+        dispatch(setMyFollows(resforCalc.data.data, res.data.data))
     } catch (e: any) {
         alert(e)
     }

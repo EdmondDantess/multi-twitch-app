@@ -22,10 +22,10 @@ export const Nav = React.memo(() => {
     const generateListChannelsOnBoard = () => {
         return windows.map((w: WindowType) => {
             return <div
-                className={'nav-channel'}
+                className={'nav_channel'}
                 key={w.channel}>
                 {w.channel}
-                <div className={'nav-channels-delete'}
+                <div className={'nav_channels_delete'}
                      onClick={() => dispatch(deleteWindow(w.channel))}>
                     <img src={close} alt={'delete icon'}/>
                 </div>
@@ -36,35 +36,41 @@ export const Nav = React.memo(() => {
     const generateMyFollows = () => {
         return myFollows.map((f) => {
             const addOnBoard = () => {
-                windows.filter(w => w.channel === f.to_login).length === 0
-                    ? dispatch(addNewWindow(f.to_login))
-                    : alert(`${f.to_login} is exist`)
+                windows.filter(w => w.channel.toLowerCase() === f.login.toLowerCase()).length === 0
+                    ? dispatch(addNewWindow(f.login))
+                    : alert(`${f.login} is exist`)
             }
-            return <div className={'nav-my-follow'} key={f.to_id}
+            return <div className={'nav_my_follow'} key={f.id}
                         onClick={addOnBoard}>
-                <span style={{marginLeft: '6px'}}>{f.to_name}</span>
+                <span style={{marginLeft: '6px'}}>
+                    <img src={f.profile_image_url} alt="avatar" width={'30px'}/>
+                    {f.display_name}</span>
             </div>
         })
     }
 
     return (
         <div className={'nav'}>
-            <div className={'nav-userinfo'}>
-                <div className={'nav-userinfo__nickname'}>
+            <div className={'nav_userinfo'}>
+                <div className={'nav_userinfo_nickname'}>
                     <a href="https://www.twitch.tv/settings/profile" target={'_blank'} rel={'noreferrer'}>
                         <img src={userData?.profile_image_url} alt="avatar"/>
-                        <span>{userData?.login}</span>
+                        <div className={'nav_userinfo_nickname_wrapper'}>
+                            <span style={{fontSize: '10px', fontWeight: '400'}}>You logged as:</span>
+                            <span>{userData?.login}</span>
+                            <span style={{fontSize: '10px', fontWeight: '400'}}>{userData?.email}</span>
+                        </div>
                     </a>
                 </div>
             </div>
             <Search/>
-            <div className={'nav-channels'}>
+            <div className={'nav_channels'}>
                 <div>Channels on board:</div>
                 {generateListChannelsOnBoard()}
             </div>
-            <div className={'nav-myfollows'}>
+            <div className={'nav_myfollows'}>
                 <div>My subscriptions:</div>
-                {generateMyFollows()}
+                {myFollows.length > 0 && generateMyFollows()}
             </div>
         </div>
     );

@@ -18,8 +18,8 @@ function App() {
 
     return <div className="App">
         {
-            // token === (  'host:3000')
-            token === ('i-twitch-app.vercel.app')
+            token === (  'host:3000')
+            // token === ('i-twitch-app.vercel.app')
                 ? <Login/>
                 : <>
                     <Nav/>

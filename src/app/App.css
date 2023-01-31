@@ -9,6 +9,7 @@ body {
 }
 
 .App {
+    position: relative;
     text-align: center;
     display: flex;
     flex-direction: row;

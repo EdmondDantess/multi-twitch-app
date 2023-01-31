@@ -14,7 +14,7 @@ export const windowReducer = (state: InitStateType = initialState, action: Windo
                     windows: [...state.windows, {
                         channel: action.payload.channel,
                         chat: false,
-                        chatPosition: 'underVideo',
+                        chatPosition: 'rightVideo',
                         height: 2,
                         muted: false,
                         width: 4,

@@ -10,8 +10,8 @@ export const twitchAPI = {
             }
         )
     },
-    getUserInfo(token: string) {
-        return instance.get<UserInfo>('helix/users', {
+    getUserInfo(token: string, ids: string='') {
+        return instance.get<UserInfo>(`helix/users?${ids}`, {
             headers: {
                 'Authorization': `Bearer ${token}`,
                 'Client-Id': '8cux8z8nnvju38k96pniih4k0uijlb',
@@ -20,6 +20,14 @@ export const twitchAPI = {
     },
     getMyFollowsApi(token: string, userID: string) {
         return instance.get<MyFollows>(`helix/users/follows?from_id=${userID}&first=100`, {
+            headers: {
+                'Authorization': `Bearer ${token}`,
+                'Client-Id': '8cux8z8nnvju38k96pniih4k0uijlb',
+            }
+        })
+    },
+    getIsLiveAndViewers(token: string, ids: string) {
+        return instance.get<MyFollowsInfoType>(`helix/streams?user_id=${ids}&first=100`, {
             headers: {
                 'Authorization': `Bearer ${token}`,
                 'Client-Id': '8cux8z8nnvju38k96pniih4k0uijlb',
@@ -86,4 +94,31 @@ export type MyFollows = {
     total: number;
     data: DataFollows[];
     pagination: PaginationFollows;
+}
+
+export type DataMyFollowsInfoType = {
+    id: string;
+    user_id: string;
+    user_login: string;
+    user_name: string;
+    game_id: string;
+    game_name: string;
+    type: string;
+    title: string;
+    viewer_count: number;
+    started_at: string;
+    language: string;
+    thumbnail_url: string;
+    tag_ids: string[];
+    tags: string[];
+    is_mature: boolean;
+}
+
+export type PaginationFollowsInfo = {
+    cursor: string;
+}
+
+export type MyFollowsInfoType = {
+    data: DataMyFollowsInfoType[];
+    pagination: PaginationFollowsInfo;
 }

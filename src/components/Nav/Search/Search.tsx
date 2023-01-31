@@ -39,8 +39,8 @@ export const Search = React.memo(() => {
 
     return (
         <div className={'search'}>
-            {error && <div className={'search-error'}>{error}</div>}
-            <div className={'search-input-wrapper'}>
+            {error && <div className={'search_error'}>{error}</div>}
+            <div className={'search_input_wrapper'}>
                 <input
                     placeholder={'Enter channel name'}
                     type="text"
@@ -48,17 +48,17 @@ export const Search = React.memo(() => {
                     onChange={(e) => setSearchValue(e.currentTarget.value)}
                 />
                 {searchValue !== '' &&
-                    <div onClick={clearSearchInput} className={'search-clear-btn'}><img src={close} alt="clear"/></div>}
+                    <div onClick={clearSearchInput} className={'search_clear_btn'}><img src={close} alt="clear"/></div>}
             </div>
             {searchingChannels.length > 0 &&
-                <div className={'search-result-channels'} onBlur={clearSearchInput}>
+                <div className={'search_result_channels'} onBlur={clearSearchInput}>
                     {searchingChannels.map(c => {
-                        return <div key={c.broadcaster_login} className={'search-result-channel'}
+                        return <div key={c.broadcaster_login} className={'search_result_channel'}
                                     onClick={() => addWindowOnBoard(c.broadcaster_login)}
                         >
                             <img src={c.thumbnail_url}
                                  alt="streamer avatar"
-                                 className={'search-streamer-avatar'}/>
+                                 className={'search_streamer_avatar'}/>
                             <div>
                                 <div>{c.display_name}</div>
                                 <div style={{fontSize: '12px'}}>

@@ -35,9 +35,9 @@ export const Window: React.FC<WindowPropsType> = ({channel}) => {
     return <div className={`window`}
                 style={{flexDirection: calcPropertyPosChat('column', 'row')}}>
 
-        <div className={'window-channelname'}>{channel}</div>
-        <div className={'window-handler'}>
-            <div className={'window-delete'} onClick={deleteWindowHandler}>
+        <div className={'window_channelname'}>{channel}</div>
+        <div className={'window_handler'}>
+            <div className={'window_delete'} onClick={deleteWindowHandler}>
                 <img src={close} alt="delete icon" style={{width: '100%'}}/>
             </div>
         </div>
@@ -47,7 +47,8 @@ export const Window: React.FC<WindowPropsType> = ({channel}) => {
             src={contentVideo_URL(channel)}
             allowFullScreen
             width={calcPropertyPosChat('100%', chat ? '67%' : '100%')}
-            height={chat && chatPos === 'underVideo' ? '33%' : '100%'}/>
+            height={chat && chatPos === 'underVideo' ? '33%' : '100%'}
+        />
         {
             chat && <iframe
                 title={'chat'}
@@ -55,13 +56,13 @@ export const Window: React.FC<WindowPropsType> = ({channel}) => {
                 height={calcPropertyPosChat('67%', '100%')}
                 width={calcPropertyPosChat('100%', '33%')}/>
         }
-        <div className={'window-chat-wrapper'}
+        <div className={'window_chat_wrapper'}
              style={{
                  width: calcPropertyPosChat('100%', '20px'),
                  height: calcPropertyPosChat('20px', '100%'),
                  writingMode: calcPropertyPosChat('horizontal-tb', 'vertical-rl')
              }}>
-            <div className={'window-handler-chatpos'}
+            <div className={'window_handler_chatpos'}
                  style={{
                      width: calcPropertyPosChat('10%', '100%'),
                      height: calcPropertyPosChat('100%', '10%'),
@@ -69,7 +70,7 @@ export const Window: React.FC<WindowPropsType> = ({channel}) => {
                  onClick={changeChatPosHandler}>
                 {calcPropertyPosChat('🡆', '🡇')}
             </div>
-            <div className={'window-chat-btn'}
+            <div className={'window_chat_btn'}
                  style={{
                      width: calcPropertyPosChat('90%', '20px'),
                      height: calcPropertyPosChat('100%', '90%'),
