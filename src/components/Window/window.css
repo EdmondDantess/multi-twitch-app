@@ -63,7 +63,7 @@
 
 .window_chat_btn:hover {
     cursor: pointer;
-    background-color: rgba(138, 138, 141, 0.73);
+    background-color: rgba(220, 220, 222, 0.73);
 }
 
 .window_chat_btn:active {

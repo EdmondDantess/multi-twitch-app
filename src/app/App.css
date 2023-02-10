@@ -16,7 +16,7 @@ body {
     flex-wrap: nowrap;
     justify-content: center;
     backdrop-filter: blur(22px);
-    min-height: 100vh;
+    max-height: 100vh;
 }
 
 

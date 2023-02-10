@@ -51,7 +51,7 @@ export const Nav = React.memo(() => {
 
     return (
         <div className={'nav'}>
-            <div className={'nav_userinfo'}>
+            <div className={'nav_userinfo'} title={'open settings'}>
                 <div className={'nav_userinfo_nickname'}>
                     <a href="https://www.twitch.tv/settings/profile" target={'_blank'} rel={'noreferrer'}>
                         <img src={userData?.profile_image_url} alt="avatar"/>

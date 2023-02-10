@@ -1,4 +1,5 @@
 .nav {
+    max-height: 100vh;
     border: 2px solid #d7d6d6;
     border-top-right-radius: 12px;
     border-bottom-right-radius: 12px;
@@ -80,7 +81,7 @@
 
 .nav_myfollows {
     border: 2px solid gray;
-    border-radius: 20px;
+    border-radius: 10px;
     margin-top: 10px;
     max-height: 50vh;
     overflow: auto;
