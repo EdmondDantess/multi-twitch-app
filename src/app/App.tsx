@@ -13,7 +13,7 @@ function App() {
 
     useEffect(() => {
         dispatch(setToken(location))
-    }, [dispatch, token])
+    }, [dispatch, token, location])
 
     return <div className="App">
         {
