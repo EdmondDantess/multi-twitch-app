@@ -10,17 +10,16 @@ export const Search = React.memo(() => {
 
     const dispatch = useAppDispatch()
     const windows = useAppSelector(state => state.window.windows)
-    const token = useAppSelector(state => state.login.token)
     const searchingChannels = useAppSelector(state => state.search.searchingChannels)
     const [searchValue, setSearchValue] = useState<string>('')
     const [error, setError] = useState<string | null>(null)
     const search = useDebounce<string>(searchValue, 500)
 
     useEffect(() => {
-        if (searchValue && search !== '') {
-            dispatch(getSearchChannels(token, searchValue.trim()))
+        if (searchValue.trim() && search.trim() !== '') {
+            dispatch(getSearchChannels(searchValue.trim()))
         }
-        if (searchValue === '') {
+        if (searchValue.trim() === '') {
             dispatch(setSearchChannels([]))
         }
     }, [search, searchValue])
@@ -47,10 +46,15 @@ export const Search = React.memo(() => {
                     value={searchValue}
                     onChange={(e) => setSearchValue(e.currentTarget.value)}
                 />
-                {searchValue !== '' &&
-                    <div onClick={clearSearchInput} className={'search_clear_btn'}><img src={close} alt="clear"/></div>}
+                {
+                    searchValue !== '' &&
+                    <div onClick={clearSearchInput} className={'search_clear_btn'}>
+                        <img src={close} alt="clear"/>
+                    </div>
+                }
             </div>
-            {searchingChannels.length > 0 &&
+            {
+                searchingChannels.length > 0 &&
                 <div className={'search_result_channels'} onBlur={clearSearchInput}>
                     {searchingChannels.map(c => {
                         return <div key={c.broadcaster_login} className={'search_result_channel'}

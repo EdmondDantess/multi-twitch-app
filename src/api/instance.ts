@@ -1,11 +1,10 @@
 import axios from 'axios'
-import {location} from '../common/utils/modeLocalToVercel';
+import {tokenFromURL} from '../common/utils/getTokenFromURL';
 
 export const instance = axios.create({
     baseURL: 'https://api.twitch.tv/',
     headers: {
-        'Authorization': `Bearer ${window.location.href.slice(location.indexOf('access_token=') + 13, location.indexOf('&scope='))
-        }`,
+        'Authorization': `Bearer ${tokenFromURL}`,
         'Client-Id': process.env.REACT_APP_CLIENT_ID,
     }
 })

@@ -1,5 +1,6 @@
 import {DataSearch, twitchAPI} from '../../../api/twitchAPI';
 import {AppThunk} from '../../../app/store';
+import {setError} from '../../../app/userFeedback-reducer';
 
 type InitStateType = typeof initialState
 
@@ -24,12 +25,12 @@ export const setSearchChannels = (data: DataSearch[]) => {
     } as const
 }
 
-export const getSearchChannels = (token: string, channel: string): AppThunk => async (dispatch) => {
+export const getSearchChannels = (channel: string): AppThunk => async (dispatch) => {
     try {
         const res = await twitchAPI.searchChannel(channel)
         dispatch(setSearchChannels(res.data.data))
     } catch (e: any) {
-        alert(e)
+        dispatch(setError(e))
     }
 }
 

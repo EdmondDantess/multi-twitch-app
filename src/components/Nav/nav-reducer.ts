@@ -1,5 +1,6 @@
 import {AppThunk} from '../../app/store';
 import {DataFollows, twitchAPI, UserDataInfo} from '../../api/twitchAPI';
+import {setError} from '../../app/userFeedback-reducer';
 
 type InitStateType = typeof initialState
 
@@ -46,19 +47,19 @@ export const getUserData = (): AppThunk => async (dispatch) => {
         const res = await twitchAPI.getUserInfo()
         dispatch(setUserData(res.data.data[0]))
     } catch (e: any) {
-        alert(e)
+        setError(e)
     }
 }
-export const getMyFollows = ( id: string): AppThunk => async (dispatch, getState) => {
+export const getMyFollows = (id: string): AppThunk => async (dispatch, getState) => {
     try {
-        const resforCalc = await twitchAPI.getMyFollowsApi( id)
+        const resforCalc = await twitchAPI.getMyFollowsApi(id)
         dispatch(setMyFollows(resforCalc.data.data, []))
         let ids: string = ''
         await getState().nav._myFollows.forEach(d => ids += `&id=${d.to_id}`)
-        const res = await twitchAPI.getUserInfo( ids)
+        const res = await twitchAPI.getUserInfo(ids)
         dispatch(setMyFollows(resforCalc.data.data, res.data.data))
     } catch (e: any) {
-        alert(e)
+        setError(e)
     }
 }
 

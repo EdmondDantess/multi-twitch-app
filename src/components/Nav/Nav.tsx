@@ -6,6 +6,7 @@ import {useAppDispatch, useAppSelector} from '../../app/hooks';
 import {getMyFollows, getUserData} from './nav-reducer';
 import {Search} from './Search/Search';
 import {tokenMode} from '../../common/utils/modeLocalToVercel';
+import {tokenFromURL} from '../../common/utils/getTokenFromURL';
 
 export const Nav = React.memo(() => {
 
@@ -13,11 +14,13 @@ export const Nav = React.memo(() => {
     const windows = useAppSelector(state => state.window.windows)
     const userData = useAppSelector(state => state.nav.userData)
     const myFollows = useAppSelector(state => state.nav.myFollows)
-    const token = useAppSelector(state => state.login.token)
+
+    console.log(tokenMode())
+    console.log(tokenFromURL)
 
     useEffect(() => {
-        tokenMode() === token && dispatch(getUserData())
-        tokenMode() === token && dispatch(getMyFollows(userData.id))
+        tokenMode() !== tokenFromURL && dispatch(getUserData())
+        tokenMode() !== tokenFromURL && dispatch(getMyFollows(userData.id))
     }, [])
 
     const generateListChannelsOnBoard = () => {
