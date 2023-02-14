@@ -26,7 +26,7 @@ export const setSearchChannels = (data: DataSearch[]) => {
 
 export const getSearchChannels = (token: string, channel: string): AppThunk => async (dispatch) => {
     try {
-        const res = await twitchAPI.searchChannel(token, channel)
+        const res = await twitchAPI.searchChannel(channel)
         dispatch(setSearchChannels(res.data.data))
     } catch (e: any) {
         alert(e)

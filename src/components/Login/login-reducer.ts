@@ -4,7 +4,7 @@ type InitStateType = typeof initialState
 
 const initialState = {
     token: '',
-    'Client-Id': '8cux8z8nnvju38k96pniih4k0uijlb',
+    'Client-Id': '8cux8z8nnvju38k96pniih4k0uijlb'
 }
 
 export const loginReducer = (state: InitStateType = initialState, action: LoginReducerActionsType): InitStateType => {
@@ -18,6 +18,7 @@ export const loginReducer = (state: InitStateType = initialState, action: LoginR
             return state
     }
 }
+
 export const setToken = (location: string) => {
     return {
         type: 'login/LOGIN',
@@ -25,8 +26,7 @@ export const setToken = (location: string) => {
     } as const
 }
 
+
 export type LoginReducerActionsType =
     ReturnType<typeof setToken>
-
-
 

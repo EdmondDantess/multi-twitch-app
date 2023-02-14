@@ -41,21 +41,21 @@ export const setMyFollows = (dataForcalculate: DataFollows[], data: UserDataInfo
         }
     } as const
 }
-export const getUserData = (token: string): AppThunk => async (dispatch) => {
+export const getUserData = (): AppThunk => async (dispatch) => {
     try {
-        const res = await twitchAPI.getUserInfo(token)
+        const res = await twitchAPI.getUserInfo()
         dispatch(setUserData(res.data.data[0]))
     } catch (e: any) {
         alert(e)
     }
 }
-export const getMyFollows = (token: string, id: string): AppThunk => async (dispatch, getState) => {
+export const getMyFollows = ( id: string): AppThunk => async (dispatch, getState) => {
     try {
-        const resforCalc = await twitchAPI.getMyFollowsApi(token, id)
+        const resforCalc = await twitchAPI.getMyFollowsApi( id)
         dispatch(setMyFollows(resforCalc.data.data, []))
         let ids: string = ''
         await getState().nav._myFollows.forEach(d => ids += `&id=${d.to_id}`)
-        const res = await twitchAPI.getUserInfo(token, (ids))
+        const res = await twitchAPI.getUserInfo( ids)
         dispatch(setMyFollows(resforCalc.data.data, res.data.data))
     } catch (e: any) {
         alert(e)

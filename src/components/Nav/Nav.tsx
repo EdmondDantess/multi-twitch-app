@@ -5,18 +5,19 @@ import close from '../../assets/icons/close.png'
 import {useAppDispatch, useAppSelector} from '../../app/hooks';
 import {getMyFollows, getUserData} from './nav-reducer';
 import {Search} from './Search/Search';
+import {tokenMode} from '../../common/utils/modeLocalToVercel';
 
 export const Nav = React.memo(() => {
 
     const dispatch = useAppDispatch()
     const windows = useAppSelector(state => state.window.windows)
-    const token = useAppSelector(state => state.login.token)
     const userData = useAppSelector(state => state.nav.userData)
     const myFollows = useAppSelector(state => state.nav.myFollows)
+    const token = useAppSelector(state => state.login.token)
 
     useEffect(() => {
-        dispatch(getUserData(token))
-        dispatch(getMyFollows(token, userData.id))
+        tokenMode() === token && dispatch(getUserData())
+        tokenMode() === token && dispatch(getMyFollows(userData.id))
     }, [])
 
     const generateListChannelsOnBoard = () => {

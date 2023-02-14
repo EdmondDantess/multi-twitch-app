@@ -1,38 +1,18 @@
 import {instance} from './instance';
 
 export const twitchAPI = {
-    searchChannel(token: string, channel: string) {
-        return instance.get<FoundedChannels>(`helix/search/channels?query=${channel}`, {
-                headers: {
-                    'Authorization': `Bearer ${token}`,
-                    'Client-Id': '8cux8z8nnvju38k96pniih4k0uijlb',
-                }
-            }
+    searchChannel(channel: string) {
+        return instance.get<FoundedChannels>(`helix/search/channels?query=${channel}`
         )
     },
-    getUserInfo(token: string, ids: string='') {
-        return instance.get<UserInfo>(`helix/users?${ids}`, {
-            headers: {
-                'Authorization': `Bearer ${token}`,
-                'Client-Id': '8cux8z8nnvju38k96pniih4k0uijlb',
-            }
-        })
+    getUserInfo( ids: string = '') {
+        return instance.get<UserInfo>(`helix/users?${ids}`)
     },
-    getMyFollowsApi(token: string, userID: string) {
-        return instance.get<MyFollows>(`helix/users/follows?from_id=${userID}&first=100`, {
-            headers: {
-                'Authorization': `Bearer ${token}`,
-                'Client-Id': '8cux8z8nnvju38k96pniih4k0uijlb',
-            }
-        })
+    getMyFollowsApi( userID: string) {
+        return instance.get<MyFollows>(`helix/users/follows?from_id=${userID}&first=100`)
     },
-    getIsLiveAndViewers(token: string, ids: string) {
-        return instance.get<MyFollowsInfoType>(`helix/streams?user_id=${ids}&first=100`, {
-            headers: {
-                'Authorization': `Bearer ${token}`,
-                'Client-Id': '8cux8z8nnvju38k96pniih4k0uijlb',
-            }
-        })
+    getIsLiveAndViewers( ids: string) {
+        return instance.get<MyFollowsInfoType>(`helix/streams?user_id=${ids}&first=100`)
     }
 }
 

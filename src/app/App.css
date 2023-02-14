@@ -3,8 +3,6 @@
 }
 
 body {
-    /*background-image: url('/src/assets/images/backgroundtw.jpg');*/
-    /*background-size: cover;*/
     background-color: #ffffff;
 }
 
@@ -18,7 +16,6 @@ body {
     backdrop-filter: blur(22px);
     max-height: 100vh;
 }
-
 
 *::selection {
     background-color: #9f9ea2;

@@ -20,7 +20,6 @@ export const Table = React.memo(() => {
             })
         }
 
-
         const generateLayout = (): RGL.Layout[] => {
             return windows.map((w) => {
                 return {
