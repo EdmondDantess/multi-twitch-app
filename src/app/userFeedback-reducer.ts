@@ -6,29 +6,29 @@ const initialState = {
 
 export const userFeedbackReducer = (state: InitialStateType = initialState, action: FinalUserFeedbackActionTypes): InitialStateType => {
     switch (action.type) {
-        case "USERFEEDBACK/START_CIRCULAR":
+        case "userFeedback/START_CIRCULAR":
             return {...state, circularEntity: true}
-        case "USERFEEDBACK/STOP_CIRCULAR":
+        case "userFeedback/STOP_CIRCULAR":
             return {...state, circularEntity: false}
-        case "USERFEEDBACK/SET_ERROR":
+        case "userFeedback/SET_ERROR":
             return {...state, error: action.payload.error}
-        case "USERFEEDBACK/TOGGLE_IS_LOADED":
+        case "userFeedback/TOGGLE_IS_LOADED":
         default:
             return state;
     }
 }
 
 export const toggleIsLoaded = (isLoaded: boolean) =>
-    ({type: "USERFEEDBACK/TOGGLE_IS_LOADED", payload: {isLoaded}} as const)
+    ({type: "userFeedback/TOGGLE_IS_LOADED", payload: {isLoaded}} as const)
 
 export const startCircular = () =>
-    ({type: "USERFEEDBACK/START_CIRCULAR", payload: {}} as const)
+    ({type: "userFeedback/START_CIRCULAR", payload: {}} as const)
 
 export const stopCircular = () =>
-    ({type: "USERFEEDBACK/STOP_CIRCULAR", payload: {}} as const)
+    ({type: "userFeedback/STOP_CIRCULAR", payload: {}} as const)
 
 export const setError = (error: UserFeedBackErrorType) =>
-    ({type: "USERFEEDBACK/SET_ERROR", payload: {error}} as const)
+    ({type: "userFeedback/SET_ERROR", payload: {error}} as const)
 
 export type UserFeedBackErrorType = string | null
 

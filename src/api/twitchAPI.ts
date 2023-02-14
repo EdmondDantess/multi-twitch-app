@@ -11,8 +11,8 @@ export const twitchAPI = {
     getMyFollowsApi( userID: string) {
         return instance.get<MyFollows>(`helix/users/follows?from_id=${userID}&first=100`)
     },
-    getIsLiveAndViewers( ids: string) {
-        return instance.get<MyFollowsInfoType>(`helix/streams?user_id=${ids}&first=100`)
+    getRecommendedStreams() {
+        return instance.get<RecommendsStreams>(`helix/streams?first=100`)
     }
 }
 
@@ -76,29 +76,29 @@ export type MyFollows = {
     pagination: PaginationFollows;
 }
 
-export type DataMyFollowsInfoType = {
-    id: string;
-    user_id: string;
-    user_login: string;
-    user_name: string;
-    game_id: string;
-    game_name: string;
-    type: string;
-    title: string;
-    viewer_count: number;
-    started_at: string;
-    language: string;
-    thumbnail_url: string;
-    tag_ids: string[];
-    tags: string[];
-    is_mature: boolean;
+export type DataRecommends = {
+  id: string;
+  user_id: string;
+  user_login: string;
+  user_name: string;
+  game_id: string;
+  game_name: string;
+  type: string;
+  title: string;
+  viewer_count: number;
+  started_at: string;
+  language: string;
+  thumbnail_url: string;
+  tag_ids: string[];
+  tags: string[];
+  is_mature: boolean;
 }
 
-export type PaginationFollowsInfo = {
-    cursor: string;
+export type PaginationRecommend = {
+  cursor: string;
 }
 
-export type MyFollowsInfoType = {
-    data: DataMyFollowsInfoType[];
-    pagination: PaginationFollowsInfo;
+export type RecommendsStreams = {
+  data: DataRecommends[];
+  pagination: PaginationRecommend;
 }

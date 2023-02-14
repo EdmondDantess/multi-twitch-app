@@ -1,0 +1,11 @@
+.error_feedback {
+    position: absolute;
+    top: 5%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    background-color: red;
+    color: white;
+    font-weight: bold;
+    border-radius: 12px;
+    padding: 10px;
+}

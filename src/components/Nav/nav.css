@@ -13,7 +13,7 @@
 .nav_channels {
     margin-top: 5px;
     width: 100%;
-    max-height: 30vh;
+    max-height: 20vh;
     color: black;
     font-weight: bold;
     overflow-y: auto;
@@ -83,7 +83,7 @@
     border: 2px solid gray;
     border-radius: 10px;
     margin-top: 10px;
-    max-height: 50vh;
+    max-height: 25vh;
     overflow: auto;
 }
 
@@ -91,7 +91,6 @@
     text-align: left;
     border-bottom: 1px solid gray;
     cursor: pointer;
-    font-weight: bold;
 }
 
 .nav_my_follow:hover {

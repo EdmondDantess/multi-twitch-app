@@ -3,10 +3,12 @@ import React, {useEffect} from 'react';
 import './nav.css'
 import close from '../../assets/icons/close.png'
 import {useAppDispatch, useAppSelector} from '../../app/hooks';
-import {getMyFollows, getUserData} from './nav-reducer';
+import {getMyFollows, getRecommendedStreams, getUserData} from './nav-reducer';
 import {Search} from './Search/Search';
 import {tokenMode} from '../../common/utils/modeLocalToVercel';
 import {tokenFromURL} from '../../common/utils/getTokenFromURL';
+import {setError} from '../../app/userFeedback-reducer';
+import {DataRecommends} from '../../api/twitchAPI';
 
 export const Nav = React.memo(() => {
 
@@ -14,13 +16,13 @@ export const Nav = React.memo(() => {
     const windows = useAppSelector(state => state.window.windows)
     const userData = useAppSelector(state => state.nav.userData)
     const myFollows = useAppSelector(state => state.nav.myFollows)
-
-    console.log(tokenMode())
-    console.log(tokenFromURL)
+    const recommendsData = useAppSelector(state => state.nav.recommendedStreams)
+    const isLogged = tokenMode() !== tokenFromURL
 
     useEffect(() => {
-        tokenMode() !== tokenFromURL && dispatch(getUserData())
-        tokenMode() !== tokenFromURL && dispatch(getMyFollows(userData.id))
+        isLogged && dispatch(getUserData())
+        isLogged && dispatch(getMyFollows(userData.id))
+        isLogged && dispatch(getRecommendedStreams())
     }, [])
 
     const generateListChannelsOnBoard = () => {
@@ -42,13 +44,30 @@ export const Nav = React.memo(() => {
             const addOnBoard = () => {
                 windows.filter(w => w.channel.toLowerCase() === f.login.toLowerCase()).length === 0
                     ? dispatch(addNewWindow(f.login))
-                    : alert(`${f.login} is exist`)
+                    : dispatch(setError(`${f.login} is exist on board`))
             }
             return <div className={'nav_my_follow'} key={f.id}
                         onClick={addOnBoard}>
-                <span style={{marginLeft: '6px'}}>
+                <div style={{marginLeft: '6px'}}>
                     <img src={f.profile_image_url} alt="avatar" width={'30px'}/>
-                    {f.display_name}</span>
+                    {f.display_name}</div>
+            </div>
+        })
+    }
+
+    const generateMyRecommends = () => {
+        return recommendsData.map((r: DataRecommends) => {
+            const addOnBoard = () => {
+                windows.filter(w => w.channel.toLowerCase() === r.user_login.toLowerCase()).length === 0
+                    ? dispatch(addNewWindow(r.user_login))
+                    : dispatch(setError(`${r.game_name} is exist on board`))
+            }
+            return <div className={'nav_my_follow'} key={r.id}
+                        onClick={addOnBoard}>
+                <span style={{marginLeft: '6px'}}>
+                 <b>{r.user_name} </b>
+                    <div>game:{r.game_name}</div>
+                </span>
             </div>
         })
     }
@@ -68,14 +87,28 @@ export const Nav = React.memo(() => {
                 </div>
             </div>
             <Search/>
-            <div className={'nav_channels'}>
-                <div>Channels on board:</div>
-                {generateListChannelsOnBoard()}
-            </div>
+            {
+                generateListChannelsOnBoard().length > 0 && <>
+                    <span>Channels on board:</span>
+                    <div className={'nav_channels'}>
+                        {generateListChannelsOnBoard()}
+                    </div>
+                </>
+            }
+            {
+                generateMyFollows().length > 0 &&
+                <>
+                    <span>My subscribes:</span>
+                    <div className={'nav_myfollows'}>
+                        {myFollows.length > 0 && generateMyFollows()}
+                    </div>
+                </>
+            }
+            <span>Other streams:</span>
             <div className={'nav_myfollows'}>
-                <div>My subscriptions:</div>
-                {myFollows.length > 0 && generateMyFollows()}
+                {generateMyRecommends()}
             </div>
+
         </div>
     );
 })
