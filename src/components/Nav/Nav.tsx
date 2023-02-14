@@ -20,10 +20,12 @@ export const Nav = React.memo(() => {
     const isLogged = tokenMode() !== tokenFromURL
 
     useEffect(() => {
-        isLogged && dispatch(getUserData())
-        isLogged && dispatch(getMyFollows(userData.id))
-        isLogged && dispatch(getRecommendedStreams())
-    }, [])
+        !userData.id && isLogged && dispatch(getUserData())
+        if (userData.id) {
+            isLogged && dispatch(getMyFollows(userData.id))
+            isLogged && dispatch(getRecommendedStreams())
+        }
+    }, [userData.id])
 
     const generateListChannelsOnBoard = () => {
         return windows.map((w: WindowType) => {
