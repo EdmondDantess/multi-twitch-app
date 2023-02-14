@@ -1,3 +1,5 @@
+import {location} from '../../common/utils/modeLocalToVercel';
+
 type InitStateType = typeof initialState
 
 const initialState = {
@@ -8,17 +10,18 @@ const initialState = {
 export const loginReducer = (state: InitStateType = initialState, action: LoginReducerActionsType): InitStateType => {
     switch (action.type) {
         case 'login/LOGIN':
+            const token = action.payload.location.slice(location.indexOf('access_token=') + 13, location.indexOf('&scope='))
             return {
-                ...state, token: action.payload.token
+                ...state, token
             }
         default:
             return state
     }
 }
-export const setToken = (token: string) => {
+export const setToken = (location: string) => {
     return {
         type: 'login/LOGIN',
-        payload: {token}
+        payload: {location}
     } as const
 }
 

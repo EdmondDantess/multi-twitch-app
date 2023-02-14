@@ -5,21 +5,19 @@ import {Nav} from '../components/Nav/Nav';
 import {useAppDispatch, useAppSelector} from './hooks';
 import {setToken} from '../components/Login/login-reducer';
 import {Login} from '../components/Login/Login';
+import {location, tokenMode} from '../common/utils/modeLocalToVercel';
 
 function App() {
-    const location = window.location.href
     const dispatch = useAppDispatch()
     const token = useAppSelector(state => state.login.token)
 
     useEffect(() => {
-        dispatch(setToken(location.slice(location.indexOf('access_token=') + 13, location.indexOf('&scope='))))
-    }, [dispatch, location, token])
-    console.log(token)
+        dispatch(setToken(location))
+    }, [dispatch, token])
 
     return <div className="App">
         {
-            // token === (  'host:3000')
-             token === ('i-twitch-app.vercel.app')
+            tokenMode() === token
                 ? <Login/>
                 : <>
                     <Nav/>
