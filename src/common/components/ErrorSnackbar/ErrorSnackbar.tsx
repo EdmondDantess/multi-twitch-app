@@ -1,29 +1,20 @@
-import {useAppDispatch, useAppSelector} from '../../../app/hooks';
-import './errorFeedback.css'
-import {useEffect, useState} from 'react';
-import {setError} from '../../../app/userFeedback-reducer';
+import { useAppDispatch, useAppSelector } from '../../../app/hooks';
+import './errorFeedback.css';
+import { useEffect, useState } from 'react';
+import { setError } from '../../../app/userFeedback-reducer';
 
 export function ErrorSnackbar() {
-
     const dispatch = useAppDispatch();
-    const error = useAppSelector(state => state.userFeedback.error)
+    const error = useAppSelector((state) => state.userFeedback.error);
 
     useEffect(() => {
         if (error) {
             setTimeout(() => {
-                console.log('tt')
-                dispatch(setError(null))
-                        }, 6000)
-
+                console.log('tt');
+                dispatch(setError(null));
+            }, 6000);
         }
-    }, [dispatch, error])
+    }, [dispatch, error]);
 
-    return <>
-        {
-            error &&
-            <div className={'error_feedback'}>
-                {error}
-            </div>
-        }
-    </>
+    return <>{error && <div className={'error_feedback'}>{error}</div>}</>;
 }

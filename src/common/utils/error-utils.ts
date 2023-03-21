@@ -1,3 +1,1 @@
-export const handleError = () => {
-
-}
+export const handleError = () => {};
