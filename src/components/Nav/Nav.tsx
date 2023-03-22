@@ -35,6 +35,7 @@ export const Nav = React.memo(() => {
             isLogged && dispatch(getMyFollows(userData.id));
             isLogged && dispatch(getRecommendedStreams());
         }
+        generateListChannelsOnBoard();
     }, [userData.id]);
 
     const generateListChannelsOnBoard = () => {
@@ -75,7 +76,7 @@ export const Nav = React.memo(() => {
                             width={'30px'}
                         />
                         {f.display_name}
-                        {myLiveFollows.find(
+                        {myLiveFollows?.find(
                             (s) => s.user_name === f.display_name,
                         )
                             ? `🔴`
@@ -138,7 +139,7 @@ export const Nav = React.memo(() => {
                 </div>
             </div>
             <Search />
-            {generateListChannelsOnBoard().length > 0 && (
+            {generateListChannelsOnBoard.length > 0 && (
                 <>
                     <span>Channels on board:</span>
                     <div className={'nav__channels-onboard'}>
@@ -146,16 +147,22 @@ export const Nav = React.memo(() => {
                     </div>
                 </>
             )}
-            {
+            {generateMyFollows().length > 0 && (
                 <>
                     <span>My subscribes:</span>
                     <div className={'nav__my-follows'}>
-                        {generateMyFollows()}
+                        {myFollows.length > 0 && generateMyFollows()}
+                    </div>
+                </>
+            )}
+            {
+                <>
+                    <span>Recommends:</span>
+                    <div className={'nav__my-follows'}>
+                        {generateMyRecommends()}
                     </div>
                 </>
             }
-            <span>Other streams:</span>
-            <div className={'nav__my-follows'}>{generateMyRecommends()}</div>
         </div>
     );
 });
