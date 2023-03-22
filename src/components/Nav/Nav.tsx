@@ -23,6 +23,7 @@ export const Nav = React.memo(() => {
     const windows = useAppSelector((state) => state.window.windows);
     const userData = useAppSelector((state) => state.nav.userData);
     const myFollows = useAppSelector((state) => state.nav.myFollows);
+    const liveFollows = useAppSelector((state) => state.nav.liveFollows);
     const recommendsData = useAppSelector(
         (state) => state.nav.recommendedStreams,
     );
@@ -74,6 +75,21 @@ export const Nav = React.memo(() => {
                             width={'30px'}
                         />
                         {f.display_name}
+                        {liveFollows.length > 0 &&
+                        liveFollows.find((s) => s.user_login === f.login) ? (
+                            <span
+                                style={{
+                                    fontWeight: 'bold',
+                                    color: 'white',
+                                    backgroundColor: 'red',
+                                    borderRadius: '4px',
+                                }}
+                            >
+                                Live
+                            </span>
+                        ) : (
+                            ''
+                        )}
                     </div>
                 </div>
             );
@@ -132,19 +148,19 @@ export const Nav = React.memo(() => {
                 </div>
             </div>
             <Search />
-            {generateListChannelsOnBoard().length > 0 && (
-                <>
-                    <span>Channels on board:</span>
-                    <div className={'nav__channels-onboard'}>
-                        {generateListChannelsOnBoard()}
-                    </div>
-                </>
-            )}
             {generateMyFollows().length > 0 && (
                 <>
                     <span>My subscribes:</span>
                     <div className={'nav__my-follows'}>
                         {myFollows.length > 0 && generateMyFollows()}
+                    </div>
+                </>
+            )}
+            {generateListChannelsOnBoard().length > 0 && (
+                <>
+                    <span>Channels on board:</span>
+                    <div className={'nav__channels-onboard'}>
+                        {generateListChannelsOnBoard()}
                     </div>
                 </>
             )}
