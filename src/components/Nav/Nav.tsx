@@ -23,13 +23,14 @@ export const Nav = React.memo(() => {
     const windows = useAppSelector((state) => state.window.windows);
     const userData = useAppSelector((state) => state.nav.userData);
     const myFollows = useAppSelector((state) => state.nav.myFollows);
+    const myLiveFollows = useAppSelector((state) => state.nav.liveFollows);
     const recommendsData = useAppSelector(
         (state) => state.nav.recommendedStreams,
     );
     const isLogged = tokenMode() !== tokenFromURL;
 
     useEffect(() => {
-        !userData.id && isLogged && dispatch(getUserData());
+        userData.id && isLogged && dispatch(getUserData());
         if (userData.id) {
             isLogged && dispatch(getMyFollows(userData.id));
             isLogged && dispatch(getRecommendedStreams());
@@ -74,6 +75,11 @@ export const Nav = React.memo(() => {
                             width={'30px'}
                         />
                         {f.display_name}
+                        {myLiveFollows.find(
+                            (s) => s.user_name === f.display_name,
+                        )
+                            ? `🔴`
+                            : ''}
                     </div>
                 </div>
             );
@@ -140,14 +146,14 @@ export const Nav = React.memo(() => {
                     </div>
                 </>
             )}
-            {generateMyFollows().length > 0 && (
+            {
                 <>
                     <span>My subscribes:</span>
                     <div className={'nav__my-follows'}>
-                        {myFollows.length > 0 && generateMyFollows()}
+                        {generateMyFollows()}
                     </div>
                 </>
-            )}
+            }
             <span>Other streams:</span>
             <div className={'nav__my-follows'}>{generateMyRecommends()}</div>
         </div>

@@ -8,7 +8,7 @@ export const Login = () => {
         <div className={'login'}>
             <h2>Multi Twitch</h2>
             <a
-                href={`https://id.twitch.tv/oauth2/authorize?response_type=token&client_id=${process.env.REACT_APP_CLIENT_ID}&redirect_uri=${mode}/&scope=user%3Aedit%20user%3Aread%3Aemail`}
+                href={`https://id.twitch.tv/oauth2/authorize?response_type=token&client_id=${process.env.REACT_APP_CLIENT_ID}&redirect_uri=${mode}/&scope=user:read:follows`}
             >
                 <img
                     src={logo}

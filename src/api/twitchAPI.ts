@@ -17,6 +17,11 @@ export const twitchAPI = {
     getRecommendedStreams() {
         return instance.get<RecommendsStreams>(`helix/streams?first=100`);
     },
+    getLiveFollows(id: string) {
+        return instance.get<LiveFollowsData>(
+            `helix/streams/followed?user_id=${id}`,
+        );
+    },
 };
 
 export type DataSearch = {
@@ -104,4 +109,27 @@ export type PaginationRecommend = {
 export type RecommendsStreams = {
     data: DataRecommends[];
     pagination: PaginationRecommend;
-}
+};
+
+export type LiveFollowsData = {
+    data: LiveFollowsDataData[];
+    pagination: LiveFollowsDataPagination;
+};
+export type LiveFollowsDataData = {
+    id: string;
+    user_id: string;
+    user_login: string;
+    user_name: string;
+    game_id: string;
+    game_name: string;
+    type: string;
+    title: string;
+    viewer_count: number;
+    started_at: string;
+    language: string;
+    thumbnail_url: string;
+    tag_ids: any[];
+    tags: string[];
+    is_mature: boolean;
+};
+export type LiveFollowsDataPagination = {};

@@ -2,6 +2,7 @@ import { AppThunk } from '../../app/store';
 import {
     DataFollows,
     DataRecommends,
+    LiveFollowsDataData,
     twitchAPI,
     UserDataInfo,
 } from '../../api/twitchAPI';
@@ -14,6 +15,7 @@ const initialState = {
     _myFollows: [] as DataFollows[],
     myFollows: [] as UserDataInfo[],
     recommendedStreams: [] as DataRecommends[],
+    liveFollows: [] as LiveFollowsDataData[],
 };
 
 export const navReducer = (
@@ -37,6 +39,11 @@ export const navReducer = (
                 _myFollows: action.payload.dataForcalculate,
                 myFollows: action.payload.data,
             };
+        case 'nav/SET_LIVE_FOLLOWS':
+            return {
+                ...state,
+                liveFollows: action.payload.data,
+            };
         default:
             return state;
     }
@@ -55,6 +62,14 @@ export const setMyFollows = (
         type: 'nav/SET_FOLLOWS',
         payload: {
             dataForcalculate,
+            data,
+        },
+    } as const;
+};
+export const setLiveFollows = (data: LiveFollowsDataData[]) => {
+    return {
+        type: 'nav/SET_LIVE_FOLLOWS',
+        payload: {
             data,
         },
     } as const;
@@ -82,11 +97,15 @@ export const getMyFollows =
             const resforCalc = await twitchAPI.getMyFollowsApi(id);
             dispatch(setMyFollows(resforCalc.data.data, []));
             let ids: string = '';
-            await getState().nav._myFollows.forEach(
-                (d) => (ids += `&id=${d.to_id}`),
-            );
+            getState().nav._myFollows.forEach((d) => (ids += `&id=${d.to_id}`));
             const res = await twitchAPI.getUserInfo(ids);
             dispatch(setMyFollows(resforCalc.data.data, res.data.data));
+        } catch (e: any) {
+            setError(e);
+        }
+        try {
+            let liveFollows = await twitchAPI.getLiveFollows(id);
+            dispatch(setLiveFollows(liveFollows.data.data));
         } catch (e: any) {
             setError(e);
         }
@@ -103,7 +122,5 @@ export const getRecommendedStreams = (): AppThunk => async (dispatch) => {
 export type NavReducerActionsType =
     | ReturnType<typeof setUserData>
     | ReturnType<typeof setMyFollows>
-    | ReturnType<typeof setRecommendedStreams>;
-
-
-
+    | ReturnType<typeof setRecommendedStreams>
+    | ReturnType<typeof setLiveFollows>;
