@@ -1,6 +1,6 @@
 import { useAppDispatch, useAppSelector } from '../../../app/hooks';
 import './errorFeedback.css';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { setError } from '../../../app/userFeedback-reducer';
 
 export function ErrorSnackbar() {
@@ -16,5 +16,5 @@ export function ErrorSnackbar() {
         }
     }, [dispatch, error]);
 
-    return <>{error && <div className={'error_feedback'}>{error}</div>}</>;
+    return <>{error && <div className={'error-feedback'}>{error}</div>}</>;
 }

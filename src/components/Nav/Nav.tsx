@@ -39,10 +39,10 @@ export const Nav = React.memo(() => {
     const generateListChannelsOnBoard = () => {
         return windows.map((w: WindowType) => {
             return (
-                <div className={'nav_channel'} key={w.channel}>
+                <div className={'nav__channel'} key={w.channel}>
                     {w.channel}
                     <div
-                        className={'nav_channels_delete'}
+                        className={'nav__channels-delete'}
                         onClick={() => dispatch(deleteWindow(w.channel))}
                     >
                         <img src={close} alt={'delete icon'} />
@@ -63,7 +63,7 @@ export const Nav = React.memo(() => {
             };
             return (
                 <div
-                    className={'nav_my_follow'}
+                    className={'nav__my-follow'}
                     key={f.id}
                     onClick={addOnBoard}
                 >
@@ -92,7 +92,7 @@ export const Nav = React.memo(() => {
             };
             return (
                 <div
-                    className={'nav_my_follow'}
+                    className={'nav__my-follow'}
                     key={r.id}
                     onClick={addOnBoard}
                 >
@@ -107,15 +107,15 @@ export const Nav = React.memo(() => {
 
     return (
         <div className={'nav'}>
-            <div className={'nav_userinfo'} title={'open settings'}>
-                <div className={'nav_userinfo_nickname'}>
+            <div className={'nav__userinfo'} title={'open settings'}>
+                <div className={'nav__userinfo__nickname'}>
                     <a
                         href="https://www.twitch.tv/settings/profile"
                         target={'_blank'}
                         rel={'noreferrer'}
                     >
                         <img src={userData?.profile_image_url} alt="avatar" />
-                        <div className={'nav_userinfo_nickname_wrapper'}>
+                        <div className={'nav__userinfo__nickname-wrapper'}>
                             <span
                                 style={{ fontSize: '10px', fontWeight: '400' }}
                             >
@@ -135,7 +135,7 @@ export const Nav = React.memo(() => {
             {generateListChannelsOnBoard().length > 0 && (
                 <>
                     <span>Channels on board:</span>
-                    <div className={'nav_channels'}>
+                    <div className={'nav__channels-onboard'}>
                         {generateListChannelsOnBoard()}
                     </div>
                 </>
@@ -143,13 +143,13 @@ export const Nav = React.memo(() => {
             {generateMyFollows().length > 0 && (
                 <>
                     <span>My subscribes:</span>
-                    <div className={'nav_myfollows'}>
+                    <div className={'nav__my-follows'}>
                         {myFollows.length > 0 && generateMyFollows()}
                     </div>
                 </>
             )}
             <span>Other streams:</span>
-            <div className={'nav_myfollows'}>{generateMyRecommends()}</div>
+            <div className={'nav__my-follows'}>{generateMyRecommends()}</div>
         </div>
     );
 });

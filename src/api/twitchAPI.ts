@@ -1,20 +1,23 @@
-import {instance} from './instance';
+import { instance } from './instance';
 
 export const twitchAPI = {
     searchChannel(channel: string) {
-        return instance.get<FoundedChannels>(`helix/search/channels?query=${channel}`
-        )
+        return instance.get<FoundedChannels>(
+            `helix/search/channels?query=${channel}`,
+        );
     },
-    getUserInfo( ids: string = '') {
-        return instance.get<UserInfo>(`helix/users?${ids}`)
+    getUserInfo(ids: string = '') {
+        return instance.get<UserInfo>(`helix/users?${ids}`);
     },
-    getMyFollowsApi( userID: string) {
-        return instance.get<MyFollows>(`helix/users/follows?from_id=${userID}&first=100`)
+    getMyFollowsApi(userID: string) {
+        return instance.get<MyFollows>(
+            `helix/users/follows?from_id=${userID}&first=100`,
+        );
     },
     getRecommendedStreams() {
-        return instance.get<RecommendsStreams>(`helix/streams?first=100`)
-    }
-}
+        return instance.get<RecommendsStreams>(`helix/streams?first=100`);
+    },
+};
 
 export type DataSearch = {
     broadcaster_language: string;
@@ -29,16 +32,16 @@ export type DataSearch = {
     thumbnail_url: string;
     title: string;
     started_at: string;
-}
+};
 
 export type Pagination = {
     cursor: string;
-}
+};
 
 export type FoundedChannels = {
     data: DataSearch[];
     pagination: Pagination;
-}
+};
 
 export type UserDataInfo = {
     id: string;
@@ -52,11 +55,11 @@ export type UserDataInfo = {
     view_count: number;
     email: string;
     created_at: string;
-}
+};
 
 export type UserInfo = {
     data: UserDataInfo[];
-}
+};
 
 export type DataFollows = {
     from_id: string;
@@ -66,39 +69,39 @@ export type DataFollows = {
     to_login: string;
     to_name: string;
     followed_at: string;
-}
+};
 
-export type PaginationFollows = {}
+export type PaginationFollows = {};
 
 export type MyFollows = {
     total: number;
     data: DataFollows[];
     pagination: PaginationFollows;
-}
+};
 
 export type DataRecommends = {
-  id: string;
-  user_id: string;
-  user_login: string;
-  user_name: string;
-  game_id: string;
-  game_name: string;
-  type: string;
-  title: string;
-  viewer_count: number;
-  started_at: string;
-  language: string;
-  thumbnail_url: string;
-  tag_ids: string[];
-  tags: string[];
-  is_mature: boolean;
-}
+    id: string;
+    user_id: string;
+    user_login: string;
+    user_name: string;
+    game_id: string;
+    game_name: string;
+    type: string;
+    title: string;
+    viewer_count: number;
+    started_at: string;
+    language: string;
+    thumbnail_url: string;
+    tag_ids: string[];
+    tags: string[];
+    is_mature: boolean;
+};
 
 export type PaginationRecommend = {
-  cursor: string;
-}
+    cursor: string;
+};
 
 export type RecommendsStreams = {
-  data: DataRecommends[];
-  pagination: PaginationRecommend;
+    data: DataRecommends[];
+    pagination: PaginationRecommend;
 }

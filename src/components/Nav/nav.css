@@ -10,7 +10,7 @@
     border: 2px solid #9147ff;
 }
 
-.nav_channels {
+.nav__channels-onboard {
     margin-top: 5px;
     width: 100%;
     max-height: 20vh;
@@ -21,7 +21,7 @@
     border-radius: 12px;
 }
 
-.nav_channels .nav_channel {
+.nav__channels-onboard .nav__channel {
     height: 25px;
     display: flex;
     flex-direction: row;
@@ -31,38 +31,38 @@
     border-radius: 12px;
 }
 
-.nav_channels span:hover {
+.nav__channels-onboard span:hover {
     opacity: 0.8;
     color: rgba(93, 114, 134, 0.94);
 }
 
-.nav_channel {
+.nav__channel {
     position: relative;
 }
 
-.nav_channels_delete img {
+.nav__channels-delete img {
     position: absolute;
     top: 4px;
     right: 2px;
     width: 14px;
 }
 
-.nav_channels_delete img:hover {
+.nav__channels-delete img:hover {
     cursor: pointer;
     scale: 1.2;
 }
 
-.nav_channels_delete img:active {
+.nav__channels-delete img:active {
     cursor: pointer;
     scale: 1;
 }
 
-.nav_userinfo:hover {
+.nav__userinfo:hover {
     background-color: #e0dcdc;
     border-radius: 12px;
 }
 
-.nav_userinfo_nickname a {
+.nav__userinfo__nickname a {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -73,13 +73,13 @@
     font-weight: bold;
 }
 
-.nav_userinfo_nickname img {
+.nav__userinfo__nickname img {
     width: 50px;
     border: 2px solid darkviolet;
     border-radius: 20px;
 }
 
-.nav_myfollows {
+.nav__my-follows {
     border: 2px solid gray;
     border-radius: 10px;
     margin-top: 10px;
@@ -87,17 +87,17 @@
     overflow: auto;
 }
 
-.nav_my_follow {
+.nav__my-follow {
     text-align: left;
     border-bottom: 1px solid gray;
     cursor: pointer;
 }
 
-.nav_my_follow:hover {
+.nav__my-follow:hover {
     background-color: #7c7676;
 }
 
-.nav_userinfo_nickname_wrapper {
+.nav__userinfo__nickname-wrapper {
     display: flex;
     flex-direction: column;
     align-items: start;

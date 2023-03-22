@@ -48,9 +48,9 @@ export const Window: React.FC<WindowPropsType> = ({ channel }) => {
             className={`window`}
             style={{ flexDirection: calcPropertyPosChat('column', 'row') }}
         >
-            <div className={'window_channelname'}>{channel}</div>
-            <div className={'window_handler'}>
-                <div className={'window_delete'} onClick={deleteWindowHandler}>
+            <div className={'window__channel-name'}>{channel}</div>
+            <div className={'window__handler'}>
+                <div className={'window__delete'} onClick={deleteWindowHandler}>
                     <img
                         src={close}
                         alt="delete icon"
@@ -75,7 +75,7 @@ export const Window: React.FC<WindowPropsType> = ({ channel }) => {
                 />
             )}
             <div
-                className={'window_chat_wrapper'}
+                className={'window__chat'}
                 style={{
                     width: calcPropertyPosChat('100%', '20px'),
                     height: calcPropertyPosChat('20px', '100%'),
@@ -86,7 +86,7 @@ export const Window: React.FC<WindowPropsType> = ({ channel }) => {
                 }}
             >
                 <div
-                    className={'window_handler_chatpos'}
+                    className={'window__chat__handler-chat-pos'}
                     style={{
                         width: calcPropertyPosChat('10%', '100%'),
                         height: calcPropertyPosChat('100%', '10%'),
@@ -96,7 +96,7 @@ export const Window: React.FC<WindowPropsType> = ({ channel }) => {
                     {calcPropertyPosChat('🡆', '🡇')}
                 </div>
                 <div
-                    className={'window_chat_btn'}
+                    className={'window__chat__btn'}
                     style={{
                         width: calcPropertyPosChat('90%', '20px'),
                         height: calcPropertyPosChat('100%', '90%'),
