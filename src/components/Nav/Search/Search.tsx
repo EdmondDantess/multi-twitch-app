@@ -40,7 +40,7 @@ export const Search = React.memo(() => {
     return (
         <div className={'search'}>
             {error && <div className={'search_error'}>{error}</div>}
-            <div className={'search__input'}>
+            <div className={'search_input_wrapper'}>
                 <input
                     placeholder={'Enter channel name'}
                     type="text"
@@ -50,7 +50,7 @@ export const Search = React.memo(() => {
                 {searchValue !== '' && (
                     <div
                         onClick={clearSearchInput}
-                        className={'search__input__clear-btn'}
+                        className={'search_clear_btn'}
                     >
                         <img src={close} alt="clear" />
                     </div>
@@ -58,14 +58,14 @@ export const Search = React.memo(() => {
             </div>
             {searchingChannels.length > 0 && (
                 <div
-                    className={'search__result-channels'}
+                    className={'search_result_channels'}
                     onBlur={clearSearchInput}
                 >
                     {searchingChannels.map((c) => {
                         return (
                             <div
                                 key={c.broadcaster_login}
-                                className={'search__result-channel'}
+                                className={'search_result_channel'}
                                 onClick={() =>
                                     addWindowOnBoard(c.broadcaster_login)
                                 }
@@ -73,9 +73,7 @@ export const Search = React.memo(() => {
                                 <img
                                     src={c.thumbnail_url}
                                     alt="streamer avatar"
-                                    className={
-                                        'search__result-channel__streamer-avatar'
-                                    }
+                                    className={'search_streamer_avatar'}
                                 />
                                 <div>
                                     <div>{c.display_name}</div>

@@ -4,13 +4,13 @@
     overflow: auto;
 }
 
-.table__windows {
+.windows {
     min-height: 100vh;
     border-radius: 10px;
     border: 2px solid #d7d6d6;
 }
 
-.table__windows:hover {
+.windows:hover {
     border: 2px solid #9147ff;
     box-shadow: 3px 3px 6px black;
 }

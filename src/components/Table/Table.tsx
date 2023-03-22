@@ -59,7 +59,7 @@ export const Table = React.memo(() => {
     const layout = generateLayout();
     return (
         <div className={'table'}>
-            <div className={'table__windows'}>
+            <div className={'windows'}>
                 <ReactGridLayout
                     className="layout"
                     cols={12}
@@ -73,3 +73,4 @@ export const Table = React.memo(() => {
         </div>
     );
 });
+

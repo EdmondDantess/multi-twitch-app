@@ -16,5 +16,5 @@ export function ErrorSnackbar() {
         }
     }, [dispatch, error]);
 
-    return <>{error && <div className={'error-feedback'}>{error}</div>}</>;
+    return <>{error && <div className={'error_feedback'}>{error}</div>}</>;
 }

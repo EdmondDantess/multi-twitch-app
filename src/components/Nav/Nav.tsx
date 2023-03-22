@@ -23,19 +23,17 @@ export const Nav = React.memo(() => {
     const windows = useAppSelector((state) => state.window.windows);
     const userData = useAppSelector((state) => state.nav.userData);
     const myFollows = useAppSelector((state) => state.nav.myFollows);
-    const myLiveFollows = useAppSelector((state) => state.nav.liveFollows);
     const recommendsData = useAppSelector(
         (state) => state.nav.recommendedStreams,
     );
     const isLogged = tokenMode() !== tokenFromURL;
 
     useEffect(() => {
-        userData.id && isLogged && dispatch(getUserData());
+        !userData.id && isLogged && dispatch(getUserData());
         if (userData.id) {
             isLogged && dispatch(getMyFollows(userData.id));
             isLogged && dispatch(getRecommendedStreams());
         }
-        generateListChannelsOnBoard();
     }, [userData.id]);
 
     const generateListChannelsOnBoard = () => {
@@ -76,11 +74,6 @@ export const Nav = React.memo(() => {
                             width={'30px'}
                         />
                         {f.display_name}
-                        {myLiveFollows?.find(
-                            (s) => s.user_name === f.display_name,
-                        )
-                            ? `🔴`
-                            : ''}
                     </div>
                 </div>
             );
@@ -139,7 +132,7 @@ export const Nav = React.memo(() => {
                 </div>
             </div>
             <Search />
-            {generateListChannelsOnBoard.length > 0 && (
+            {generateListChannelsOnBoard().length > 0 && (
                 <>
                     <span>Channels on board:</span>
                     <div className={'nav__channels-onboard'}>
@@ -155,14 +148,8 @@ export const Nav = React.memo(() => {
                     </div>
                 </>
             )}
-            {
-                <>
-                    <span>Recommends:</span>
-                    <div className={'nav__my-follows'}>
-                        {generateMyRecommends()}
-                    </div>
-                </>
-            }
+            <span>Other streams:</span>
+            <div className={'nav__my-follows'}>{generateMyRecommends()}</div>
         </div>
     );
 });
