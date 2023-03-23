@@ -19,7 +19,7 @@
     border: 0;
 }
 
-.window_channelname {
+.window__channel-name {
     z-index: 1;
     position: absolute;
     color: #ffffff;
@@ -34,11 +34,11 @@
     overflow: clip;
 }
 
-.window_chat_wrapper {
+.window__chat {
     display: flex;
 }
 
-.window_handler_chatpos {
+.window__chat-pos {
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -49,28 +49,28 @@
     text-align: center;
 }
 
-.window_handler_chatpos:hover {
+.window__chat-pos:hover {
     cursor: pointer;
     background-color: #6314d5;
 
 }
 
-.window_chat_btn {
+.window__chat__btn {
     border: none;
     width: 90%;
     color: #000000;
 }
 
-.window_chat_btn:hover {
+.window__chat__btn:hover {
     cursor: pointer;
     background-color: rgba(220, 220, 222, 0.73);
 }
 
-.window_chat_btn:active {
+.window__chat__btn:active {
     scale: 0.9;
 }
 
-.window_handler {
+.window__handler {
     position: absolute;
     top: -8px;
     right: -15px;
@@ -80,22 +80,22 @@
     border-radius: 5px;
 }
 
-.window_handler:hover {
+.window__handler:hover {
     box-shadow: 3px 3px 10px #6314d5;
 }
 
-.window_delete {
+.window__delete {
     display: flex;
     justify-content: center;
     width: 14px;
 }
 
-.window_delete:hover {
+.window__delete:hover {
     cursor: pointer;
     scale: 1.3;
 }
 
-.window_delete:active {
+.window__delete:active {
     scale: 1.4;
 }
 
