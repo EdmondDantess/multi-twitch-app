@@ -39,8 +39,8 @@ export const Search = React.memo(() => {
 
     return (
         <div className={'search'}>
-            {error && <div className={'search_error'}>{error}</div>}
-            <div className={'search_input_wrapper'}>
+            {error && <div className={'search__error'}>{error}</div>}
+            <div className={'search__input'}>
                 <input
                     placeholder={'Enter channel name'}
                     type="text"
@@ -50,7 +50,7 @@ export const Search = React.memo(() => {
                 {searchValue !== '' && (
                     <div
                         onClick={clearSearchInput}
-                        className={'search_clear_btn'}
+                        className={'search__btn_clear'}
                     >
                         <img src={close} alt="clear" />
                     </div>
@@ -58,14 +58,14 @@ export const Search = React.memo(() => {
             </div>
             {searchingChannels.length > 0 && (
                 <div
-                    className={'search_result_channels'}
+                    className={'search__channels-result'}
                     onBlur={clearSearchInput}
                 >
                     {searchingChannels.map((c) => {
                         return (
                             <div
                                 key={c.broadcaster_login}
-                                className={'search_result_channel'}
+                                className={'search__channel-result'}
                                 onClick={() =>
                                     addWindowOnBoard(c.broadcaster_login)
                                 }
@@ -73,7 +73,7 @@ export const Search = React.memo(() => {
                                 <img
                                     src={c.thumbnail_url}
                                     alt="streamer avatar"
-                                    className={'search_streamer_avatar'}
+                                    className={'search__channel-result__avatar'}
                                 />
                                 <div>
                                     <div>{c.display_name}</div>
