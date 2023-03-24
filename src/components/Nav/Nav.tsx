@@ -87,6 +87,8 @@ export const Nav = React.memo(() => {
                         liveFollows.find((s) => s.user_login === f.login) ? (
                             <span
                                 style={{
+                                    position: 'absolute',
+                                    right: '0',
                                     fontWeight: 'bold',
                                     color: 'white',
                                     backgroundColor: 'red',

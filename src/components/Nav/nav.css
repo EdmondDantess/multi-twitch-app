@@ -89,13 +89,14 @@
 }
 
 .nav__my-follow {
-    text-align: left;
+    position: relative;
+    display: flex;
     border-bottom: 1px solid gray;
     cursor: pointer;
 }
 
 .nav__my-follow:hover {
-    background-color: #7c7676;
+    background-color: rgba(78, 106, 201, 0.88);
 }
 
 .nav__userinfo__nickname-wrapper {
