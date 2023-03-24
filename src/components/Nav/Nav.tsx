@@ -16,7 +16,7 @@ import { Search } from './Search/Search';
 import { tokenMode } from '../../common/utils/modeLocalToVercel';
 import { tokenFromURL } from '../../common/utils/getTokenFromURL';
 import { setError } from '../../app/userFeedback-reducer';
-import { DataRecommends } from '../../api/twitchAPI';
+import { DataRecommends, UserDataInfo } from '../../api/twitchAPI';
 
 export const Nav = React.memo(() => {
     const dispatch = useAppDispatch();
@@ -54,7 +54,14 @@ export const Nav = React.memo(() => {
     };
 
     const generateMyFollows = () => {
-        return myFollows.map((f) => {
+        let follows: UserDataInfo[] = [...myFollows];
+        myFollows.forEach((f) => {
+            if (liveFollows.find((s) => s.user_login === f.login)) {
+                follows = follows.filter((e) => e.login !== f.login);
+                follows.unshift(f);
+            }
+        });
+        return follows.map((f) => {
             const addOnBoard = () => {
                 windows.filter(
                     (w) => w.channel.toLowerCase() === f.login.toLowerCase(),
@@ -67,6 +74,7 @@ export const Nav = React.memo(() => {
                     className={'nav__my-follow'}
                     key={f.id}
                     onClick={addOnBoard}
+                    title={f.description}
                 >
                     <div style={{ marginLeft: '6px' }}>
                         <img
@@ -114,7 +122,7 @@ export const Nav = React.memo(() => {
                 >
                     <span style={{ marginLeft: '6px' }}>
                         <b>{r.user_name} </b>
-                        <div>game:{r.game_name}</div>
+                        <div>{r.game_name}</div>
                     </span>
                 </div>
             );
