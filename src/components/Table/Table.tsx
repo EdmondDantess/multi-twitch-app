@@ -66,6 +66,8 @@ export const Table = React.memo(() => {
                     layout={layout}
                     onResizeStop={onResizeStop}
                     margin={[15, 15]}
+                    // isBounded={true}
+                    // useCSSTransforms={true}
                 >
                     {generateWindows()}
                 </ReactGridLayout>

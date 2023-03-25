@@ -6,6 +6,7 @@ import {
 import React, { useEffect } from 'react';
 import './nav.css';
 import close from '../../assets/icons/close.png';
+import red_dot from '../../assets/icons/red_dot.png';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import {
     getMyFollows,
@@ -107,25 +108,39 @@ export const Nav = React.memo(() => {
     };
 
     const generateMyRecommends = () => {
-        return recommendsData.map((r: DataRecommends) => {
+        let recommends: DataRecommends[] = [
+            ...recommendsData.filter((r) => r.language === 'ru'),
+            ...recommendsData.filter((r) => r.language !== 'ru'),
+        ];
+
+        return recommends.map((r: DataRecommends) => {
             const addOnBoard = () => {
-                windows.filter(
-                    (w) =>
-                        w.channel.toLowerCase() === r.user_login.toLowerCase(),
-                ).length === 0
+                windows.filter((w) => w.channel.toLowerCase() === r.user_login)
+                    .length === 0
                     ? dispatch(addNewWindow(r.user_login))
-                    : dispatch(setError(`${r.game_name} is exist on board`));
+                    : dispatch(setError(`${r.user_login} is exist on board`));
             };
             return (
                 <div
                     className={'nav__my-follow'}
                     key={r.id}
                     onClick={addOnBoard}
+                    style={{
+                        alignItems: 'center',
+                        justifyContent: 'space-between',
+                    }}
                 >
-                    <span style={{ marginLeft: '6px' }}>
-                        <b>{r.user_name} </b>
+                    <div
+                        style={{
+                            display: 'flex',
+                            flexDirection: 'column',
+                            textAlign: 'left',
+                        }}
+                    >
+                        <div style={{ fontWeight: 'bold' }}>{r.user_name} </div>
                         <div>{r.game_name}</div>
-                    </span>
+                    </div>
+                    <img src={red_dot} alt="live" style={{ height: '12px' }} />
                 </div>
             );
         });
