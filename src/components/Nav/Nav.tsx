@@ -181,6 +181,8 @@ export const Nav = React.memo(() => {
                     </div>
                 </>
             )}
+            <span>Other streams:</span>
+            <div className={'nav__my-follows'}>{generateMyRecommends()}</div>
             {generateListChannelsOnBoard().length > 0 && (
                 <>
                     <span>Channels on board:</span>
@@ -189,8 +191,6 @@ export const Nav = React.memo(() => {
                     </div>
                 </>
             )}
-            <span>Other streams:</span>
-            <div className={'nav__my-follows'}>{generateMyRecommends()}</div>
         </div>
     );
 });

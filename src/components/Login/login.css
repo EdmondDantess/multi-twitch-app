@@ -1,36 +1,20 @@
 .login {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 100vw;
-    height: 100vh;
-    background-color: #804ec9;
+    @apply flex flex-col justify-center items-center w-full h-[100vh] bg-purple-600
 }
 
 .login h2 {
-    color: snow;
-    text-shadow: 3px 3px 13px black;
+    @apply text-amber-100 font-bold
 }
 
 .login a {
-    width: 150px;
-    display: flex;
-    flex-direction: column;
-    align-content: center;
-    border-radius: 22px;
-    color: white;
-    text-decoration: none;
-    font-weight: bold;
-    border: 5px solid blueviolet;
-    box-shadow: 3px 3px 18px #f5f5f5;
+    @apply w-32 bg-purple-800 flex border-purple-950 flex-col content-center text-amber-100 font-bold border-4 shadow shadow-white no-underline active:scale-90 rounded-xl hover:bg-purple-900
 }
 
-.login a:hover {
-    background-color: #553293;
+.login > a > img {
+    @apply h-32 mt-[-28px]
 }
 
-.login a:active {
-    scale: 0.9;
+.login > a > span {
+    @apply mt-[-22px]
 }
 

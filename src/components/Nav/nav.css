@@ -3,7 +3,7 @@
     border: 2px solid #d7d6d6;
     border-top-right-radius: 12px;
     border-bottom-right-radius: 12px;
-
+    width: 200px;
 }
 
 .nav:hover {
@@ -18,7 +18,7 @@
     color: black;
     font-weight: bold;
     overflow-y: auto;
-    border: 2px solid gray;
+    border: 2px solid rgb(128, 128, 128);
     border-radius: 12px;
 }
 
@@ -81,7 +81,7 @@
 }
 
 .nav__my-follows {
-    border: 2px solid gray;
+    border: 2px solid rgb(128, 128, 128);
     border-radius: 10px;
     margin-top: 10px;
     max-height: 25vh;
@@ -91,7 +91,7 @@
 .nav__my-follow {
     position: relative;
     display: flex;
-    border-bottom: 1px solid gray;
+    border-bottom: 1px solid rgb(128, 128, 128);
     cursor: pointer;
 }
 
