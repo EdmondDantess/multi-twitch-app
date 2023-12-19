@@ -1,9 +1,7 @@
 .table {
-    @apply h-[100vh] w-[89vw] overflow-x-clip;
+    @apply relative h-[100vh] w-[89vw];
 }
 
 .table__windows {
-    @apply min-h-[100vh] border-2 border-purple-700 hover:border-purple-600;
-    background-image: url('../../assets/images/backgroundtw.jpg');
-    background-size: cover;
+    @apply h-full w-full overflow-x-clip border-l border-blue-300;
 }

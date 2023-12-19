@@ -1,5 +1,5 @@
 .search {
-    @apply relative mt-1.5 flex flex-col justify-center;
+    @apply relative mt-1.5 flex flex-col justify-center text-black;
 }
 
 .search__error {

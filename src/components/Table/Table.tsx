@@ -1,77 +1,81 @@
-import { setWindowSize, WindowType } from '../Window/window-reducer';
-import { RootState } from '../../app/store';
-import { useSelector } from 'react-redux';
-import { Window } from '../Window/Window';
-import React from 'react';
-import './table.css';
-import '../../../node_modules/react-resizable/css/styles.css';
-import '../../../node_modules/react-grid-layout/css/styles.css';
-import RGL, { WidthProvider } from 'react-grid-layout';
-import { useAppDispatch } from '../../app/hooks';
+import { setWindowSize, WindowType } from '../Window/window-reducer'
+import { RootState } from '../../app/store'
+import { useSelector } from 'react-redux'
+import { Window } from '../Window/Window'
+import React from 'react'
+import './table.css'
+import '../../../node_modules/react-resizable/css/styles.css'
+import '../../../node_modules/react-grid-layout/css/styles.css'
+import RGL, { WidthProvider, Responsive } from 'react-grid-layout'
+import { useAppDispatch } from '../../app/hooks'
 
-const ReactGridLayout = WidthProvider(RGL);
+const ReactGridLayout = WidthProvider(Responsive)
 
 export const Table = React.memo(() => {
     const windows = useSelector<RootState, WindowType[]>(
-        (state) => state.window.windows,
-    );
-    const dispatch = useAppDispatch();
+        (state) => state.window.windows
+    )
+    const dispatch = useAppDispatch()
     const generateWindows = (): JSX.Element[] => {
-        return windows.map((w) => {
+        return windows.map((window) => {
             return (
-                <div key={w.channel} style={{ position: 'relative' }}>
-                    <Window channel={w.channel} />
+                <div key={window.channel} style={{ position: 'relative' }}>
+                    <Window channel={window.channel} />
                 </div>
-            );
-        });
-    };
+            )
+        })
+    }
 
     const generateLayout = (): RGL.Layout[] => {
-        return windows.map((w) => {
+        return windows.map((window) => {
             return {
-                x: w.x,
-                y: w.y,
+                x: window.x,
+                y: window.y,
                 w:
-                    w.chat && w.chatPosition === 'rightVideo'
-                        ? w.width + 1
-                        : w.width,
+                    window.chat && window.chatPosition === 'rightVideo'
+                        ? window.width + 1
+                        : window.width,
                 h:
-                    w.chat && w.chatPosition === 'underVideo'
-                        ? w.height + 1
-                        : w.height,
-                minW: 3,
-                maxW: 12,
-                i: w.channel,
-            };
-        });
-    };
-    const onResizeStop = (layout: RGL.Layout[]) => {
-        layout.map((w) =>
+                    window.chat && window.chatPosition === 'underVideo'
+                        ? window.height + 1
+                        : window.height,
+                i: window.channel,
+            }
+        })
+    }
+    const onResizeDropStop = (layout: RGL.Layout[]) => {
+        layout.forEach((window) => {
             dispatch(
                 setWindowSize(
-                    w.i,
-                    { width: w.w, height: w.h },
-                    { x: w.x, y: w.y },
-                ),
-            ),
-        );
-    };
-    const layout = generateLayout();
+                    window.i,
+                    { width: window.w, height: window.h },
+                    { x: window.x, y: window.y }
+                )
+            )
+        })
+    }
+    const layout = generateLayout()
     return (
         <div className={'table'}>
             <div className={'table__windows'}>
                 <ReactGridLayout
                     className="layout"
-                    cols={12}
-                    layout={layout}
-                    onResizeStop={onResizeStop}
+                    rowHeight={100}
+                    cols={{ lg: 12, md: 10, sm: 6, xs: 4, xxs: 2 }}
+                    layouts={{
+                        lg: layout,
+                        md: layout,
+                        sm: layout,
+                        xs: layout,
+                        xxs: layout,
+                    }}
+                    onResize={onResizeDropStop}
+                    onDragStop={onResizeDropStop}
                     margin={[15, 15]}
-                    // isBounded={true}
-                    // useCSSTransforms={true}
                 >
                     {generateWindows()}
                 </ReactGridLayout>
             </div>
         </div>
-    );
-});
+    )
+})

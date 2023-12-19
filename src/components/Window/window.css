@@ -1,5 +1,5 @@
 .window {
-    @apply relative flex h-full w-full content-center items-center justify-center border-2 border-white bg-gray-200 hover:cursor-pointer hover:shadow-2xl hover:shadow-black;
+    @apply relative flex h-full w-full content-center items-center justify-center border-2 border-white bg-gray-200 hover:cursor-grab hover:shadow-2xl hover:shadow-black active:cursor-grabbing;
 }
 
 .window iframe {
@@ -7,7 +7,7 @@
 }
 
 .window__channel-name {
-    @apply absolute left-0 top-[-5px] z-[1] overflow-clip border-2 border-white bg-purple-800 text-center font-bold text-white;
+    @apply absolute left-0 top-[-5px] z-[1] overflow-clip rounded border-2 border-white bg-purple-800 text-center font-bold text-white;
 }
 
 .window__chat {
