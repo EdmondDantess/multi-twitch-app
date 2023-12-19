@@ -1,94 +1,35 @@
 .search {
-    margin-top: 5px;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+    @apply relative mt-1.5 flex flex-col justify-center;
 }
 
 .search__error {
-    position: absolute;
-    top: -35px;
-    color: darkred;
-    font-weight: bold;
+    @apply absolute top-[-35px] bg-red-900 font-bold;
 }
 
 .search__input {
-    position: relative;
-    display: flex;
-    flex-wrap: nowrap;
-    align-items: center;
+    @apply relative flex flex-nowrap items-center;
 }
 
 .search__input input {
-    background-color: #ebebeb;
-    border: 2px solid rgb(96, 92, 92);
-    width: 100%;
-    padding: 7px;
-    outline: none;
-    color: rgb(0, 0, 0);
-    border-radius: 12px;
-}
-
-.search__input input:focus {
-    border: 2px solid #9147ff;
+    @apply w-full rounded-xl border-2 border-gray-500 bg-gray-300 p-1.5 text-black outline-0 hover:border-purple-600 focus:border-purple-600;
 }
 
 .search__btn_clear {
-    right: 2px;
-    position: absolute;
-    height: 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-weight: bold;
-    color: #ffffff;
+    @apply absolute right-0.5 flex h-5 items-center justify-center font-bold hover:scale-110 hover:cursor-pointer active:scale-90;
 }
 
 .search__btn_clear img {
-    height: 23px;
-    margin-right: 2px;
-}
-
-.search__btn_clear:hover {
-    cursor: pointer;
-    scale: 1.1;
-}
-.search__btn_clear:active {
-    scale: 0.9;
+    @apply mr-0.5 h-6;
 }
 
 .search__channel-result__avatar {
-    border-radius: 5px;
-    width: 50px;
-    height: 50px;
+    @apply h-[50px] w-[50px] rounded-ee;
 }
 
 .search__channels-result {
-    border: 2px solid white;
-    border-radius: 12px;
-    height: 80vh;
-    width: 250px;
-    z-index: 1;
-    background-color: #ebebeb;
-    position: absolute;
-    top: 42px;
-    overflow-y: scroll;
-    overflow-x: clip;
-    box-shadow: 3px 3px 12px black;
-
-}
-.search__channels-result:hover {
-    border: 2px solid #9147ff;
+    @apply absolute top-[42px] z-[1] h-[80vh] w-[250px] overflow-x-clip overflow-y-scroll rounded-xl border-2 border-white bg-gray-200 shadow-lg shadow-black hover:border-purple-600;
 }
 
 .search__channel-result {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-}
-
-.search__channel-result:hover {
-    cursor: pointer;
-    background-color: #b7a8f5;
+    @apply flex flex-row justify-between hover:cursor-pointer hover:bg-purple-300;
 }

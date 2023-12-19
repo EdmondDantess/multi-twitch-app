@@ -1,46 +1,45 @@
-import { deleteWindow, setChatOpenClose, setChatPos } from './window-reducer';
-import React from 'react';
-import './window.css';
-import { contentChat_URL, contentVideo_URL } from './utils/iframeContent';
-import close from '../../assets/icons/close.png';
-import { useAppDispatch, useAppSelector } from '../../app/hooks';
+import { deleteWindow, setChatOpenClose, setChatPos } from './window-reducer'
+import React from 'react'
+import './window.css'
+import { contentChat_URL, contentVideo_URL } from './utils/iframeContent'
+import close from '../../assets/icons/close.png'
+import { useAppDispatch, useAppSelector } from '../../app/hooks'
 
 type WindowPropsType = {
-    channel: string;
-};
+    channel: string
+}
 
 export const Window: React.FC<WindowPropsType> = ({ channel }) => {
-    const dispatch = useAppDispatch();
+    const dispatch = useAppDispatch()
 
     const chat = useAppSelector(
-        (state) =>
-            state.window.windows.find((w) => w.channel === channel)!.chat,
-    );
+        (state) => state.window.windows.find((w) => w.channel === channel)!.chat
+    )
     const chatPos = useAppSelector(
         (state) =>
             state.window.windows.find((w) => w.channel === channel)!
-                .chatPosition,
-    );
+                .chatPosition
+    )
 
     function chatOpenCloseHandler() {
-        dispatch(setChatOpenClose(channel));
+        dispatch(setChatOpenClose(channel))
     }
 
     function deleteWindowHandler() {
-        dispatch(deleteWindow(channel));
+        dispatch(deleteWindow(channel))
     }
 
     function changeChatPosHandler() {
         dispatch(
             setChatPos(
                 channel,
-                chatPos === 'underVideo' ? 'rightVideo' : 'underVideo',
-            ),
-        );
+                chatPos === 'underVideo' ? 'rightVideo' : 'underVideo'
+            )
+        )
     }
 
     function calcPropertyPosChat(value1: string, value2: string): any {
-        return chatPos === 'underVideo' ? value1 : value2;
+        return chatPos === 'underVideo' ? value1 : value2
     }
 
     return (
@@ -51,11 +50,7 @@ export const Window: React.FC<WindowPropsType> = ({ channel }) => {
             <div className={'window__channel-name'}>{channel}</div>
             <div className={'window__handler'}>
                 <div className={'window__delete'} onClick={deleteWindowHandler}>
-                    <img
-                        src={close}
-                        alt="delete icon"
-                        style={{ width: '100%' }}
-                    />
+                    <img src={close} alt="delete icon" className={'w-full'} />
                 </div>
             </div>
 
@@ -81,7 +76,7 @@ export const Window: React.FC<WindowPropsType> = ({ channel }) => {
                     height: calcPropertyPosChat('20px', '100%'),
                     writingMode: calcPropertyPosChat(
                         'horizontal-tb',
-                        'vertical-rl',
+                        'vertical-rl'
                     ),
                 }}
             >
@@ -105,10 +100,10 @@ export const Window: React.FC<WindowPropsType> = ({ channel }) => {
                 >
                     {calcPropertyPosChat(
                         chat ? '🡅 Close chat' : '🡇 Open chat',
-                        chat ? '🡇 Close chat' : '🡅 Open chat',
+                        chat ? '🡇 Close chat' : '🡅 Open chat'
                     )}
                 </div>
             </div>
         </div>
-    );
-};
+    )
+}

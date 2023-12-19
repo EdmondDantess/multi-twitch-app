@@ -2,41 +2,37 @@ import {
     addNewWindow,
     deleteWindow,
     WindowType,
-} from '../Window/window-reducer';
-import React, { useEffect } from 'react';
-import './nav.css';
-import close from '../../assets/icons/close.png';
-import red_dot from '../../assets/icons/red_dot.png';
-import { useAppDispatch, useAppSelector } from '../../app/hooks';
-import {
-    getMyFollows,
-    getRecommendedStreams,
-    getUserData,
-} from './nav-reducer';
-import { Search } from './Search/Search';
-import { tokenMode } from '../../common/utils/modeLocalToVercel';
-import { tokenFromURL } from '../../common/utils/getTokenFromURL';
-import { setError } from '../../app/userFeedback-reducer';
-import { DataRecommends, UserDataInfo } from '../../api/twitchAPI';
+} from '../Window/window-reducer'
+import React, { useEffect } from 'react'
+import './nav.css'
+import close from '../../assets/icons/close.png'
+import red_dot from '../../assets/icons/red_dot.png'
+import { useAppDispatch, useAppSelector } from '../../app/hooks'
+import { getMyFollows, getRecommendedStreams, getUserData } from './nav-reducer'
+import { Search } from './Search/Search'
+import { tokenMode } from '../../common/utils/modeLocalToVercel'
+import { tokenFromURL } from '../../common/utils/getTokenFromURL'
+import { setError } from '../../app/userFeedback-reducer'
+import { DataRecommends, UserDataInfo } from '../../api/twitchAPI'
 
 export const Nav = React.memo(() => {
-    const dispatch = useAppDispatch();
-    const windows = useAppSelector((state) => state.window.windows);
-    const userData = useAppSelector((state) => state.nav.userData);
-    const myFollows = useAppSelector((state) => state.nav.myFollows);
-    const liveFollows = useAppSelector((state) => state.nav.liveFollows);
+    const dispatch = useAppDispatch()
+    const windows = useAppSelector((state) => state.window.windows)
+    const userData = useAppSelector((state) => state.nav.userData)
+    const myFollows = useAppSelector((state) => state.nav.myFollows)
+    const liveFollows = useAppSelector((state) => state.nav.liveFollows)
     const recommendsData = useAppSelector(
-        (state) => state.nav.recommendedStreams,
-    );
-    const isLogged = tokenMode() !== tokenFromURL;
+        (state) => state.nav.recommendedStreams
+    )
+    const isLogged = tokenMode() !== tokenFromURL
 
     useEffect(() => {
-        !userData.id && isLogged && dispatch(getUserData());
+        !userData.id && isLogged && dispatch(getUserData())
         if (userData.id) {
-            isLogged && dispatch(getMyFollows(userData.id));
-            isLogged && dispatch(getRecommendedStreams());
+            isLogged && dispatch(getMyFollows(userData.id))
+            isLogged && dispatch(getRecommendedStreams())
         }
-    }, [userData.id]);
+    }, [userData.id])
 
     const generateListChannelsOnBoard = () => {
         return windows.map((w: WindowType) => {
@@ -50,26 +46,26 @@ export const Nav = React.memo(() => {
                         <img src={close} alt={'delete icon'} />
                     </div>
                 </div>
-            );
-        });
-    };
+            )
+        })
+    }
 
     const generateMyFollows = () => {
-        let follows: UserDataInfo[] = [...myFollows];
+        let follows: UserDataInfo[] = [...myFollows]
         myFollows.forEach((f) => {
             if (liveFollows.find((s) => s.user_login === f.login)) {
-                follows = follows.filter((e) => e.login !== f.login);
-                follows.unshift(f);
+                follows = follows.filter((e) => e.login !== f.login)
+                follows.unshift(f)
             }
-        });
+        })
         return follows.map((f) => {
             const addOnBoard = () => {
                 windows.filter(
-                    (w) => w.channel.toLowerCase() === f.login.toLowerCase(),
+                    (w) => w.channel.toLowerCase() === f.login.toLowerCase()
                 ).length === 0
                     ? dispatch(addNewWindow(f.login))
-                    : dispatch(setError(`${f.login} is exist on board`));
-            };
+                    : dispatch(setError(`${f.login} is exist on board`))
+            }
             return (
                 <div
                     className={'nav__my-follow'}
@@ -77,7 +73,7 @@ export const Nav = React.memo(() => {
                     onClick={addOnBoard}
                     title={f.description}
                 >
-                    <div style={{ marginLeft: '6px' }}>
+                    <div className={'ml-1.5'}>
                         <img
                             src={f.profile_image_url}
                             alt="avatar"
@@ -85,66 +81,51 @@ export const Nav = React.memo(() => {
                         />
                         {f.display_name}
                         {liveFollows.length > 0 &&
-                        liveFollows.find((s) => s.user_login === f.login) ? (
-                            <span
-                                style={{
-                                    position: 'absolute',
-                                    right: '0',
-                                    fontWeight: 'bold',
-                                    color: 'white',
-                                    backgroundColor: 'red',
-                                    borderRadius: '4px',
-                                }}
-                            >
-                                Live
-                            </span>
-                        ) : (
-                            ''
-                        )}
+                            liveFollows.find(
+                                (s) => s.user_login === f.login
+                            ) && (
+                                <span
+                                    className={
+                                        'absolute right-0 rounded-ee bg-red-600 font-bold text-white'
+                                    }
+                                >
+                                    Live
+                                </span>
+                            )}
                     </div>
                 </div>
-            );
-        });
-    };
+            )
+        })
+    }
 
     const generateMyRecommends = () => {
         let recommends: DataRecommends[] = [
             ...recommendsData.filter((r) => r.language === 'ru'),
             ...recommendsData.filter((r) => r.language !== 'ru'),
-        ];
+        ]
 
         return recommends.map((r: DataRecommends) => {
             const addOnBoard = () => {
                 windows.filter((w) => w.channel.toLowerCase() === r.user_login)
                     .length === 0
                     ? dispatch(addNewWindow(r.user_login))
-                    : dispatch(setError(`${r.user_login} is exist on board`));
-            };
+                    : dispatch(setError(`${r.user_login} is exist on board`))
+            }
             return (
                 <div
                     className={'nav__my-follow'}
                     key={r.id}
                     onClick={addOnBoard}
-                    style={{
-                        alignItems: 'center',
-                        justifyContent: 'space-between',
-                    }}
                 >
-                    <div
-                        style={{
-                            display: 'flex',
-                            flexDirection: 'column',
-                            textAlign: 'left',
-                        }}
-                    >
-                        <div style={{ fontWeight: 'bold' }}>{r.user_name} </div>
+                    <div className={'flex flex-col text-left'}>
+                        <div className={'font-bold'}>{r.user_name}</div>
                         <div>{r.game_name}</div>
                     </div>
-                    <img src={red_dot} alt="live" style={{ height: '12px' }} />
+                    <img src={red_dot} alt="live" className={'h-4'} />
                 </div>
-            );
-        });
-    };
+            )
+        })
+    }
 
     return (
         <div className={'nav'}>
@@ -157,17 +138,9 @@ export const Nav = React.memo(() => {
                     >
                         <img src={userData?.profile_image_url} alt="avatar" />
                         <div className={'nav__userinfo__nickname-wrapper'}>
-                            <span
-                                style={{ fontSize: '10px', fontWeight: '400' }}
-                            >
-                                You logged as:
-                            </span>
+                            <span>You logged as:</span>
                             <span>{userData?.login}</span>
-                            <span
-                                style={{ fontSize: '10px', fontWeight: '400' }}
-                            >
-                                {userData?.email}
-                            </span>
+                            <span>{userData?.email}</span>
                         </div>
                     </a>
                 </div>
@@ -192,5 +165,5 @@ export const Nav = React.memo(() => {
                 </>
             )}
         </div>
-    );
-});
+    )
+})

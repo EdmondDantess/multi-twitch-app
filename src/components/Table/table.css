@@ -1,17 +1,9 @@
 .table {
-    height: 100vh;
-    width: 89vw;
-    overflow: auto;
-    overflow-x: hidden;
+    @apply h-[100vh] w-[89vw] overflow-x-clip;
 }
 
 .table__windows {
-    min-height: 100vh;
-    border-radius: 10px;
-    border: 2px solid #d7d6d6;
-}
-
-.table__windows:hover {
-    border: 2px solid #9147ff;
-    box-shadow: 3px 3px 6px black;
+    @apply min-h-[100vh] border-2 border-purple-700 hover:border-purple-600;
+    background-image: url('../../assets/images/backgroundtw.jpg');
+    background-size: cover;
 }

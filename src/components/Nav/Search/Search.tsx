@@ -1,40 +1,40 @@
-import { addNewWindow } from '../../Window/window-reducer';
-import React, { useEffect, useState } from 'react';
-import './search.css';
-import { getSearchChannels, setSearchChannels } from './search-reducer';
-import useDebounce from '../../../hooks/useDebounce/useDebounce';
-import { useAppDispatch, useAppSelector } from '../../../app/hooks';
-import close from '../../../assets/icons/close.png';
+import { addNewWindow } from '../../Window/window-reducer'
+import React, { useEffect, useState } from 'react'
+import './search.css'
+import { getSearchChannels, setSearchChannels } from './search-reducer'
+import useDebounce from '../../../hooks/useDebounce/useDebounce'
+import { useAppDispatch, useAppSelector } from '../../../app/hooks'
+import close from '../../../assets/icons/close.png'
 
 export const Search = React.memo(() => {
-    const dispatch = useAppDispatch();
-    const windows = useAppSelector((state) => state.window.windows);
+    const dispatch = useAppDispatch()
+    const windows = useAppSelector((state) => state.window.windows)
     const searchingChannels = useAppSelector(
-        (state) => state.search.searchingChannels,
-    );
-    const [searchValue, setSearchValue] = useState<string>('');
-    const [error, setError] = useState<string | null>(null);
-    const search = useDebounce<string>(searchValue, 500);
+        (state) => state.search.searchingChannels
+    )
+    const [searchValue, setSearchValue] = useState<string>('')
+    const [error, setError] = useState<string | null>(null)
+    const search = useDebounce<string>(searchValue, 500)
 
     useEffect(() => {
         if (searchValue.trim() && search.trim() !== '') {
-            dispatch(getSearchChannels(searchValue.trim()));
+            dispatch(getSearchChannels(searchValue.trim()))
         }
         if (searchValue.trim() === '') {
-            dispatch(setSearchChannels([]));
+            dispatch(setSearchChannels([]))
         }
-    }, [search, searchValue]);
+    }, [search, searchValue])
 
     function addWindowOnBoard(channel: string) {
         windows.find((c) => c.channel === channel)
             ? setError('Channel is exist')
-            : dispatch(addNewWindow(channel));
-        clearSearchInput();
+            : dispatch(addNewWindow(channel))
+        clearSearchInput()
     }
 
     function clearSearchInput() {
-        dispatch(setSearchChannels([]));
-        setSearchValue('');
+        dispatch(setSearchChannels([]))
+        setSearchValue('')
     }
 
     return (
@@ -77,7 +77,7 @@ export const Search = React.memo(() => {
                                 />
                                 <div>
                                     <div>{c.display_name}</div>
-                                    <div style={{ fontSize: '12px' }}>
+                                    <div className={'text-xs'}>
                                         {c.title.length > 20 ? (
                                             <span title={c.title}>
                                                 {c.title
@@ -92,22 +92,19 @@ export const Search = React.memo(() => {
                                 <div>
                                     {c.is_live && (
                                         <span
-                                            style={{
-                                                fontWeight: 'bold',
-                                                color: 'white',
-                                                backgroundColor: 'red',
-                                                borderRadius: '4px',
-                                            }}
+                                            className={
+                                                'rounded-ee bg-red-600 font-bold text-white'
+                                            }
                                         >
                                             Live
                                         </span>
                                     )}
                                 </div>
                             </div>
-                        );
+                        )
                     })}
                 </div>
             )}
         </div>
-    );
-});
+    )
+})

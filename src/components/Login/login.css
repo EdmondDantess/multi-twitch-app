@@ -1,20 +1,19 @@
 .login {
-    @apply flex flex-col justify-center items-center w-full h-[100vh] bg-purple-600
+    @apply flex h-[100vh] w-full flex-col items-center justify-center bg-purple-600;
 }
 
 .login h2 {
-    @apply text-amber-100 font-bold
+    @apply font-bold text-amber-100;
 }
 
 .login a {
-    @apply w-32 bg-purple-800 flex border-purple-950 flex-col content-center text-amber-100 font-bold border-4 shadow shadow-white no-underline active:scale-90 rounded-xl hover:bg-purple-900
+    @apply flex w-40 flex-col content-center rounded-xl border-4 border-purple-950 bg-purple-800 font-bold text-amber-100 no-underline shadow shadow-white hover:bg-purple-900 active:scale-90;
 }
 
 .login > a > img {
-    @apply h-32 mt-[-28px]
+    @apply mt-[-28px] h-32;
 }
 
 .login > a > span {
-    @apply mt-[-22px]
+    @apply mt-[-22px];
 }
-
