@@ -1,5 +1,5 @@
 .window {
-    @apply relative flex h-full w-full content-center items-center justify-center border-2 border-white bg-gray-200 hover:cursor-grab hover:shadow-2xl hover:shadow-black active:cursor-grabbing;
+    @apply relative flex h-full w-full content-center items-center justify-center border-purple-950 bg-purple-600 hover:cursor-grab hover:shadow-2xl hover:shadow-blue-500 active:cursor-grabbing;
 }
 
 .window iframe {
@@ -7,25 +7,25 @@
 }
 
 .window__channel-name {
-    @apply absolute left-0 top-[-5px] z-[1] overflow-clip rounded border-2 border-white bg-purple-800 text-center font-bold text-white;
+    @apply absolute left-0 top-[-5px]   rounded border-2 border-purple-700 bg-purple-800 text-center font-bold text-white;
 }
 
 .window__chat {
-    @apply flex;
+    @apply absolute bottom-[-20px] flex;
 }
 
 .window__chat-pos {
-    @apply flex  flex-row items-center justify-center border border-gray-700 bg-purple-800 text-center font-bold hover:cursor-pointer hover:bg-purple-900;
+    @apply flex flex-row  items-center justify-center overflow-clip border border-gray-700 bg-purple-800 text-center font-bold hover:cursor-pointer hover:bg-blue-500;
 }
 
 .window__chat__btn {
-    @apply w-[90%] border-0 text-black hover:cursor-pointer hover:bg-gray-400 active:scale-90;
+    @apply w-[90%] overflow-clip  bg-purple-800 font-bold text-black hover:cursor-pointer hover:bg-blue-500 active:scale-90;
 }
 
 .window__handler {
-    @apply absolute right-[-15px] top-[-8px] flex w-[15px] flex-row rounded-ee;
+    @apply absolute right-5 top-1 flex w-[15px] flex-row rounded-ee;
 }
 
 .window__delete {
-    @apply flex w-[14px] justify-center hover:scale-[1.3] hover:cursor-pointer active:scale-[1.4];
+    @apply flex   justify-center hover:scale-[1.3] hover:cursor-pointer active:scale-[1.4];
 }

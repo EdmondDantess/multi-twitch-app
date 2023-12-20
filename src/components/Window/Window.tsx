@@ -12,13 +12,8 @@ type WindowPropsType = {
 export const Window: React.FC<WindowPropsType> = ({ channel }) => {
     const dispatch = useAppDispatch()
 
-    const chat = useAppSelector(
-        (state) => state.window.windows.find((w) => w.channel === channel)!.chat
-    )
-    const chatPos = useAppSelector(
-        (state) =>
-            state.window.windows.find((w) => w.channel === channel)!
-                .chatPosition
+    const window = useAppSelector((state) =>
+        state.window.windows.find((w) => w.channel === channel)
     )
 
     function chatOpenCloseHandler() {
@@ -33,37 +28,41 @@ export const Window: React.FC<WindowPropsType> = ({ channel }) => {
         dispatch(
             setChatPos(
                 channel,
-                chatPos === 'underVideo' ? 'rightVideo' : 'underVideo'
+                window?.chatPosition === 'underVideo'
+                    ? 'rightVideo'
+                    : 'underVideo'
             )
         )
     }
 
     function calcPropertyPosChat(value1: string, value2: string): any {
-        return chatPos === 'underVideo' ? value1 : value2
+        return window?.chatPosition === 'underVideo' ? value1 : value2
     }
 
     return (
         <div
-            className={`window overflow-clip`}
+            className={`window`}
             style={{ flexDirection: calcPropertyPosChat('column', 'row') }}
         >
             <div className={'window__channel-name'}>{channel}</div>
-            <div className={'window__handler'}>
-                <div className={'window__delete'} onClick={deleteWindowHandler}>
-                    <img src={close} alt="delete icon" className={'w-full'} />
-                </div>
-            </div>
 
             <iframe
                 title={channel}
                 src={contentVideo_URL(channel)}
                 allowFullScreen
-                width={calcPropertyPosChat('100%', chat ? '67%' : '100%')}
-                height={chat && chatPos === 'underVideo' ? '33%' : '100%'}
+                width={calcPropertyPosChat(
+                    '100%',
+                    window?.chat ? '67%' : '100%'
+                )}
+                height={
+                    window?.chat && window?.chatPosition === 'underVideo'
+                        ? '33%'
+                        : '100%'
+                }
             />
-            {chat && (
+            {window?.chat && (
                 <iframe
-                    title={'chat'}
+                    title={'window?.chat'}
                     src={contentChat_URL(channel)}
                     height={calcPropertyPosChat('67%', '100%')}
                     width={calcPropertyPosChat('100%', '33%')}
@@ -72,14 +71,20 @@ export const Window: React.FC<WindowPropsType> = ({ channel }) => {
             <div
                 className={'window__chat'}
                 style={{
+                    bottom:
+                        window?.chatPosition === 'underVideo' ? '-20px' : '30%',
+                    left: window?.chatPosition === 'rightVideo' ? '100%' : '',
                     width: calcPropertyPosChat('100%', '20px'),
-                    height: calcPropertyPosChat('20px', '100%'),
+                    height: calcPropertyPosChat('20px', '70%'),
                     writingMode: calcPropertyPosChat(
                         'horizontal-tb',
                         'vertical-rl'
                     ),
                 }}
             >
+                <div className={'window__delete'} onClick={deleteWindowHandler}>
+                    <img src={close} alt="delete icon" />
+                </div>
                 <div
                     className={'window__chat-pos'}
                     style={{
@@ -88,7 +93,7 @@ export const Window: React.FC<WindowPropsType> = ({ channel }) => {
                     }}
                     onClick={changeChatPosHandler}
                 >
-                    {calcPropertyPosChat('🡆', '🡇')}
+                    {calcPropertyPosChat('🡆', '🡆')}
                 </div>
                 <div
                     className={'window__chat__btn'}
@@ -99,8 +104,8 @@ export const Window: React.FC<WindowPropsType> = ({ channel }) => {
                     onClick={chatOpenCloseHandler}
                 >
                     {calcPropertyPosChat(
-                        chat ? '🡅 Close chat' : '🡇 Open chat',
-                        chat ? '🡇 Close chat' : '🡅 Open chat'
+                        window?.chat ? '🡅 Close chat' : '🡇 Open chat',
+                        window?.chat ? '🡇 Close chat' : '🡅 Open chat'
                     )}
                 </div>
             </div>

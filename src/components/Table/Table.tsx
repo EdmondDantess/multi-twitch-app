@@ -33,11 +33,11 @@ export const Table = React.memo(() => {
                 y: window.y,
                 w:
                     window.chat && window.chatPosition === 'rightVideo'
-                        ? window.width + 1
+                        ? window.width
                         : window.width,
                 h:
                     window.chat && window.chatPosition === 'underVideo'
-                        ? window.height + 1
+                        ? window.height
                         : window.height,
                 i: window.channel,
             }
@@ -64,14 +64,12 @@ export const Table = React.memo(() => {
                     cols={{ lg: 12, md: 10, sm: 6, xs: 4, xxs: 2 }}
                     layouts={{
                         lg: layout,
-                        md: layout,
-                        sm: layout,
-                        xs: layout,
-                        xxs: layout,
                     }}
+                    useCSSTransforms
+                    resizeHandles={['ne', 'n', 's', 'se', 'w']}
                     onResize={onResizeDropStop}
                     onDragStop={onResizeDropStop}
-                    margin={[15, 15]}
+                    margin={[22, 22]}
                 >
                     {generateWindows()}
                 </ReactGridLayout>

@@ -3,5 +3,5 @@
 }
 
 .table__windows {
-    @apply h-full w-full overflow-x-clip border-l border-blue-300;
+    @apply h-full w-full overflow-x-clip border-l border-purple-500;
 }

@@ -11,7 +11,7 @@
 }
 
 .search__input input {
-    @apply w-full rounded-xl border-2 border-gray-500 bg-gray-300 p-1.5 text-black outline-0 hover:border-purple-600 focus:border-purple-600;
+    @apply w-full rounded-xl border-2 border-gray-500 bg-gray-300 p-1.5 text-black outline-0  hover:border-purple-600 focus:border-purple-600;
 }
 
 .search__btn_clear {
@@ -23,13 +23,13 @@
 }
 
 .search__channel-result__avatar {
-    @apply h-[50px] w-[50px] rounded-ee;
+    @apply h-[50px] w-[50px] rounded-r-2xl  border-2 border-purple-500;
 }
 
 .search__channels-result {
-    @apply absolute top-[42px] z-[1] h-[80vh] w-[250px] overflow-x-clip overflow-y-scroll rounded-xl border-2 border-white bg-gray-200 shadow-lg shadow-black hover:border-purple-600;
+    @apply absolute top-[42px] z-[1] h-[80vh] w-[250px] overflow-x-clip overflow-x-clip overflow-y-scroll rounded-xl border-2 border-white bg-gray-200 shadow-lg shadow-black hover:border-purple-600;
 }
 
 .search__channel-result {
-    @apply flex flex-row justify-between hover:cursor-pointer hover:bg-purple-300;
+    @apply flex flex-row justify-between hover:cursor-pointer hover:bg-blue-500;
 }

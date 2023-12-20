@@ -85,7 +85,7 @@ export const Search = React.memo(() => {
                                                     .concat('...')}
                                             </span>
                                         ) : (
-                                            <span>{c.title}</span>
+                                            <span>{c.game_name}</span>
                                         )}
                                     </div>
                                 </div>

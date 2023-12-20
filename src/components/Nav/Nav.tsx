@@ -79,13 +79,15 @@ export const Nav = React.memo(() => {
                             src={currUser?.profile_image_url}
                             alt="avatar"
                             width={'48px'}
-                            className={'rounded-r-2xl'}
+                            className={
+                                'rounded-r-2xl border-2 border-purple-500'
+                            }
                         />
-                        <div className={'w-full'}>
+                        <div className={'w-full'} title={f.title}>
                             <div className={'w-full text-left'}>
                                 {f.user_name}
                             </div>
-                            <div className={'w-full text-left'}>
+                            <div className={'w-full text-left text-sm'}>
                                 {f.game_name}
                             </div>
                         </div>
@@ -119,7 +121,7 @@ export const Nav = React.memo(() => {
                         src={user?.profile_image_url}
                         alt="avatar"
                         width={'48px'}
-                        className={'rounded-r-2xl'}
+                        className={'rounded-r-2xl border-2 border-purple-500'}
                     />
                     <div
                         className={
@@ -127,7 +129,9 @@ export const Nav = React.memo(() => {
                         }
                     >
                         <div className={'font-bold'}>{r.user_name}</div>
-                        <div className={'text-right'}>{r.game_name}</div>
+                        <div className={'text-right text-sm'}>
+                            {r.game_name}
+                        </div>
                     </div>
                     <img src={red_dot} alt="live" className={'h-4'} />
                 </div>
