@@ -44,7 +44,7 @@ export const Window: React.FC<WindowPropsType> = ({ channel }) => {
 
     return (
         <div
-            className={`window `}
+            className={`window overflow-clip`}
             style={{ flexDirection: calcPropertyPosChat('column', 'row') }}
         >
             <div className={'window__channel-name'}>{channel}</div>

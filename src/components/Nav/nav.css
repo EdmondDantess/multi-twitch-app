@@ -15,7 +15,7 @@
 }
 
 .nav__userinfo {
-    @apply resize border-b-2 border-blue-300 hover:bg-blue-300;
+    @apply border-b-2 border-blue-300 hover:bg-blue-300;
 }
 
 .nav__userinfo__nickname a {
@@ -27,7 +27,7 @@
 }
 
 .nav__my-follows {
-    @apply mt-2.5 max-h-[25vh]  overflow-y-auto border-2 border-blue-300;
+    @apply mt-2.5 max-h-[25vh] overflow-y-auto border-2 border-blue-300;
 }
 
 .nav__my-follow {
