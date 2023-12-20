@@ -22,7 +22,7 @@ export const windowReducer = (
                         height: 2,
                         width: 2,
                         x: (state.windows.length * 2) % 12,
-                        y: Infinity,
+                        y: 0,
                     },
                 ],
             }

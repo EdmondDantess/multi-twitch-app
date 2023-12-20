@@ -1,5 +1,5 @@
 import { deleteWindow, setChatOpenClose, setChatPos } from './window-reducer'
-import React from 'react'
+import React, { memo } from 'react'
 import './window.css'
 import { contentChat_URL, contentVideo_URL } from './utils/iframeContent'
 import close from '../../assets/icons/close.png'
@@ -9,7 +9,7 @@ type WindowPropsType = {
     channel: string
 }
 
-export const Window: React.FC<WindowPropsType> = ({ channel }) => {
+export const Window: React.FC<WindowPropsType> = memo(({ channel }) => {
     const dispatch = useAppDispatch()
 
     const window = useAppSelector((state) =>
@@ -72,10 +72,10 @@ export const Window: React.FC<WindowPropsType> = ({ channel }) => {
                 className={'window__chat'}
                 style={{
                     bottom:
-                        window?.chatPosition === 'underVideo' ? '-20px' : '30%',
+                        window?.chatPosition === 'underVideo' ? '-20px' : '0%',
                     left: window?.chatPosition === 'rightVideo' ? '100%' : '',
                     width: calcPropertyPosChat('100%', '20px'),
-                    height: calcPropertyPosChat('20px', '70%'),
+                    height: calcPropertyPosChat('20px', '100%'),
                     writingMode: calcPropertyPosChat(
                         'horizontal-tb',
                         'vertical-rl'
@@ -104,11 +104,11 @@ export const Window: React.FC<WindowPropsType> = ({ channel }) => {
                     onClick={chatOpenCloseHandler}
                 >
                     {calcPropertyPosChat(
-                        window?.chat ? '🡅 Close chat' : '🡇 Open chat',
-                        window?.chat ? '🡇 Close chat' : '🡅 Open chat'
+                        window?.chat ? 'Close chat' : '🡅 Open chat',
+                        window?.chat ? 'Close chat' : '🡇 Open chat'
                     )}
                 </div>
             </div>
         </div>
     )
-}
+})

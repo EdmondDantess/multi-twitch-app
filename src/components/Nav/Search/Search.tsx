@@ -93,7 +93,7 @@ export const Search = React.memo(() => {
                                     {c.is_live && (
                                         <span
                                             className={
-                                                'rounded-ee bg-red-600 font-bold text-white'
+                                                'absolute right-0  rounded-ee bg-red-600 font-bold text-white'
                                             }
                                         >
                                             Live

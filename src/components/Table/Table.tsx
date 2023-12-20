@@ -19,7 +19,7 @@ export const Table = React.memo(() => {
     const generateWindows = (): JSX.Element[] => {
         return windows.map((window) => {
             return (
-                <div key={window.channel} style={{ position: 'relative' }}>
+                <div key={window.channel} className={'relative '}>
                     <Window channel={window.channel} />
                 </div>
             )
@@ -31,14 +31,8 @@ export const Table = React.memo(() => {
             return {
                 x: window.x,
                 y: window.y,
-                w:
-                    window.chat && window.chatPosition === 'rightVideo'
-                        ? window.width
-                        : window.width,
-                h:
-                    window.chat && window.chatPosition === 'underVideo'
-                        ? window.height
-                        : window.height,
+                w: window.width,
+                h: window.height,
                 i: window.channel,
             }
         })
@@ -59,7 +53,7 @@ export const Table = React.memo(() => {
         <div className={'table'}>
             <div className={'table__windows'}>
                 <ReactGridLayout
-                    className="layout"
+                    className="layout "
                     rowHeight={100}
                     cols={{ lg: 12, md: 10, sm: 6, xs: 4, xxs: 2 }}
                     layouts={{

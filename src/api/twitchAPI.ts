@@ -10,7 +10,9 @@ export const twitchAPI = {
         return instance.get<UserInfo>(`helix/users?${ids}`)
     },
     getRecommendedStreams() {
-        return instance.get<RecommendsStreams>(`helix/streams?first=100`)
+        return instance.get<RecommendsStreams>(
+            `helix/streams?first=100&language=ru`
+        )
     },
     getLiveFollows(id: string) {
         return instance.get<LiveFollowsData>(

@@ -1,7 +1,7 @@
 .table {
-    @apply relative h-[100vh] w-[89vw];
+    @apply relative left-52 h-[100vh] w-[calc(100vw-208px)];
 }
 
 .table__windows {
-    @apply h-full w-full overflow-x-clip border-l border-purple-500;
+    @apply h-full w-full  border-l border-purple-500;
 }

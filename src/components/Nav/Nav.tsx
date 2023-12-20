@@ -35,6 +35,23 @@ export const Nav = React.memo(() => {
         }
     }, [userData.id, dispatch, isLogged])
 
+    useEffect(() => {
+        let idIntervalLiveFollows = setInterval(() => {
+            console.log('mylives')
+            dispatch(getMyFollows(userData.id))
+        }, 300000)
+        let idIntervalRecommends = setInterval(() => {
+            console.log('recommends')
+            dispatch(getRecommendedStreams())
+        }, 1500000)
+
+        return () => {
+            console.log('cleared')
+            clearInterval(idIntervalLiveFollows)
+            clearInterval(idIntervalRecommends)
+        }
+    }, [userData.id, isLogged])
+
     const generateListChannelsOnBoard = () => {
         return windows.map((w: WindowType) => {
             return (
@@ -55,9 +72,7 @@ export const Nav = React.memo(() => {
         let follows: LiveFollowsDataData[] = [...liveFollows]
         return follows.map((f) => {
             const addOnBoard = () => {
-                windows.filter(
-                    (w) => w.channel.toLowerCase() === f.user_name.toLowerCase()
-                ).length === 0
+                windows.filter((w) => w.channel === f.user_name).length === 0
                     ? dispatch(addNewWindow(f.user_name))
                     : dispatch(setError(`${f.user_name} is exist on board`))
             }
@@ -98,15 +113,10 @@ export const Nav = React.memo(() => {
     }
 
     const generateMyRecommends = () => {
-        let recommends: DataRecommends[] = [
-            ...recommendsData.filter((r) => r.language === 'ru'),
-            ...recommendsData.filter((r) => r.language !== 'ru'),
-        ]
-
-        return recommends.map((r: DataRecommends) => {
+        return recommendsData.map((r: DataRecommends) => {
+            if (myFollows.find((el) => el.login === r.user_login)) return null
             const addOnBoard = () => {
-                windows.filter((w) => w.channel.toLowerCase() === r.user_login)
-                    .length === 0
+                windows.filter((w) => w.channel === r.user_login).length === 0
                     ? dispatch(addNewWindow(r.user_login))
                     : dispatch(setError(`${r.user_login} is exist on board`))
             }
@@ -160,13 +170,19 @@ export const Nav = React.memo(() => {
             <Search />
             {generateMyFollows().length > 0 && (
                 <>
-                    <span>My subscribes in Live:</span>
+                    <span className={'font-bold'}>
+                        My subscribes in
+                        <span className={'rounded-[4px] bg-red-600 p-[1px]'}>
+                            Live
+                        </span>
+                        ({myFollows.length}):
+                    </span>
                     <div className={'nav__my-follows'}>
                         {generateMyFollows()}
                     </div>
                 </>
             )}
-            <span>Other streams:</span>
+            <span className={'font-bold'}>Other streams:</span>
             <div className={'nav__my-follows'}>{generateMyRecommends()}</div>
             {generateListChannelsOnBoard().length > 0 && (
                 <>
