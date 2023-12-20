@@ -61,7 +61,7 @@ export const Nav = React.memo(() => {
                     ? dispatch(addNewWindow(f.user_name))
                     : dispatch(setError(`${f.user_name} is exist on board`))
             }
-            let currUser = myFollows.find((el) => el.id === f.user_id)
+            let currUser = myFollows?.find((el) => el.id === f.user_id)
 
             return (
                 <div
@@ -108,7 +108,7 @@ export const Nav = React.memo(() => {
                     ? dispatch(addNewWindow(r.user_login))
                     : dispatch(setError(`${r.user_login} is exist on board`))
             }
-            let user = additinalData.find((el) => el.id === r.user_id)
+            let user = additinalData?.find((el) => el.id === r.user_id)
             return (
                 <div
                     className={'nav__my-follow'}
