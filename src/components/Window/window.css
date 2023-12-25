@@ -1,17 +1,17 @@
 .window {
-    @apply relative flex h-full w-full content-center items-center justify-center border-purple-950 bg-purple-600 hover:cursor-grab hover:shadow-2xl hover:shadow-fuchsia-950 active:cursor-grabbing;
+    @apply relative flex h-full w-full content-center items-center justify-center border-purple-950 bg-black hover:cursor-grab hover:shadow-2xl hover:shadow-fuchsia-950 active:cursor-grabbing;
 }
 
 .window iframe {
-    @apply border-0;
+    @apply border-0 transition-all duration-200;
 }
 
 .window__channel-name {
-    @apply absolute left-0 top-0   rounded border-2 border-purple-700 bg-purple-800 text-center font-bold text-white;
+    @apply absolute left-0 top-0 rounded border-2 border-purple-700 bg-purple-800 text-center font-bold text-white;
 }
 
 .window__chat {
-    @apply absolute bottom-[-20px] flex;
+    @apply absolute bottom-[-20px] flex overflow-clip;
 }
 
 .window__chat-pos {
@@ -19,7 +19,7 @@
 }
 
 .window__chat__btn {
-    @apply w-[90%] overflow-clip  bg-purple-800 font-bold text-black hover:cursor-pointer hover:bg-blue-500 active:scale-90;
+    @apply flex w-[90%] flex-row items-center justify-center   bg-purple-800 font-bold text-black hover:cursor-pointer hover:bg-blue-500 active:scale-90;
 }
 
 .window__handler {

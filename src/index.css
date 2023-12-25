@@ -25,10 +25,9 @@ code {
 }
 
 *::-webkit-scrollbar {
-    border-radius: 13px;
-    width: 10px;
+    width: 4px;
     border: 1px solid #553293;
-    background-color: rgba(92, 89, 94, 0.22);
+    background-color: rgb(38, 4, 55);
     overflow: visible;
 }
 

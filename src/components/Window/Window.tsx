@@ -62,7 +62,7 @@ export const Window: React.FC<WindowPropsType> = memo(({ channel }) => {
             />
             {window?.chat && (
                 <iframe
-                    title={'window?.chat'}
+                    title={'window.chat'}
                     src={contentChat_URL(channel)}
                     height={calcPropertyPosChat('67%', '100%')}
                     width={calcPropertyPosChat('100%', '33%')}
