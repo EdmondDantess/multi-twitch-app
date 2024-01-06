@@ -11,7 +11,6 @@ type WindowPropsType = {
 
 export const Window: React.FC<WindowPropsType> = memo(({ channel }) => {
     const dispatch = useAppDispatch()
-
     const window = useAppSelector((state) =>
         state.window.windows.find((w) => w.channel === channel)
     )
@@ -42,7 +41,9 @@ export const Window: React.FC<WindowPropsType> = memo(({ channel }) => {
     return (
         <div
             className={`window`}
-            style={{ flexDirection: calcPropertyPosChat('column', 'row') }}
+            style={{
+                flexDirection: calcPropertyPosChat('column', 'row'),
+            }}
         >
             <div className={'window__channel-name'}>{channel}</div>
 

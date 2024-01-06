@@ -19,7 +19,7 @@
 }
 
 .nav__userinfo__nickname a {
-    @apply flex flex-row items-center justify-between overflow-clip font-bold no-underline;
+    @apply flex flex-row items-center justify-between overflow-clip  font-bold;
 }
 
 .nav__userinfo__nickname img {

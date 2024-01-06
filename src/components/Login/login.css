@@ -2,18 +2,18 @@
     @apply flex h-[100vh] w-full flex-col items-center justify-center;
 }
 
-.login h2 {
-    @apply font-bold text-amber-100;
+.login a {
+    @apply mt-16 flex w-52 flex-col items-center justify-center overflow-clip rounded-3xl font-bold text-amber-100 hover:bg-neutral-50   hover:bg-opacity-50 active:scale-90;
 }
 
-.login a {
-    @apply flex w-40 flex-col content-center rounded-xl  border-purple-950   font-bold text-amber-100 no-underline hover:bg-neutral-50 hover:bg-opacity-50 active:scale-90;
+.login h2 {
+    @apply font-bold text-purple-800;
 }
 
 .login > a > img {
-    @apply mt-[-28px] h-32;
+    @apply mt-[-28px] h-32 w-40;
 }
 
 .login > a > span {
-    @apply mt-[-22px];
+    @apply mt-[-22px] text-purple-800;
 }

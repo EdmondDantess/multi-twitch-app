@@ -95,7 +95,7 @@ export const Nav = React.memo(() => {
                             alt="avatar"
                             width={'48px'}
                             className={
-                                'rounded-r-2xl border-2 border-purple-500'
+                                'rounded-r-2xl border-2 border-purple-500 bg-black'
                             }
                         />
                         <div className={'w-full'} title={f.title}>
@@ -131,7 +131,9 @@ export const Nav = React.memo(() => {
                         src={user?.profile_image_url}
                         alt="avatar"
                         width={'48px'}
-                        className={'rounded-r-2xl border-2 border-purple-500'}
+                        className={
+                            'rounded-r-2xl border-2 border-purple-500 bg-black'
+                        }
                     />
                     <div
                         className={
