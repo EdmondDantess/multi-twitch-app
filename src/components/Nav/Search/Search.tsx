@@ -23,7 +23,7 @@ export const Search = React.memo(() => {
         if (searchValue.trim() === '') {
             dispatch(setSearchChannels([]))
         }
-    }, [search, searchValue])
+    }, [dispatch, search, searchValue])
 
     function addWindowOnBoard(channel: string) {
         windows.find((c) => c.channel === channel)
@@ -45,7 +45,11 @@ export const Search = React.memo(() => {
                     placeholder={'Enter channel name'}
                     type="text"
                     value={searchValue}
-                    onChange={(e) => setSearchValue(e.currentTarget.value)}
+                    onChange={(e) =>
+                        e.currentTarget.value !== ';'
+                            ? setSearchValue(e.currentTarget.value)
+                            : null
+                    }
                 />
                 {searchValue !== '' && (
                     <div
@@ -57,14 +61,11 @@ export const Search = React.memo(() => {
                 )}
             </div>
             {searchingChannels.length > 0 && (
-                <div
-                    className={'search__channels-result'}
-                    onBlur={clearSearchInput}
-                >
-                    {searchingChannels.map((c) => {
+                <div className={'search__channels-result'}>
+                    {searchingChannels?.map((c, index) => {
                         return (
                             <div
-                                key={c.broadcaster_login}
+                                key={index}
                                 className={'search__channel-result'}
                                 onClick={() =>
                                     addWindowOnBoard(c.broadcaster_login)
