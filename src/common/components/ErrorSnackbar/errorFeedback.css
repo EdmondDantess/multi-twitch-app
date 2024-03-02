@@ -1,3 +1,10 @@
 .error_feedback {
-    @apply absolute ml-[50%] mt-[1%] transform rounded-xl bg-red-600 p-2.5 font-bold text-white;
+    position: absolute;
+    padding: 0.625rem;
+    border-radius: 0.75rem;
+    font-weight: 700;
+    color: #ffffff;
+    background-color: #DC2626;
+    margin-left: 50%;
+    margin-top: 1%;
 }

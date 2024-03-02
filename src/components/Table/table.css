@@ -1,7 +1,15 @@
 .table {
-    @apply relative left-52 h-[100vh] w-[calc(100vw-208px)];
+    position: relative;
+    left: 13rem;
+    height: 100vh;
+    width: calc(100vw - 208px);
+
+
 }
 
 .table__windows {
-    @apply h-full w-full  border-l border-purple-500;
+    border-left-width: 1px;
+    border-color: #8B5CF6;
+    width: 100%;
+    height: 100%;;
 }

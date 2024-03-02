@@ -1,31 +1,98 @@
 .window {
-    @apply relative flex h-full w-full content-center items-center justify-center border-purple-950 bg-black hover:cursor-grab hover:shadow-2xl hover:shadow-fuchsia-950 active:cursor-grabbing;
+    display: flex;
+    position: relative;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    background-color: #000000;
+
+
+    :hover {
+        cursor: grab;
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    }
 }
 
 .window iframe {
-    @apply border-0 transition-all duration-200;
+    border-width: 0;
+    transition-property: all;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 200ms;
 }
 
 .window__channel-name {
-    @apply absolute left-0 top-0 rounded border-2 border-purple-700 bg-purple-800 text-center font-bold text-white;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-radius: 0.25rem;
+    border-width: 2px;
+    border-color: #6D28D9;
+    font-weight: 700;
+    text-align: center;
+    background-color: #5B21B6;
+
+
 }
 
 .window__chat {
-    @apply absolute bottom-[-20px] flex overflow-clip;
+    display: flex;
+    position: absolute;
+    bottom: -20px;;
 }
 
 .window__chat-pos {
-    @apply flex flex-row  items-center justify-center overflow-clip border border-gray-700 bg-purple-800 text-center font-bold hover:cursor-pointer hover:bg-blue-500;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    border-width: 1px;
+    border-color: #374151;
+    font-weight: 700;
+    text-align: center;
+    background-color: #5B21B6;
+
+
+    :hover {
+        cursor: pointer;
+    }
 }
 
 .window__chat__btn {
-    @apply flex w-[90%] flex-row items-center justify-center   bg-purple-800 font-bold text-black hover:cursor-pointer hover:bg-blue-500 active:scale-90;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    font-weight: 700;
+    color: #000000;
+    background-color: #5B21B6;
+    width: 90%;
+
+
+    :hover {
+        background-color: #3B82F6;
+        cursor: pointer;
+    }
 }
 
 .window__handler {
-    @apply absolute right-5 top-1 flex w-[15px] flex-row rounded-ee;
+    display: flex;
+    position: absolute;
+    top: 0.25rem;
+    right: 1.25rem;
+    flex-direction: row;
+    width: 15px;
+
+
 }
 
 .window__delete {
-    @apply flex   justify-center hover:scale-[1.3] hover:cursor-pointer active:scale-[1.4];
+    display: flex;
+    justify-content: center;
+
+
+    :hover {
+        cursor: pointer;
+    }
 }

@@ -1,40 +1,40 @@
-import { addNewWindow } from '../../Window/window-reducer'
-import React, { useEffect, useState } from 'react'
-import './search.css'
-import { getSearchChannels, setSearchChannels } from './search-reducer'
-import useDebounce from '../../../hooks/useDebounce/useDebounce'
-import { useAppDispatch, useAppSelector } from '../../../app/hooks'
-import close from '../../../assets/icons/close.png'
+import { addNewWindow } from '../../Window/window-reducer';
+import React, { memo, useEffect, useState } from 'react';
+import './search.css';
+import { getSearchChannels, setSearchChannels } from './search-reducer';
+import useDebounce from '../../../hooks/useDebounce/useDebounce';
+import { useAppDispatch, useAppSelector } from '../../../app/hooks';
+import close from '../../../assets/icons/close.png';
 
-export const Search = React.memo(() => {
-  const dispatch = useAppDispatch()
-  const windows = useAppSelector((state) => state.window.windows)
+export const Search = memo(() => {
+  const dispatch = useAppDispatch();
+  const windows = useAppSelector((state) => state.window.windows);
   const searchingChannels = useAppSelector(
-    (state) => state.search.searchingChannels
-  )
-  const [searchValue, setSearchValue] = useState<string>('')
-  const [error, setError] = useState<string | null>(null)
-  const search = useDebounce<string>(searchValue, 500)
+    (state) => state.search.searchingChannels,
+  );
+  const [searchValue, setSearchValue] = useState<string>('');
+  const [error, setError] = useState<string | null>(null);
+  const search = useDebounce<string>(searchValue, 500);
 
   useEffect(() => {
     if (searchValue.trim() && search.trim() !== '') {
-      dispatch(getSearchChannels(searchValue.trim()))
+      dispatch(getSearchChannels(searchValue.trim()));
     }
     if (searchValue.trim() === '') {
-      dispatch(setSearchChannels([]))
+      dispatch(setSearchChannels([]));
     }
-  }, [dispatch, search, searchValue])
+  }, [dispatch, search, searchValue]);
 
   function addWindowOnBoard(channel: string) {
     windows.find((c) => c.channel === channel)
       ? setError('Channel is exist')
-      : dispatch(addNewWindow(channel))
-    clearSearchInput()
+      : dispatch(addNewWindow(channel));
+    clearSearchInput();
   }
 
   function clearSearchInput() {
-    dispatch(setSearchChannels([]))
-    setSearchValue('')
+    dispatch(setSearchChannels([]));
+    setSearchValue('');
   }
 
   return (
@@ -43,7 +43,7 @@ export const Search = React.memo(() => {
       <div className={'search__input'}>
         <input
           placeholder={'Enter channel name'}
-          type='text'
+          type="text"
           value={searchValue}
           onChange={(e) =>
             e.currentTarget.value !== ';'
@@ -53,7 +53,7 @@ export const Search = React.memo(() => {
         />
         {searchValue !== '' && (
           <div onClick={clearSearchInput} className={'search__btn_clear'}>
-            <img src={close} alt='clear' />
+            <img src={close} alt="clear" />
           </div>
         )}
       </div>
@@ -68,12 +68,12 @@ export const Search = React.memo(() => {
               >
                 <img
                   src={c.thumbnail_url}
-                  alt='streamer avatar'
+                  alt="streamer avatar"
                   className={'search__channel-result__avatar'}
                 />
                 <div>
                   <div>{c.display_name}</div>
-                  <div className={'text-xs'}>
+                  <div className={'display-name'}>
                     {c.title.length > 20 ? (
                       <span title={c.title}>
                         {c.title.slice(0, 20).concat('...')}
@@ -83,22 +83,12 @@ export const Search = React.memo(() => {
                     )}
                   </div>
                 </div>
-                <div>
-                  {c.is_live && (
-                    <span
-                      className={
-                        'absolute right-0  rounded-ee bg-red-600 font-bold text-white'
-                      }
-                    >
-                      Live
-                    </span>
-                  )}
-                </div>
+                <div>{c.is_live && <span className={'isLive'}>Live</span>}</div>
               </div>
-            )
+            );
           })}
         </div>
       )}
     </div>
-  )
-})
+  );
+});

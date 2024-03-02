@@ -1,19 +1,39 @@
 .login {
-    @apply flex h-[100vh] w-full flex-col items-center justify-center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
 }
 
 .login a {
-    @apply mt-16 flex w-52 flex-col items-center justify-center overflow-clip rounded-3xl font-bold text-amber-100 hover:bg-neutral-50   hover:bg-opacity-50 active:scale-90;
+    display: flex;
+    margin-top: 4rem;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 1.5rem;
+    width: 13rem;
+    font-weight: 700;
+
+
+    :hover {
+        --bg-opacity: 0.5;
+    }
 }
 
 .login h2 {
-    @apply font-bold text-purple-800;
+    font-weight: 700;
+    color: #5B21B6;
 }
 
 .login > a > img {
-    @apply mt-[-28px] h-32 w-40;
+    width: 10rem;
+    height: 8rem;
+    margin-top: -28px;
 }
 
 .login > a > span {
-    @apply mt-[-22px] text-purple-800;
+    color: #5B21B6;
+    margin-top: -22px;
 }
