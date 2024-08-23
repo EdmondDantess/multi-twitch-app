@@ -6,6 +6,7 @@ body {
     user-select: none;
     margin: 0;
     background-attachment: fixed;
+    background-color: black;
     background-image: url('../src/assets/images/backgroundtw.jpg');
     background-size: cover;
     background-repeat: no-repeat;

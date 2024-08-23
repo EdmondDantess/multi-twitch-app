@@ -4,6 +4,7 @@
     flex-direction: row;
     flex-wrap: nowrap;
     text-align: center;
-    max-height: 100vh;
+    box-sizing: border-box;
     max-width: 100vw;
+    overflow-x: hidden;
 }

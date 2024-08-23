@@ -1,22 +1,30 @@
 .nav {
     position: fixed;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     width: 13rem;
     color: #DBEAFE;
-    max-height: 100vh;
+    height: 100vh;
+    background-color: rgba(100, 95, 177, 0.24);
+    border-right: 2px solid rgba(139, 92, 246, 0.45);
 
+}
 
+.nav__channels-onboard > span {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    background-color: rgba(255, 255, 255, 0.32);
+    border-bottom: 2px solid #8B5CF6;
 }
 
 .nav__channels-onboard {
     overflow-y: auto;
-    margin-top: 0.375rem;
-    border-width: 2px;
-    border-color: #8B5CF6;
+    border: 2px solid #8B5CF6;
+    border-right-width: 0;
     width: 100%;
-    background-color: #000000;
-    max-height: 19vh;
-
-
+    height: 19vh;
 }
 
 .nav__channels-onboard .nav__channel {
@@ -26,8 +34,7 @@
     flex-wrap: nowrap;
     width: 100%;
     height: 1.5rem;
-
-
+    border-bottom: 1px solid #8B5CF6;
 }
 
 .nav__channels-delete img {
@@ -35,21 +42,22 @@
     right: 0.125rem;
     top: 0.25rem;
     width: 0.875rem;
+    cursor: pointer;
+}
 
-
-    :hover {
-        cursor: pointer;
-    }
+.nav__channels-delete img:hover {
+    transform: scale(1.3);
 }
 
 .nav__userinfo {
-    border-bottom-width: 2px;
-    border-color: #8B5CF6;
+    background-color: rgba(18, 17, 17, 0.37);
+    border: 2px solid #7C3AED;
+    border-right-width: 0;
 
+}
 
-    :hover {
-        background-color: #60A5FA;
-    }
+.nav__userinfo:hover {
+    background-color: #60A5FA;
 }
 
 .nav__userinfo__nickname a {
@@ -57,28 +65,28 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    color: #ffffff;
     font-weight: 700;
-
-
 }
 
 .nav__userinfo__nickname img {
     border-top-right-radius: 1rem;
     border-bottom-right-radius: 1rem;
-    border-width: 2px;
-    border-color: #7C3AED;
+    border-right: 2px solid #7C3AED;
+    border-left-width: 0;
+    border-top-width: 0;
+    border-bottom-width: 0;
     width: 50px;
-
-
 }
 
 .nav__my-follows {
+    position: relative;
     overflow-y: auto;
-    border-width: 2px;
+    overflow-x: hidden;
+    height: 25vh;
+    width: 100%;
+    border: 2px solid #7C3AED;
     border-right-width: 0;
-    border-color: #8B5CF6;
-    max-height: 25vh;
-
 
 }
 
@@ -87,15 +95,19 @@
     position: relative;
     justify-content: space-between;
     align-items: center;
-    border-bottom-width: 1px;
-    border-color: #8B5CF6;
+    border-bottom: 1px solid #8B5CF6;
     background-color: #000000;
     cursor: pointer;
+    height: 47px;
+    width: 100%;
+}
 
+.nav__my-follow > .live {
+    width: 17px
+}
 
-    :hover {
-        background-color: #60A5FA;
-    }
+.nav__my-follow:hover {
+    background-color: #60A5FA;
 }
 
 .nav__userinfo__nickname-wrapper {
@@ -103,15 +115,11 @@
     flex-direction: column;
     flex-wrap: nowrap;
     align-items: flex-start;
-
-
 }
 
 .nav__userinfo__nickname-wrapper > span {
     font-size: 0.75rem;
     line-height: 1rem;
-
-
 }
 
 .my-follow__line {
@@ -119,18 +127,25 @@
     position: relative;
     flex-direction: row;
     white-space: nowrap;
-
-
+    width: 100%;
 }
 
 .my-follow__line > img {
     border-top-right-radius: 1rem;
     border-bottom-right-radius: 1rem;
-    border-width: 2px;
-    border-color: #8B5CF6;
+    border-right: 2px solid #8B5CF6;
     background-color: #000000;
+}
 
+.nav__my-follow > .avatar-rec {
+    border-top-right-radius: 1rem;
+    border-bottom-right-radius: 1rem;
+    border-right: 2px solid #8B5CF6;
+    background-color: #000000;
+}
 
+.my-follow__line-title {
+    width: 100%;
 }
 
 .my-follow__line-title-right {
@@ -138,13 +153,18 @@
     text-align: right;
     font-size: 0.875rem;
     line-height: 1.25rem;
-
-
+    text-overflow:ellipsis;
 }
 
 .my-follow__line-title-left {
+    font-weight: bold;
     width: 100%;
     text-align: left;
+}
 
-
+.labelboard {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    background-color: rgba(255, 255, 255, 0.32);
 }
