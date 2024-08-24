@@ -1,7 +1,7 @@
 import React from 'react';
 import { deleteWindow, WindowType } from '../../Window/window-reducer';
-import close from '../../../assets/icons/close.png';
 import { useAppDispatch, useAppSelector } from '../../../app/hooks';
+import { iconSelector } from '../../../assets/iconSelector';
 
 const NavMyListChannels = () => {
   const dispatch = useAppDispatch();
@@ -16,7 +16,7 @@ const NavMyListChannels = () => {
             className={'nav__channels-delete'}
             onClick={() => dispatch(deleteWindow(w.channel))}
           >
-            <img src={close} alt={'delete icon'} />
+            <img src={iconSelector.close} alt={'delete icon'} />
           </div>
         </div>
       );

@@ -3,13 +3,13 @@ import { DataRecommends } from '../../../api/twitchAPI';
 import { addNewWindow } from '../../Window/window-reducer';
 import { setError } from '../../../app/userFeedback-reducer';
 import { truncate } from '../../../helpers/truncateText';
-import redDot from '../../../assets/icons/red_dot.png';
 import { useAppDispatch, useAppSelector } from '../../../app/hooks';
+import { iconSelector } from '../../../assets/iconSelector';
 
 const NavMyRecommends = () => {
   const dispatch = useAppDispatch();
   const windows = useAppSelector((state) => state.window.windows);
-  const additinalData = useAppSelector((state) => state.nav.additionalData);
+  const additionalData = useAppSelector((state) => state.nav.additionalData);
   const myFollows = useAppSelector((state) => state.nav.myFollows);
   const recommendsData = useAppSelector(
     (state) => state.nav.recommendedStreams,
@@ -24,7 +24,7 @@ const NavMyRecommends = () => {
           : dispatch(setError(`${r.user_login} is exist on board`));
       };
 
-      const user = additinalData?.find((el) => el.id === r.user_id);
+      const user = additionalData?.find((el) => el.id === r.user_id);
 
       return (
         <div className={'nav__my-follow'} key={r.id} onClick={addOnBoard}>
@@ -42,7 +42,7 @@ const NavMyRecommends = () => {
               {truncate(r.game_name, 20)}
             </div>
           </div>
-          <img src={redDot} alt="live" className={'live'} />
+          <img src={iconSelector.redDot} alt="live" className={'live'} />
         </div>
       );
     });

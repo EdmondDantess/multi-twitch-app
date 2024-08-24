@@ -4,7 +4,8 @@ import './search.css';
 import { getSearchChannels, setSearchChannels } from './search-reducer';
 import useDebounce from '../../../hooks/useDebounce/useDebounce';
 import { useAppDispatch, useAppSelector } from '../../../app/hooks';
-import close from '../../../assets/icons/close.png';
+import { iconSelector } from '../../../assets/iconSelector';
+import { truncate } from '../../../helpers/truncateText';
 
 export const Search = memo(() => {
   const dispatch = useAppDispatch();
@@ -53,7 +54,7 @@ export const Search = memo(() => {
         />
         {searchValue !== '' && (
           <div onClick={clearSearchInput} className={'search__btn_clear'}>
-            <img src={close} alt="clear" />
+            <img src={iconSelector.close} alt="clear" />
           </div>
         )}
       </div>
@@ -72,15 +73,10 @@ export const Search = memo(() => {
                   className={'search__channel-result__avatar'}
                 />
                 <div>
-                  <div>{c.display_name}</div>
+                  <div>{truncate(c.display_name)}</div>
                   <div className={'display-name'}>
-                    {c.title.length > 20 ? (
-                      <span title={c.title}>
-                        {c.title.slice(0, 20).concat('...')}
-                      </span>
-                    ) : (
-                      <span>{c.game_name}</span>
-                    )}
+                    <span title={c.title}>{truncate(c.title)}</span>
+                    <span>{truncate(c.game_name, 20)}</span>
                   </div>
                 </div>
                 <div>{c.is_live && <span className={'isLive'}>Live</span>}</div>

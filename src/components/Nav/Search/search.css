@@ -65,10 +65,9 @@
 .search__channel-result__avatar {
     border-top-right-radius: 1rem;
     border-bottom-right-radius: 1rem;
-    border-width: 2px;
+    border: 2px solid #402b97;
     height: 50px;
     width: 50px;
-
 
 }
 
@@ -118,8 +117,10 @@
 }
 
 .display-name {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
     font-size: 0.75rem;
     line-height: 1rem;
-
 
 }

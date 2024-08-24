@@ -7,4 +7,17 @@ module.exports = {
     ...config.rules,
     'no-use-before-define': 'off',
   },
+  overrides: [
+    {
+      files: '**/*.ts',
+      // TypeScript-only configuration
+      parser: '@typescript-eslint/parser',
+      parserOptions: {
+        project: 'tsconfig.json',
+        tsconfigRootDir: __dirname,
+        sourceType: 'module',
+      },
+      plugins: ['@typescript-eslint'],
+    },
+  ],
 };

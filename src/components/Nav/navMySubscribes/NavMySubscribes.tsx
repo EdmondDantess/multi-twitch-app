@@ -52,8 +52,7 @@ const NavMySubscribes = () => {
     <div className={'nav__my-follows'}>
       <span className={'labelboard'}>
         My subscribes in
-        <span className={'rounded-[4px] bg-red-600 p-[1px]'}> Live</span>(
-        {myFollows.length}):
+        <span>Live</span>({myFollows.length}):
       </span>
       {generateMyFollows()}
     </div>
