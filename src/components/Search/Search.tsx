@@ -1,14 +1,14 @@
-import { addNewWindow } from '../../../store/reducers/window-reducer';
+import { addNewWindow } from '../../store/reducers/window-reducer';
 import React, { memo, useEffect, useState } from 'react';
 import './search.css';
 import {
   getSearchChannels,
   setSearchChannels,
-} from '../../../store/reducers/search-reducer';
-import useDebounce from '../../../hooks/useDebounce/useDebounce';
-import { useAppDispatch, useAppSelector } from '../../../hooks/hooksStore';
-import { iconSelector } from '../../../assets/iconSelector';
-import { truncate } from '../../../helpers/truncateText';
+} from '../../store/reducers/search-reducer';
+import useDebounce from '../../hooks/useDebounce/useDebounce';
+import { useAppDispatch, useAppSelector } from '../../hooks/hooksStore';
+import { iconSelector } from '../../assets/iconSelector';
+import { truncate } from '../../helpers/truncateText';
 
 export const Search = memo(() => {
   const dispatch = useAppDispatch();

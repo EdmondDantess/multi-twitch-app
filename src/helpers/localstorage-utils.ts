@@ -9,6 +9,15 @@ export const loadState = () => {
 };
 
 export const saveState = (state: RootState) => {
-  const serializedState = JSON.stringify(state);
+  const serializedState = JSON.stringify({
+    ...state,
+    nav: {
+      userData: {},
+      myFollows: [],
+      additionalData: [],
+      recommendedStreams: [],
+      liveFollows: [],
+    },
+  });
   localStorage.setItem('multitwitch-app-state', serializedState);
 };

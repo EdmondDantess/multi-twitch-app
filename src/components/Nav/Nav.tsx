@@ -6,7 +6,7 @@ import {
   getRecommendedStreams,
   getUserData,
 } from '../../store/reducers/nav-reducer';
-import { Search } from './Search/Search';
+import { Search } from '../Search/Search';
 import { tokenMode } from '../../helpers/modeLocalToVercel';
 import { tokenFromURL } from '../../helpers/getTokenFromURL';
 import NavMySubscribes from './navMySubscribes/NavMySubscribes';
