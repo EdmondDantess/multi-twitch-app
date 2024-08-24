@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { tokenFromURL } from '../common/utils/getTokenFromURL';
+import { tokenFromURL } from '../helpers/getTokenFromURL';
 
 export const instance = axios.create({
   baseURL: 'https://api.twitch.tv/',

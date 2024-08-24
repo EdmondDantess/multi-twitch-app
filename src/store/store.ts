@@ -1,27 +1,24 @@
-import { loadState, saveState } from './localstorage-utils';
+import { loadState, saveState } from '../helpers/localstorage-utils';
 // eslint-disable-next-line camelcase
 import { applyMiddleware, combineReducers, legacy_createStore } from 'redux';
 import thunkMiddleware, { ThunkAction, ThunkDispatch } from 'redux-thunk';
 import {
   windowReducer,
   WindowReducerActionsType,
-} from '../components/Window/window-reducer';
+} from './reducers/window-reducer';
 import {
   searchReducer,
   SearchReducerActionsType,
-} from '../components/Nav/Search/search-reducer';
+} from './reducers/search-reducer';
 import {
   loginReducer,
   LoginReducerActionsType,
-} from '../components/Login/login-reducer';
-import {
-  navReducer,
-  NavReducerActionsType,
-} from '../components/Nav/nav-reducer';
+} from './reducers/login-reducer';
+import { navReducer, NavReducerActionsType } from './reducers/nav-reducer';
 import {
   FinalUserFeedbackActionTypes,
   userFeedbackReducer,
-} from './userFeedback-reducer';
+} from './reducers/userFeedback-reducer';
 
 const rootReducer = combineReducers({
   window: windowReducer,

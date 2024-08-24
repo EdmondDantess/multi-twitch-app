@@ -1,4 +1,4 @@
-import { mode, vercel } from '../../../common/utils/modeLocalToVercel';
+import { mode, vercel } from './modeLocalToVercel';
 
 export const contentVideoURL = (channel: string) => {
   const vercelVid = `https://embed.twitch.tv?allowfullscreen=true&autoplay=true&channel=${channel}&controls=true&height=100%25&layout=video&muted=false&parent=multi-twitch-app.vercel.app&referrer=https%3A%2F%2Fmulti-twitch-app.vercel.app2F&theme=dark&time=0h0m0s&width=100%25`;

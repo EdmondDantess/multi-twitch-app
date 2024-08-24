@@ -1,11 +1,11 @@
-import { AppThunk } from '../../app/store';
+import { AppThunk } from '../store';
 import {
   DataRecommends,
   LiveFollowsDataData,
   twitchAPI,
   UserDataInfo,
 } from '../../api/twitchAPI';
-import { setError } from '../../app/userFeedback-reducer';
+import { setError } from './userFeedback-reducer';
 
 const initialState = {
   userData: {} as UserDataInfo,

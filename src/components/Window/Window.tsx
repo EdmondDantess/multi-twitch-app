@@ -1,9 +1,13 @@
-import { deleteWindow, setChatOpenClose, setChatPos } from './window-reducer';
+import {
+  deleteWindow,
+  setChatOpenClose,
+  setChatPos,
+} from '../../store/reducers/window-reducer';
 import React, { memo } from 'react';
 import './window.css';
-import { contentChatURL, contentVideoURL } from './utils/iframeContent';
+import { contentChatURL, contentVideoURL } from '../../helpers/iframeContent';
 import close from '../../assets/icons/close.png';
-import { useAppDispatch, useAppSelector } from '../../app/hooks';
+import { useAppDispatch, useAppSelector } from '../../hooks/hooksStore';
 
 type WindowPropsType = {
   channel: string;

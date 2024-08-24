@@ -1,7 +1,7 @@
-import { useAppDispatch, useAppSelector } from '../../../app/hooks';
+import { useAppDispatch, useAppSelector } from '../../hooks/hooksStore';
 import './errorFeedback.css';
 import { useEffect } from 'react';
-import { setError } from '../../../app/userFeedback-reducer';
+import { setError } from '../../store/reducers/userFeedback-reducer';
 
 export const ErrorSnackbar = () => {
   const dispatch = useAppDispatch();

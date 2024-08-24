@@ -1,14 +1,14 @@
 import React, { memo, useEffect } from 'react';
 import './nav.css';
-import { useAppDispatch, useAppSelector } from '../../app/hooks';
+import { useAppDispatch, useAppSelector } from '../../hooks/hooksStore';
 import {
   getMyFollows,
   getRecommendedStreams,
   getUserData,
-} from './nav-reducer';
+} from '../../store/reducers/nav-reducer';
 import { Search } from './Search/Search';
-import { tokenMode } from '../../common/utils/modeLocalToVercel';
-import { tokenFromURL } from '../../common/utils/getTokenFromURL';
+import { tokenMode } from '../../helpers/modeLocalToVercel';
+import { tokenFromURL } from '../../helpers/getTokenFromURL';
 import NavMySubscribes from './navMySubscribes/NavMySubscribes';
 import NavMyRecommends from './NavMyRecommends/NavMyRecommends';
 import NavMyListChannels from './NavMyListChannels/NavMyListChannels';

@@ -1,13 +1,13 @@
 import React, { useEffect } from 'react';
 import './App.css';
 import { Table } from '../components/Table/Table';
-import { useAppDispatch, useAppSelector } from './hooks';
-import { setToken } from '../components/Login/login-reducer';
+import { useAppDispatch, useAppSelector } from '../hooks/hooksStore';
+import { setToken } from '../store/reducers/login-reducer';
 import { Login } from '../components/Login/Login';
-import { tokenMode } from '../common/utils/modeLocalToVercel';
+import { tokenMode } from '../helpers/modeLocalToVercel';
 import { Nav } from '../components/Nav/Nav';
-import { tokenFromURL } from '../common/utils/getTokenFromURL';
-import { ErrorSnackbar } from '../common/components/ErrorSnackbar/ErrorSnackbar';
+import { tokenFromURL } from '../helpers/getTokenFromURL';
+import { ErrorSnackbar } from '../components/ErrorSnackbar/ErrorSnackbar';
 
 function App() {
   const dispatch = useAppDispatch();

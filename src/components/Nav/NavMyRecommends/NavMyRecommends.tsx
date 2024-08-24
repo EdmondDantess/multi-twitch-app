@@ -1,9 +1,9 @@
 import React from 'react';
 import { DataRecommends } from '../../../api/twitchAPI';
-import { addNewWindow } from '../../Window/window-reducer';
-import { setError } from '../../../app/userFeedback-reducer';
+import { addNewWindow } from '../../../store/reducers/window-reducer';
+import { setError } from '../../../store/reducers/userFeedback-reducer';
 import { truncate } from '../../../helpers/truncateText';
-import { useAppDispatch, useAppSelector } from '../../../app/hooks';
+import { useAppDispatch, useAppSelector } from '../../../hooks/hooksStore';
 import { iconSelector } from '../../../assets/iconSelector';
 
 const NavMyRecommends = () => {

@@ -1,5 +1,5 @@
-import { setWindowSize, WindowType } from '../Window/window-reducer';
-import { RootState } from '../../app/store';
+import { setWindowSize, WindowType } from '../../store/reducers/window-reducer';
+import { RootState } from '../../store/store';
 import { useSelector } from 'react-redux';
 import { Window } from '../Window/Window';
 import React from 'react';
@@ -7,7 +7,7 @@ import './table.css';
 import '../../../node_modules/react-resizable/css/styles.css';
 import '../../../node_modules/react-grid-layout/css/styles.css';
 import RGL, { WidthProvider, Responsive } from 'react-grid-layout';
-import { useAppDispatch } from '../../app/hooks';
+import { useAppDispatch } from '../../hooks/hooksStore';
 
 const ReactGridLayout = WidthProvider(Responsive);
 

@@ -1,6 +1,9 @@
 import React from 'react';
-import { deleteWindow, WindowType } from '../../Window/window-reducer';
-import { useAppDispatch, useAppSelector } from '../../../app/hooks';
+import {
+  deleteWindow,
+  WindowType,
+} from '../../../store/reducers/window-reducer';
+import { useAppDispatch, useAppSelector } from '../../../hooks/hooksStore';
 import { iconSelector } from '../../../assets/iconSelector';
 
 const NavMyListChannels = () => {

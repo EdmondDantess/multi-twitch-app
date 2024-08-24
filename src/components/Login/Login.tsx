@@ -1,6 +1,6 @@
 import React from 'react';
 import './login.css';
-import { mode } from '../../common/utils/modeLocalToVercel';
+import { mode } from '../../helpers/modeLocalToVercel';
 import { iconSelector } from '../../assets/iconSelector';
 
 export const Login = () => {

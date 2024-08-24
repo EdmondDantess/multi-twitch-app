@@ -1,8 +1,8 @@
 import React from 'react';
 import { LiveFollowsDataData } from '../../../api/twitchAPI';
-import { addNewWindow } from '../../Window/window-reducer';
-import { setError } from '../../../app/userFeedback-reducer';
-import { useAppDispatch, useAppSelector } from '../../../app/hooks';
+import { addNewWindow } from '../../../store/reducers/window-reducer';
+import { setError } from '../../../store/reducers/userFeedback-reducer';
+import { useAppDispatch, useAppSelector } from '../../../hooks/hooksStore';
 import { truncate } from '../../../helpers/truncateText';
 
 const NavMySubscribes = () => {

@@ -1,6 +1,6 @@
-import { DataSearch, twitchAPI } from '../../../api/twitchAPI';
-import { AppThunk } from '../../../app/store';
-import { setError } from '../../../app/userFeedback-reducer';
+import { DataSearch, twitchAPI } from '../../api/twitchAPI';
+import { AppThunk } from '../store';
+import { setError } from './userFeedback-reducer';
 
 type InitStateType = typeof initialState;
 
