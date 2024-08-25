@@ -8,6 +8,7 @@
     height: 100%;
     background-color: #000000;
     cursor: grab;
+    border: 1px solid rgba(139, 92, 246, 0.7);
 }
 
 .window:hover {
@@ -26,11 +27,10 @@
     top: 0;
     left: 0;
     color: #ffffff;
-    border-radius: 0.25rem;
-    border-width: 2px;
-    border-color: #6D28D9;
+    border-bottom-right-radius: 10px;
     font-weight: 700;
     text-align: center;
+    padding: 2px;
     background-color: #5B21B6;
 
 
