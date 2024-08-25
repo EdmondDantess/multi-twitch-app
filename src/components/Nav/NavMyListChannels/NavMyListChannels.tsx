@@ -28,7 +28,7 @@ const NavMyListChannels = () => {
 
   return (
     <div className={'nav__channels-onboard'}>
-      <span>Channels on board:</span>
+      <div className={'labelboard'}>Channels on board:</div>
       {generateListChannelsOnBoard()}
     </div>
   );

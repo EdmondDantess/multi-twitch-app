@@ -61,8 +61,8 @@ export const Nav = memo(() => {
             </div>
           </a>
         </div>
+        <Search />
       </div>
-      <Search />
       <NavMySubscribes />
       <NavMyRecommends />
       <NavMyListChannels />

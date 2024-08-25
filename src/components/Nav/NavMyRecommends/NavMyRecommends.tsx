@@ -50,7 +50,7 @@ const NavMyRecommends = () => {
 
   return (
     <div className={'nav__my-follows'}>
-      <span className={'labelboard'}>Other streams:</span>
+      <div className={'labelboard'}>Other streams:</div>
       {generateMyRecommends()}
     </div>
   );

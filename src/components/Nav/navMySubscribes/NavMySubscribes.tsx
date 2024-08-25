@@ -50,10 +50,10 @@ const NavMySubscribes = () => {
 
   return (
     <div className={'nav__my-follows'}>
-      <span className={'labelboard'}>
+      <div className={'labelboard'}>
         My subscribes in
         <span>Live</span>({myFollows.length}):
-      </span>
+      </div>
       {generateMyFollows()}
     </div>
   );
